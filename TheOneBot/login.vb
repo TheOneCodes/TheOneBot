@@ -4,6 +4,7 @@ Public Class login
     Public ID
 
     Private Sub OK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK.Click
+        Enabled = False
         main.Show()
     End Sub
 
@@ -26,6 +27,7 @@ Public Class login
     End Sub
 
     Public Sub failed(e As Exception)
-        MsgBox("Login failed, " & e.ToString, vbOK, "Login failed")
+        dialog.box("Login failed, check credentials", "Login Failed", True, e.ToString)
+        Enabled = True
     End Sub
 End Class
