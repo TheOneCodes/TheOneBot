@@ -8,18 +8,14 @@ Public Class main
     Dim webClient As WebClient = New WebClient
     Dim profilePic As Bitmap
     Dim discord As New DiscordSocketClient(New DiscordSocketConfig With {.MessageCacheSize = 50})
-    Dim token As String '= Token ID from discord goes here
-    Dim id As String '= Client ID from discord goes here
+    Dim token As String '= "Bot token"
+    Dim id As String '= "Bot ID"
+    Dim authUrl As String = "https://discordapp.com/api/oauth2/authorize?client_id=" & id & "&permissions=0&scope=bot"
     Dim wake As String = "/"
     Dim wakeSpace As Boolean = False
     Dim lastCommand As String = "[NO VAR SAVED]"
     Private Async Sub connectForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        BackColor = FromArgb(44, 47, 51)
-        panTop.BackColor = FromArgb(35, 39, 42)
-        btnCon.BackColor = FromArgb(35, 39, 42)
-        bckWake.BackColor = FromArgb(35, 39, 42)
-        txtWake.BackColor = FromArgb(35, 39, 42)
-        txtWake.ForeColor = White
+        Me.BackColor = FromArgb(44, 47, 51)
         ForeColor = White
         tabGeneral.ForeColor = Black
         AddHandler discord.MessageReceived, AddressOf onMessage
@@ -119,15 +115,16 @@ More commands comming soon (Workin' on it), stay tuned!")
             btnCon.Text = "Disconnect"
             btnCon.Enabled = True
             Try
-                lblUname.Text = discord.CurrentUser.Username.ToString
+                lblUname.Text = discord.CurrentUser.Username.ToString & "#" & discord.CurrentUser.Discriminator
                 profilePic = Bitmap.FromStream(New MemoryStream(webClient.DownloadData(discord.CurrentUser.GetAvatarUrl)))
                 picProfile.Image = profilePic
+                picBot.Visible = True
                 logger("Loaded profile info sucessfully with " & catcher & " attempts")
                 catcher = 0
                 Check.Stop()
             Catch
                 catcher += 1
-                If catcher >= 10 Then
+                If catcher >= 25 Then
                     Check.Stop()
                     logger("Too many tries, giving up.")
                     MsgBox("Could not catch info, check network connection." & vbNewLine & "Now restarting")
@@ -191,8 +188,12 @@ More commands comming soon (Workin' on it), stay tuned!")
         wakeChange(txtWake.Text, False)
     End Sub
 
-    Private Sub Load_Tick(sender As Object, e As EventArgs) Handles Load.Tick
+    Private Sub Load_Tick(sender As Object, e As EventArgs) Handles Loader.Tick
         txtWake.Text = wake
         lblWakeCount.Text = "Characters: " & txtWake.TextLength
+    End Sub
+
+    Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
+        System.Diagnostics.Process.Start(authUrl)
     End Sub
 End Class
