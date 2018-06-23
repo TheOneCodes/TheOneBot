@@ -101,6 +101,11 @@ Public Class main
                 profilePic = Bitmap.FromStream(New MemoryStream(webClient.DownloadData(discord.CurrentUser.GetAvatarUrl)))
                 picProfile.Image = profilePic
                 picBot.Visible = True
+                If id <> discord.CurrentUser.Id Then
+                    login.Show()
+                    dialog.box("Login failed, check ID", "Login failed", True, "Bot ID does not match the Bot token, check credentials and retry." & vbNewLine & "If error persists, visit https://discordapp.com/developers/applications to get a new token.")
+                    Close()
+                End If
                 Await discord.SetGameAsync("TheOneBot by TheOneCode", "https://github.com/TheOneTrueCode/TheOneBot", StreamType.Twitch)
                 logger("Loaded profile info sucessfully with " & catcher & " attempts")
                 catcher = 0

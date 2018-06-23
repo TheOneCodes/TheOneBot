@@ -29,6 +29,7 @@ Partial Class login
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.UsernameLabel = New System.Windows.Forms.Label()
         Me.PasswordLabel = New System.Windows.Forms.Label()
         Me.UsernameTextBox = New System.Windows.Forms.TextBox()
@@ -36,8 +37,13 @@ Partial Class login
         Me.OK = New System.Windows.Forms.Button()
         Me.Cancel = New System.Windows.Forms.Button()
         Me.lblReset = New System.Windows.Forms.LinkLabel()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pbImg = New System.Windows.Forms.PictureBox()
+        Me.Tooltip = New System.Windows.Forms.ToolTip(Me.components)
+        Me.animate = New System.Windows.Forms.Timer(Me.components)
+        Me.pbFull = New System.Windows.Forms.PictureBox()
+        Me.etamina = New System.Windows.Forms.Timer(Me.components)
+        CType(Me.pbImg, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pbFull, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'UsernameLabel
@@ -46,7 +52,7 @@ Partial Class login
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.UsernameLabel.Location = New System.Drawing.Point(103, 24)
         Me.UsernameLabel.Name = "UsernameLabel"
-        Me.UsernameLabel.Size = New System.Drawing.Size(264, 23)
+        Me.UsernameLabel.Size = New System.Drawing.Size(55, 23)
         Me.UsernameLabel.TabIndex = 0
         Me.UsernameLabel.Text = "Bot ID:"
         Me.UsernameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -57,7 +63,7 @@ Partial Class login
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PasswordLabel.Location = New System.Drawing.Point(103, 81)
         Me.PasswordLabel.Name = "PasswordLabel"
-        Me.PasswordLabel.Size = New System.Drawing.Size(267, 23)
+        Me.PasswordLabel.Size = New System.Drawing.Size(58, 23)
         Me.PasswordLabel.TabIndex = 2
         Me.PasswordLabel.Text = "Bot token:"
         Me.PasswordLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -68,7 +74,7 @@ Partial Class login
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.UsernameTextBox.Location = New System.Drawing.Point(103, 44)
         Me.UsernameTextBox.Name = "UsernameTextBox"
-        Me.UsernameTextBox.Size = New System.Drawing.Size(288, 22)
+        Me.UsernameTextBox.Size = New System.Drawing.Size(79, 22)
         Me.UsernameTextBox.TabIndex = 1
         '
         'PasswordTextBox
@@ -78,14 +84,14 @@ Partial Class login
         Me.PasswordTextBox.Location = New System.Drawing.Point(103, 101)
         Me.PasswordTextBox.Name = "PasswordTextBox"
         Me.PasswordTextBox.PasswordChar = Global.Microsoft.VisualBasic.ChrW(8226)
-        Me.PasswordTextBox.Size = New System.Drawing.Size(288, 22)
+        Me.PasswordTextBox.Size = New System.Drawing.Size(79, 22)
         Me.PasswordTextBox.TabIndex = 3
         '
         'OK
         '
         Me.OK.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.OK.Enabled = False
-        Me.OK.Location = New System.Drawing.Point(185, 161)
+        Me.OK.Location = New System.Drawing.Point(-24, 161)
         Me.OK.Name = "OK"
         Me.OK.Size = New System.Drawing.Size(94, 23)
         Me.OK.TabIndex = 4
@@ -95,7 +101,7 @@ Partial Class login
         '
         Me.Cancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.Cancel.Location = New System.Drawing.Point(288, 161)
+        Me.Cancel.Location = New System.Drawing.Point(79, 161)
         Me.Cancel.Name = "Cancel"
         Me.Cancel.Size = New System.Drawing.Size(94, 23)
         Me.Cancel.TabIndex = 5
@@ -112,16 +118,39 @@ Partial Class login
         Me.lblReset.Text = "Get ID/token"
         Me.lblReset.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'PictureBox1
+        'pbImg
         '
-        Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PictureBox1.Image = Global.TheOneBot.My.Resources.Resources.side
-        Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(97, 192)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox1.TabIndex = 6
-        Me.PictureBox1.TabStop = False
+        Me.pbImg.Dock = System.Windows.Forms.DockStyle.Left
+        Me.pbImg.Image = Global.TheOneBot.My.Resources.Resources.side
+        Me.pbImg.Location = New System.Drawing.Point(0, 0)
+        Me.pbImg.Name = "pbImg"
+        Me.pbImg.Size = New System.Drawing.Size(97, 192)
+        Me.pbImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbImg.TabIndex = 6
+        Me.pbImg.TabStop = False
+        '
+        'Tooltip
+        '
+        Me.Tooltip.ShowAlways = True
+        '
+        'animate
+        '
+        Me.animate.Enabled = True
+        Me.animate.Interval = 15
+        '
+        'pbFull
+        '
+        Me.pbFull.Image = Global.TheOneBot.My.Resources.Resources.none
+        Me.pbFull.Location = New System.Drawing.Point(0, 0)
+        Me.pbFull.Name = "pbFull"
+        Me.pbFull.Size = New System.Drawing.Size(194, 192)
+        Me.pbFull.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbFull.TabIndex = 8
+        Me.pbFull.TabStop = False
+        '
+        'etamina
+        '
+        Me.etamina.Interval = 15
         '
         'login
         '
@@ -129,9 +158,10 @@ Partial Class login
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Cancel
-        Me.ClientSize = New System.Drawing.Size(403, 192)
+        Me.ClientSize = New System.Drawing.Size(194, 192)
+        Me.Controls.Add(Me.pbFull)
         Me.Controls.Add(Me.lblReset)
-        Me.Controls.Add(Me.PictureBox1)
+        Me.Controls.Add(Me.pbImg)
         Me.Controls.Add(Me.Cancel)
         Me.Controls.Add(Me.OK)
         Me.Controls.Add(Me.PasswordTextBox)
@@ -146,12 +176,17 @@ Partial Class login
         Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Login"
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbImg, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbFull, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents pbImg As PictureBox
     Friend WithEvents lblReset As LinkLabel
+    Friend WithEvents Tooltip As ToolTip
+    Friend WithEvents animate As Timer
+    Friend WithEvents pbFull As PictureBox
+    Friend WithEvents etamina As Timer
 End Class
