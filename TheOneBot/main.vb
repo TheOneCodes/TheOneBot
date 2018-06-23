@@ -8,7 +8,7 @@ Public Class main
     Dim webClient As WebClient = New WebClient
     Dim profilePic As Bitmap
     Dim discord As New DiscordSocketClient(New DiscordSocketConfig With {.MessageCacheSize = 50})
-    Dim token As String '= "Bot token"
+    Dim token As String '= "'Bot Token"
     Dim id As String '= "Bot ID"
     Dim authUrl As String = "https://discordapp.com/api/oauth2/authorize?client_id=" & id & "&permissions=0&scope=bot"
     Dim wake As String = "/"
@@ -34,24 +34,9 @@ Public Class main
         If message.Source <> MessageSource.Bot And message.Content.StartsWith(wake) Then
             If message.Content.StartsWith(wake & "help") Or message.Content.StartsWith(wake & "commands") Then
                 If DirectCast(message.Author, SocketGuildUser).Roles.ToList.Contains(DirectCast(message.Channel, IGuildChannel).Guild.GetRole("454406710044393484")) Or DirectCast(message.Author, SocketGuildUser).Roles.ToList.Contains(DirectCast(message.Channel, IGuildChannel).Guild.GetRole("406993865233661963")) Then
-                    Await message.Channel.SendMessageAsync($"Current command wake prefix is `{wake}`
-Commands in version 0.01 beta: ```fix
-Echo:           {wake}echo <message>                    The bot will echo your message
-                {wake}repeat <message>                          """"
-Last command:   {wake}last                              The bot will tell the last executed command
-Stats:          {wake}stats <user>                      Get user's stats in a game (currently supports Fortnite Stats Bot
-Setup:          {wake}setup <setting> -flag  Set up the bot (can be dissabled in server)
-                                  wake <-space>    Set the wake (prefix key) and use the space (-s) flag to use a space after the command
-                                  reset            Resets the bot to default```
-More commands comming soon (Workin' on it), stay tuned!")
+                    Await message.Channel.SendMessageAsync(txtHelp.Text.Replace("{wake}", wake) & vbNewLine & txtHelpAdmin.Text.Replace("{wake}", wake))
                 Else
-                    Await message.Channel.SendMessageAsync($"Current command wake prefix is `{wake}`
-Commands in version 0.01 beta: ```fix
-Echo:           {wake}echo <message>                    The bot will echo your message
-                {wake}repeat <message>                          """"
-Last command:   {wake}last                              The bot will tell the last executed command
-Stats:          {wake}stats <user>                      Get user's stats in a game (currently supports Fortnite Stats Bot```
-More commands comming soon (Workin' on it), stay tuned!")
+                    Await message.Channel.SendMessageAsync(txtHelp.Text.Replace("{wake}", wake))
                 End If
             ElseIf message.Content.StartsWith(wake & "repeat ") Or message.Content.StartsWith(wake & "echo ") Then
                 'echo~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -109,7 +94,7 @@ More commands comming soon (Workin' on it), stay tuned!")
         wake = "/"
         'save
     End Sub
-    Private Sub Check_Tick(sender As Object, e As EventArgs) Handles Check.Tick
+    Private Async Sub Check_Tick(sender As Object, e As EventArgs) Handles Check.Tick
         If discord.LoginState = LoginState.LoggedIn Then
             lblStatus.Text = "Online"
             btnCon.Text = "Disconnect"
@@ -119,6 +104,7 @@ More commands comming soon (Workin' on it), stay tuned!")
                 profilePic = Bitmap.FromStream(New MemoryStream(webClient.DownloadData(discord.CurrentUser.GetAvatarUrl)))
                 picProfile.Image = profilePic
                 picBot.Visible = True
+                Await discord.SetGameAsync("TheOneBot by TheOneCode", "https://github.com/TheOneTrueCode/TheOneBot", StreamType.Twitch)
                 logger("Loaded profile info sucessfully with " & catcher & " attempts")
                 catcher = 0
                 Check.Stop()
