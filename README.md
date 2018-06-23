@@ -7,5 +7,10 @@ This bot is not at a state where it should be relied on, however you can use thi
 - [x] Help command
 - [x] Echo command
 - [x] Last command
-- [/] Stats (dependant)
-- [x] 
+- [x] Full external setup command
+- [ ] Full server setup UI
+- [ ] Stats (dependant)
+## Planned Features
+- Music
+- Independent stats info
+- Moderation/ administration tools
