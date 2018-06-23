@@ -8,23 +8,20 @@ Public Class main
     Dim webClient As WebClient = New WebClient
     Dim profilePic As Bitmap
     Dim discord As New DiscordSocketClient(New DiscordSocketConfig With {.MessageCacheSize = 50})
-    Dim token As String '= "'Bot Token"
-    Dim id As String '= "Bot ID"
+    Dim id As String = login.ID
+    Dim token As String = login.Token
     Dim authUrl As String = "https://discordapp.com/api/oauth2/authorize?client_id=" & id & "&permissions=0&scope=bot"
     Dim wake As String = "/"
     Dim wakeSpace As Boolean = False
     Dim lastCommand As String = "[NO VAR SAVED]"
     Private Async Sub connectForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.BackColor = FromArgb(44, 47, 51)
-        ForeColor = White
-        tabGeneral.ForeColor = Black
         AddHandler discord.MessageReceived, AddressOf onMessage
         Try
             Await discord.LoginAsync(TokenType.Bot, token)
+            login.Close()
             logger("Login Sucessfull, bot online!")
         Catch ex As Exception
-            logger("Login Failed, bot offline!")
-            MsgBox("Login Failed" & vbNewLine & "Check token code", vbOK, "Exception occured")
+            login.failed(ex)
             Close()
         End Try
         Await discord.StartAsync()

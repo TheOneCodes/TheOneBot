@@ -58,3 +58,4 @@ C:\GitHub\TheOneBot\TheOneBot\obj\Debug\TheOneBot.exe
 C:\GitHub\TheOneBot\TheOneBot\obj\Debug\TheOneBot.xml
 C:\GitHub\TheOneBot\TheOneBot\obj\Debug\TheOneBot.pdb
 C:\GitHub\TheOneBot\TheOneBot\obj\Debug\TheOneBot.main.resources
+C:\GitHub\TheOneBot\TheOneBot\obj\Debug\TheOneBot.login.resources
