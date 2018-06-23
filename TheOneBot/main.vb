@@ -15,11 +15,11 @@ Public Class main
     Dim wakeSpace As Boolean = False
     Dim lastCommand As String = "[NO VAR SAVED]"
     Private Async Sub connectForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Hide()
         AddHandler discord.MessageReceived, AddressOf onMessage
         Try
             Await discord.LoginAsync(TokenType.Bot, token)
-            login.Close()
-            logger("Login Sucessfull, bot online!")
+            logger("Token approved, bot online!")
         Catch ex As Exception
             login.failed(ex)
             Close()
@@ -102,9 +102,11 @@ Public Class main
                 picProfile.Image = profilePic
                 picBot.Visible = True
                 If id <> discord.CurrentUser.Id Then
-                    login.Show()
-                    dialog.box("Login failed, check ID", "Login failed", True, "Bot ID does not match the Bot token, check credentials and retry." & vbNewLine & "If error persists, visit https://discordapp.com/developers/applications to get a new token.")
+                    dialog.box("Login failed, check ID", "Login failed", vbOK, "Bot ID does not match the Bot token, check credentials and retry." & vbNewLine & "If error persists, visit https://discordapp.com/developers/applications to get a new token.")
                     Close()
+                Else
+                    Show()
+                    login.Close()
                 End If
                 Await discord.SetGameAsync("TheOneBot by TheOneCode", "https://github.com/TheOneTrueCode/TheOneBot", StreamType.Twitch)
                 logger("Loaded profile info sucessfully with " & catcher & " attempts")

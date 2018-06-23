@@ -52,7 +52,7 @@ Partial Class login
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.UsernameLabel.Location = New System.Drawing.Point(103, 24)
         Me.UsernameLabel.Name = "UsernameLabel"
-        Me.UsernameLabel.Size = New System.Drawing.Size(55, 23)
+        Me.UsernameLabel.Size = New System.Drawing.Size(265, 23)
         Me.UsernameLabel.TabIndex = 0
         Me.UsernameLabel.Text = "Bot ID:"
         Me.UsernameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -63,7 +63,7 @@ Partial Class login
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PasswordLabel.Location = New System.Drawing.Point(103, 81)
         Me.PasswordLabel.Name = "PasswordLabel"
-        Me.PasswordLabel.Size = New System.Drawing.Size(58, 23)
+        Me.PasswordLabel.Size = New System.Drawing.Size(268, 23)
         Me.PasswordLabel.TabIndex = 2
         Me.PasswordLabel.Text = "Bot token:"
         Me.PasswordLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -74,7 +74,7 @@ Partial Class login
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.UsernameTextBox.Location = New System.Drawing.Point(103, 44)
         Me.UsernameTextBox.Name = "UsernameTextBox"
-        Me.UsernameTextBox.Size = New System.Drawing.Size(79, 22)
+        Me.UsernameTextBox.Size = New System.Drawing.Size(289, 22)
         Me.UsernameTextBox.TabIndex = 1
         '
         'PasswordTextBox
@@ -84,33 +84,37 @@ Partial Class login
         Me.PasswordTextBox.Location = New System.Drawing.Point(103, 101)
         Me.PasswordTextBox.Name = "PasswordTextBox"
         Me.PasswordTextBox.PasswordChar = Global.Microsoft.VisualBasic.ChrW(8226)
-        Me.PasswordTextBox.Size = New System.Drawing.Size(79, 22)
+        Me.PasswordTextBox.Size = New System.Drawing.Size(289, 22)
         Me.PasswordTextBox.TabIndex = 3
         '
         'OK
         '
         Me.OK.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.OK.BackColor = System.Drawing.SystemColors.Control
         Me.OK.Enabled = False
-        Me.OK.Location = New System.Drawing.Point(-24, 161)
+        Me.OK.Location = New System.Drawing.Point(186, 161)
         Me.OK.Name = "OK"
         Me.OK.Size = New System.Drawing.Size(94, 23)
         Me.OK.TabIndex = 4
         Me.OK.Text = "&OK"
+        Me.OK.UseVisualStyleBackColor = False
         '
         'Cancel
         '
         Me.Cancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Cancel.BackColor = System.Drawing.SystemColors.Control
         Me.Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.Cancel.Location = New System.Drawing.Point(79, 161)
+        Me.Cancel.Location = New System.Drawing.Point(289, 161)
         Me.Cancel.Name = "Cancel"
         Me.Cancel.Size = New System.Drawing.Size(94, 23)
         Me.Cancel.TabIndex = 5
         Me.Cancel.Text = "&Cancel"
+        Me.Cancel.UseVisualStyleBackColor = False
         '
         'lblReset
         '
         Me.lblReset.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.lblReset.Location = New System.Drawing.Point(103, 161)
+        Me.lblReset.Location = New System.Drawing.Point(100, 161)
         Me.lblReset.Name = "lblReset"
         Me.lblReset.Size = New System.Drawing.Size(73, 23)
         Me.lblReset.TabIndex = 7
@@ -141,7 +145,7 @@ Partial Class login
         'pbFull
         '
         Me.pbFull.Image = Global.TheOneBot.My.Resources.Resources.none
-        Me.pbFull.Location = New System.Drawing.Point(0, 0)
+        Me.pbFull.Location = New System.Drawing.Point(-97, 0)
         Me.pbFull.Name = "pbFull"
         Me.pbFull.Size = New System.Drawing.Size(194, 192)
         Me.pbFull.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -157,10 +161,9 @@ Partial Class login
         Me.AcceptButton = Me.OK
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.SystemColors.Control
         Me.CancelButton = Me.Cancel
-        Me.ClientSize = New System.Drawing.Size(194, 192)
-        Me.Controls.Add(Me.pbFull)
-        Me.Controls.Add(Me.lblReset)
+        Me.ClientSize = New System.Drawing.Size(404, 192)
         Me.Controls.Add(Me.pbImg)
         Me.Controls.Add(Me.Cancel)
         Me.Controls.Add(Me.OK)
@@ -168,6 +171,8 @@ Partial Class login
         Me.Controls.Add(Me.UsernameTextBox)
         Me.Controls.Add(Me.PasswordLabel)
         Me.Controls.Add(Me.UsernameLabel)
+        Me.Controls.Add(Me.lblReset)
+        Me.Controls.Add(Me.pbFull)
         Me.Font = New System.Drawing.Font("Segoe UI Semibold", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False

@@ -32,14 +32,29 @@ Public Class login
     End Sub
 
     Public Sub failed(e As Exception)
-        dialog.box("Login failed, check credentials", "Login Failed", True, e.ToString)
+        dialog.box("Login failed, check credentials", "Login Failed", vbOK, e.ToString)
         Enabled = True
     End Sub
 
     Private Sub login_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Size = New Size(210, 231)
+        pbFull.Location = New Point(0, 0)
+        pbFull.BringToFront()
         Tooltip.SetToolTip(UsernameTextBox, "Seemingly random, 18 numeric characters, always numeric" & vbNewLine & "The bot ID is not entirely required, but used as an extra level of security")
         Tooltip.SetToolTip(PasswordTextBox, "Seemingly random, 59 alphanumeric characters, always a '.' at character 25 and 32" & vbNewLine & "The token is more of a ""Password"" for the bot")
+        If Ping("google.ca") = False Then
+            Enabled = False
+            dialog.box("Could not connect to internet," & vbNewLine & "Please check connection and try again", "Connection issue", vbOK, "ping google.com returned false" & vbNewLine & "internet.connected returned false")
+        End If
     End Sub
+
+    Public Function Ping(e As String) As Boolean
+        Try
+            Return My.Computer.Network.Ping(e)
+        Catch
+            Return False
+        End Try
+    End Function
 
     Private Sub animate_Tick(sender As Object, e As EventArgs) Handles animate.Tick
         animTick += 1
