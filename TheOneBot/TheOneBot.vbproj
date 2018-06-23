@@ -192,6 +192,12 @@
     <Compile Include="dialog.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="loader.Designer.vb">
+      <DependentUpon>loader.vb</DependentUpon>
+    </Compile>
+    <Compile Include="loader.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="login.Designer.vb">
       <DependentUpon>login.vb</DependentUpon>
     </Compile>
@@ -223,6 +229,9 @@
   <ItemGroup>
     <EmbeddedResource Include="dialog.resx">
       <DependentUpon>dialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="loader.resx">
+      <DependentUpon>loader.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="login.resx">
       <DependentUpon>login.vb</DependentUpon>

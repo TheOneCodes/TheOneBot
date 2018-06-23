@@ -60,3 +60,4 @@ C:\GitHub\TheOneBot\TheOneBot\obj\Debug\TheOneBot.pdb
 C:\GitHub\TheOneBot\TheOneBot\obj\Debug\TheOneBot.main.resources
 C:\GitHub\TheOneBot\TheOneBot\obj\Debug\TheOneBot.login.resources
 C:\GitHub\TheOneBot\TheOneBot\obj\Debug\TheOneBot.dialog.resources
+C:\GitHub\TheOneBot\TheOneBot\obj\Debug\TheOneBot.loader.resources

@@ -42,9 +42,9 @@ Public Class login
         pbFull.BringToFront()
         Tooltip.SetToolTip(UsernameTextBox, "Seemingly random, 18 numeric characters, always numeric" & vbNewLine & "The bot ID is not entirely required, but used as an extra level of security")
         Tooltip.SetToolTip(PasswordTextBox, "Seemingly random, 59 alphanumeric characters, always a '.' at character 25 and 32" & vbNewLine & "The token is more of a ""Password"" for the bot")
-        If Ping("google.ca") = False Then
+        If Ping("discord.gg") = False Then
             Enabled = False
-            dialog.box("Could not connect to internet," & vbNewLine & "Please check connection and try again", "Connection issue", vbOK, "ping google.com returned false" & vbNewLine & "internet.connected returned false")
+            dialog.box("Lost network connection," & vbNewLine & "Please check connection and try again", "Connection issue", vbOK, "ping discord returned false" & vbNewLine & "internet.connected returned false")
         End If
     End Sub
 
