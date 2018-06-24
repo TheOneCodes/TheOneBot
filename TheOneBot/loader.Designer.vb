@@ -30,6 +30,8 @@ Partial Class loader
         Me.lblName = New System.Windows.Forms.Label()
         Me.progress = New System.Windows.Forms.ProgressBar()
         Me.Dots = New System.Windows.Forms.Timer(Me.components)
+        Me.finish = New System.Windows.Forms.Timer(Me.components)
+        Me.updateNow = New System.Windows.Forms.Timer(Me.components)
         Me.tblMain.SuspendLayout()
         CType(Me.pbDis, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tblMid.SuspendLayout()
@@ -74,7 +76,7 @@ Partial Class loader
         Me.tblMid.RowCount = 3
         Me.tblMid.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
         Me.tblMid.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tblMid.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tblMid.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
         Me.tblMid.Size = New System.Drawing.Size(293, 223)
         Me.tblMid.TabIndex = 1
         '
@@ -85,7 +87,7 @@ Partial Class loader
         Me.lblText.Location = New System.Drawing.Point(3, 100)
         Me.lblText.Name = "lblText"
         Me.lblText.Padding = New System.Windows.Forms.Padding(10, 0, 0, 10)
-        Me.lblText.Size = New System.Drawing.Size(287, 103)
+        Me.lblText.Size = New System.Drawing.Size(287, 98)
         Me.lblText.TabIndex = 7
         Me.lblText.Text = "Loading..."
         Me.lblText.TextAlign = System.Drawing.ContentAlignment.BottomLeft
@@ -104,17 +106,26 @@ Partial Class loader
         'progress
         '
         Me.progress.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.progress.Location = New System.Drawing.Point(3, 206)
+        Me.progress.ForeColor = System.Drawing.Color.FromArgb(CType(CType(114, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(218, Byte), Integer))
+        Me.progress.Location = New System.Drawing.Point(3, 201)
         Me.progress.Maximum = 1000
         Me.progress.Name = "progress"
-        Me.progress.Size = New System.Drawing.Size(287, 14)
+        Me.progress.Size = New System.Drawing.Size(287, 19)
         Me.progress.TabIndex = 8
+        Me.progress.UseWaitCursor = True
         Me.progress.Visible = False
         '
         'Dots
         '
         Me.Dots.Enabled = True
-        Me.Dots.Interval = 500
+        '
+        'finish
+        '
+        Me.finish.Interval = 2000
+        '
+        'updateNow
+        '
+        Me.updateNow.Interval = 2000
         '
         'loader
         '
@@ -146,4 +157,6 @@ Partial Class loader
     Friend WithEvents lblText As Label
     Friend WithEvents progress As ProgressBar
     Friend WithEvents Dots As Timer
+    Friend WithEvents finish As Timer
+    Friend WithEvents updateNow As Timer
 End Class
