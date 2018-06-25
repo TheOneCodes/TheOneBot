@@ -2,20 +2,25 @@
 Imports Discord.WebSocket
 Imports System.Net
 Imports System.IO
-Imports System.Drawing.Color
+Imports System.Net.NetworkInformation
 Public Class main
-    Dim catcher As Integer
-    Dim webClient As WebClient = New WebClient
-    Dim profilePic As Bitmap
-    Dim discord As New DiscordSocketClient(New DiscordSocketConfig With {.MessageCacheSize = 50})
-    Dim id As String = login.ID
-    Dim token As String = login.Token
-    Dim authUrl As String = "https://discordapp.com/api/oauth2/authorize?client_id=" & id & "&permissions=0&scope=bot"
-    Dim wake As String = "/"
-    Dim wakeSpace As Boolean = False
-    Dim lastCommand As String = "[NO VAR SAVED]"
+    Const botOwner As String = "TheOneCode#0445"                                                                        'I put my user name here (replace with your own username on compile
+    Dim adminRole As Decimal = 454406710044393484                                                                       'the numeric ID of the admin or similar role
+    Dim catcher As Integer                                                                                              'catcher for each attempt to catch info
+    Dim webClient As WebClient = New WebClient                                                                          'webClient for catching info
+    Dim profilePic As Bitmap                                                                                            'profile picture for caught info
+    Dim discord As New DiscordSocketClient(New DiscordSocketConfig With {.MessageCacheSize = 50})                       'discord socket configuration
+    Dim id As String = login.ID                                                                                         'gets ID from login
+    Dim token As String = login.Token                                                                                   'gets token from login
+    Dim authUrl As String = "https://discordapp.com/api/oauth2/authorize?client_id=" & id & "&permissions=0&scope=bot"  'gets auth url for adding bot to discord with a few clicks
+    Dim wake As String = "/"                                                                                            'gets wake key
+    Dim wakeSpace As Boolean = False                                                                                    'is there a space after?
+    Dim lastCommand As String = "[NO VAR SAVED]"                                                                        'last command
+    Dim remoteControl As Boolean = False
+    Dim enabledCommand = New Boolean() {False, True, True, True, False, False}
+    'load
     Private Async Sub connectForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Hide()
+        PingNow()
         AddHandler discord.MessageReceived, AddressOf onMessage
         Try
             Await discord.LoginAsync(TokenType.Bot, token)
@@ -26,34 +31,48 @@ Public Class main
         End Try
         Await discord.StartAsync()
     End Sub
-    'var/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    'This is where all the magic happens (command inturperater)
     Private Async Function onMessage(message As SocketMessage) As Task
+        'check if it's a bot or not
         If message.Source <> MessageSource.Bot And message.Content.StartsWith(wake) Then
-            If message.Content.StartsWith(wake & "help") Or message.Content.StartsWith(wake & "commands") Then
-                If DirectCast(message.Author, SocketGuildUser).Roles.ToList.Contains(DirectCast(message.Channel, IGuildChannel).Guild.GetRole("454406710044393484")) Or DirectCast(message.Author, SocketGuildUser).Roles.ToList.Contains(DirectCast(message.Channel, IGuildChannel).Guild.GetRole("406993865233661963")) Then
+            'commands
+            If message.Content.StartsWith(wake & "help") = True And enabledCommand(1) Or message.Content.StartsWith(wake & "commands") And enabledCommand(1) Then
+                'help
+                If DirectCast(message.Author, SocketGuildUser).Roles.ToList.Contains(DirectCast(message.Channel, IGuildChannel).Guild.GetRole(adminRole)) Or message.Author.Username = DirectCast(message.Author, SocketGuildUser).Guild.Owner.Username And message.Author.Discriminator = DirectCast(message.Author, SocketGuildUser).Guild.Owner.Discriminator Or message.Author.Username & "#" & message.Author.Discriminator = botOwner Then
                     Await message.Channel.SendMessageAsync(txtHelp.Text.Replace("{wake}", wake) & vbNewLine & txtHelpAdmin.Text.Replace("{wake}", wake))
                 Else
                     Await message.Channel.SendMessageAsync(txtHelp.Text.Replace("{wake}", wake))
                 End If
-            ElseIf message.Content.StartsWith(wake & "repeat ") Or message.Content.StartsWith(wake & "echo ") Then
-                'echo~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            ElseIf message.Content.StartsWith(wake & "online") Then
+                'online (always enabled)
+                Await message.Channel.SendMessageAsync("Status: `I am offline ( ͡° ͜ʖ ͡°)`")
+            ElseIf message.Content.StartsWith(wake & "ping") And enabledCommand(2) Then
+                'ping
+                If message.Content.Contains("ping ") Then
+                    Dim messageRecieved As String = message.Content.Replace(wake & "ping ", "")
+                    Await message.Channel.SendMessageAsync("Ping results for " & message.Author.Username & ":" & vbNewLine & "`" & PingNow(messageRecieved, True) & "`")
+                Else
+                    Await message.Channel.SendMessageAsync("Ping results for " & message.Author.Username & ":" & vbNewLine & "`" & PingNow(, True) & "`")
+                End If
+            ElseIf message.Content.StartsWith(wake & "repeat ") Or message.Content.StartsWith(wake & "echo ") And enabledCommand(3) Then
+                'echo
                 Dim repeat As String = message.Content
                 repeat = repeat.Replace(wake & "repeat ", "")
                 repeat = repeat.Replace(wake & "echo ", "")
                 repeat = message.Author.Username & " said : " & repeat
                 Await message.Channel.SendMessageAsync(repeat)
                 logger(message.Author.Username & " echoed " & repeat)
-            ElseIf message.Content.StartsWith(wake & "last") Then
-                'last~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            ElseIf message.Content.StartsWith(wake & "last") And enabledCommand(4) Or message.Content.StartsWith(wake & "previous") And enabledCommand(4) Then
+                'last
                 Await message.Channel.SendMessageAsync(lastCommand)
-            ElseIf message.Content.StartsWith(wake & "stats ") Then
-                'stats~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            ElseIf message.Content.StartsWith(wake & "stats ") And enabledCommand(5) Then
+                'stats (currently calls on Fortnite stats bot)
                 Dim stats As String = message.Content.Replace(wake & "stats ", "")
                 Await message.Channel.SendMessageAsync("!ftn " & stats)
-            ElseIf message.Content.StartsWith(wake & "setup ") Then
-                'SETUP~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            ElseIf message.Content.StartsWith(wake & "setup ") And remoteControl Then
+                'setup
                 Dim change As String = message.Content.Replace(wake & "setup ", "")
-                If DirectCast(message.Author, SocketGuildUser).Roles.ToList.Contains(DirectCast(message.Channel, IGuildChannel).Guild.GetRole("454406710044393484")) Or DirectCast(message.Author, SocketGuildUser).Roles.ToList.Contains(DirectCast(message.Channel, IGuildChannel).Guild.GetRole("406993865233661963")) Then
+                If DirectCast(message.Author, SocketGuildUser).Roles.ToList.Contains(DirectCast(message.Channel, IGuildChannel).Guild.GetRole(adminRole)) Or message.Author.Username = DirectCast(message.Author, SocketGuildUser).Guild.Owner.Username And message.Author.Discriminator = DirectCast(message.Author, SocketGuildUser).Guild.Owner.Discriminator Or message.Author.Username & "#" & message.Author.Discriminator = botOwner Then
                     If change.StartsWith("wake") Then
                         change = change.Replace("wake ", "")
                         If change.StartsWith("-s") Or change.StartsWith("-space") Then
@@ -75,7 +94,9 @@ Public Class main
             'record last>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
             lastCommand = message.Author.Username & " said : " & vbNewLine & "```" & message.Content & "```" & vbNewLine & "Was the last command executed"
             'remove>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-            Await message.DeleteAsync
+            If enabledCommand(0) Then
+                Await message.DeleteAsync
+            End If
         End If
     End Function
     Private Sub wakeChange(newWake As String, space As Boolean)
@@ -178,12 +199,56 @@ Public Class main
         wakeChange(txtWake.Text, False)
     End Sub
 
-    Private Sub Load_Tick(sender As Object, e As EventArgs) Handles Loader.Tick
+    Private Sub reload() Handles Reloader.Tick
         txtWake.Text = wake
         lblWakeCount.Text = "Characters: " & txtWake.TextLength
     End Sub
 
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
-        System.Diagnostics.Process.Start(authUrl)
+        Process.Start(authUrl)
+    End Sub
+    Private Sub chkDel_CheckedChanged(sender As Object, e As EventArgs) Handles chkDel.CheckedChanged
+        enabledCommand(0) = chkDel.Checked
+    End Sub
+    Private Sub chkHelp_CheckedChanged(sender As Object, e As EventArgs) Handles chkHelp.CheckedChanged
+        enabledCommand(1) = chkHelp.Checked
+    End Sub
+    Private Sub chkPing_CheckedChanged(sender As Object, e As EventArgs) Handles chkPing.CheckedChanged
+        enabledCommand(2) = chkHelp.Checked
+    End Sub
+    Private Sub chkEcho_CheckedChanged(sender As Object, e As EventArgs) Handles chkEcho.CheckedChanged
+        enabledCommand(3) = chkHelp.Checked
+    End Sub
+    Private Sub chkLast_CheckedChanged(sender As Object, e As EventArgs) Handles chkLast.CheckedChanged
+        enabledCommand(4) = chkHelp.Checked
+    End Sub
+    Private Sub chkStats_CheckedChanged(sender As Object, e As EventArgs) Handles chkStats.CheckedChanged
+        enabledCommand(5) = chkHelp.Checked
+    End Sub
+
+    Private Sub chkRemote_CheckedChanged(sender As Object, e As EventArgs) Handles chkRemote.CheckedChanged
+        remoteControl = chkRemote.Checked
+    End Sub
+
+    Private Function PingNow(Optional address As String = "discord.com", Optional w As Boolean = False)
+        Dim pinger As New Ping
+        Dim reply As PingReply = pinger.Send(address)
+        If w Then
+            Return reply.Address.ToString & "@ " & reply.RoundtripTime & "ms"
+        Else
+            Return reply.RoundtripTime
+        End If
+    End Function
+
+    Private Sub Ping_Tick(sender As Object, e As EventArgs) Handles Ping.Tick
+        Dim time = PingNow()
+        lblPing.Text = time & "ms"
+        If time <= 50 Then
+            panPing.BackColor = System.Drawing.Color.Green
+        ElseIf time <= 250 Then
+            panPing.BackColor = System.Drawing.Color.GreenYellow
+        Else
+            panPing.BackColor = System.Drawing.Color.Red
+        End If
     End Sub
 End Class

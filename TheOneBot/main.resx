@@ -117,12 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="Check.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="Loader.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>101, 17</value>
-  </metadata>
+  <data name="txtHelpAdmin.Text" xml:space="preserve">
+    <value>Admin only commands: ```fix
+Setup:          {wake}setup &lt;setting&gt; -flag  Set up the bot (can be dissabled in server)
+                                  wake &lt;-space&gt;    Set the wake (prefix key) and use the space (-s) flag to use a space after the command
+                                  reset            Resets the bot to default```</value>
+  </data>
   <data name="txtHelp.Text" xml:space="preserve">
     <value>Current command wake prefix is `{wake}`
 Commands in version 0.01 beta: ```fix
@@ -131,12 +131,15 @@ Echo:           {wake}echo &lt;message&gt;                    The bot will echo 
 Last command:   {wake}last                              The bot will tell the last executed command
 Stats:          {wake}stats &lt;user&gt;                      Get user's stats in a game (currently supports Fortnite Stats Bot```</value>
   </data>
-  <data name="txtHelpAdmin.Text" xml:space="preserve">
-    <value>Admin only commands: ```fix
-Setup:          {wake}setup &lt;setting&gt; -flag  Set up the bot (can be dissabled in server)
-                                  wake &lt;-space&gt;    Set the wake (prefix key) and use the space (-s) flag to use a space after the command
-                                  reset            Resets the bot to default```</value>
-  </data>
+  <metadata name="Check.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="Reloader.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>101, 17</value>
+  </metadata>
+  <metadata name="Ping.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>201, 17</value>
+  </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>82</value>
   </metadata>
