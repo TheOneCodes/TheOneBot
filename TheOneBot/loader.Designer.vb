@@ -32,6 +32,7 @@ Partial Class loader
         Me.Dots = New System.Windows.Forms.Timer(Me.components)
         Me.finish = New System.Windows.Forms.Timer(Me.components)
         Me.updateNow = New System.Windows.Forms.Timer(Me.components)
+        Me.start = New System.Windows.Forms.Timer(Me.components)
         Me.tblMain.SuspendLayout()
         CType(Me.pbDis, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tblMid.SuspendLayout()
@@ -127,6 +128,11 @@ Partial Class loader
         '
         Me.updateNow.Interval = 2000
         '
+        'start
+        '
+        Me.start.Enabled = True
+        Me.start.Interval = 1000
+        '
         'loader
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -159,4 +165,5 @@ Partial Class loader
     Friend WithEvents Dots As Timer
     Friend WithEvents finish As Timer
     Friend WithEvents updateNow As Timer
+    Friend WithEvents start As Timer
 End Class

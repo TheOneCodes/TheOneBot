@@ -12,8 +12,32 @@ Public NotInheritable Class loader
     Dim client As WebClient = New WebClient                                                 'the download client
     Dim reader As StreamReader                                                              'the info reader
     'On load
-    Private Sub loader_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+    Private Sub start_Tick(sender As Object, e As EventArgs) Handles start.Tick
         'is this stock
+        start.Stop()
+        If My.Settings.first Or My.Settings.version < version Or IsNothing(My.Settings.enabledCommand) Then
+            bottomText = "Prepairing for first use"
+            My.Settings.Upgrade()
+            My.Settings.Save()
+            My.Settings.enabledCommand(0) = New Boolean
+            My.Settings.enabledCommand(0) = False
+            My.Settings.enabledCommand(1) = New Boolean
+            My.Settings.enabledCommand(1) = True
+            My.Settings.enabledCommand(2) = New Boolean
+            My.Settings.enabledCommand(2) = True
+            My.Settings.enabledCommand(3) = New Boolean
+            My.Settings.enabledCommand(3) = True
+            My.Settings.enabledCommand(4) = New Boolean
+            My.Settings.enabledCommand(4) = False
+            My.Settings.enabledCommand(5) = New Boolean
+            My.Settings.enabledCommand(5) = False
+            My.Settings.Save()
+            My.Settings.remoteControl = False
+            My.Settings.first = False
+            My.Settings.version = version
+            My.Settings.Save()
+            bottomText = "First startup"
+        End If
         If stock = False Then
             bottomText = "Loading v" & version & " (modified)"
         End If
@@ -137,4 +161,5 @@ Public NotInheritable Class loader
         System.Diagnostics.Process.Start(updateFile)
         Close()
     End Sub
+
 End Class

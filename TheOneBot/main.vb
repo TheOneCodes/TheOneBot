@@ -16,10 +16,12 @@ Public Class main
     Dim wake As String = "/"                                                                                            'gets wake key
     Dim wakeSpace As Boolean = False                                                                                    'is there a space after?
     Dim lastCommand As String = "[NO VAR SAVED]"                                                                        'last command
-    Dim remoteControl As Boolean = False
-    Dim enabledCommand = New Boolean() {False, True, True, True, False, False}
+    Dim remoteControl As Boolean = My.Settings.remoteControl
+    Dim enabledCommandTemp = My.Settings.enabledCommand.ToArray
+    Dim enabledCommand = New Boolean(5) {False, True, True, True, False, False}
     'load
     Private Async Sub connectForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        reset()
         PingNow()
         AddHandler discord.MessageReceived, AddressOf onMessage
         Try
@@ -30,6 +32,7 @@ Public Class main
             Close()
         End Try
         Await discord.StartAsync()
+        Reloader.Start()
     End Sub
     'This is where all the magic happens (command inturperater)
     Private Async Function onMessage(message As SocketMessage) As Task
@@ -54,7 +57,7 @@ Public Class main
                 Else
                     Await message.Channel.SendMessageAsync("Ping results for " & message.Author.Username & ":" & vbNewLine & "`" & PingNow(, True) & "`")
                 End If
-            ElseIf message.Content.StartsWith(wake & "repeat ") Or message.Content.StartsWith(wake & "echo ") And enabledCommand(3) Then
+            ElseIf message.Content.StartsWith(wake & "repeat ") And enabledCommand(3) Or message.Content.StartsWith(wake & "echo ") And enabledCommand(3) Then
                 'echo
                 Dim repeat As String = message.Content
                 repeat = repeat.Replace(wake & "repeat ", "")
@@ -86,19 +89,82 @@ Public Class main
                     ElseIf change.StartsWith("reset") Then
                         reset()
                         Await message.Channel.SendMessageAsync("```prolog" & vbNewLine & "Preferances reset```")
+                    ElseIf change.StartsWith("command") Or change.StartsWith("enabled") Or change.StartsWith("commands") Then
+                        change = change.Replace("command ", "")
+                        change = change.Replace("commands ", "")
+                        change = change.Replace("enabled ", "")
+                        If change.StartsWith("delete") Then
+                            If change.Contains("true") Then
+                                enabledCommand(0) = True
+                                Await message.Channel.SendMessageAsync("The bot will now delete all sent commands after excecution")
+                            Else
+                                enabledCommand(0) = False
+                                Await message.Channel.SendMessageAsync("The bot will no longer delete sent commands after excecution")
+                            End If
+                        ElseIf change.StartsWith("help") Or change.StartsWith("commands") Then
+                            If change.Contains("true") Then
+                                enabledCommand(1) = True
+                                Await message.Channel.SendMessageAsync("The bot will now display a list of commands with 'help'")
+                            Else
+                                enabledCommand(1) = False
+                                Await message.Channel.SendMessageAsync("The bot will no longer display a list of commands with 'help'")
+                            End If
+                        ElseIf change.StartsWith("ping") Then
+                            If change.Contains("true") Then
+                                enabledCommand(2) = True
+                                Await message.Channel.SendMessageAsync("The bot will now ping sites to give responce times with 'ping'")
+                            Else
+                                enabledCommand(2) = False
+                                Await message.Channel.SendMessageAsync("The bot will no longer ping sites to give responce time with 'ping'")
+                            End If
+                        ElseIf change.StartsWith("echo") Or change.StartsWith("repeat") Then
+                            If change.Contains("true") Then
+                                enabledCommand(3) = True
+                                Await message.Channel.SendMessageAsync("The bot will now echo uselessley on command with 'echo'")
+                            Else
+                                enabledCommand(3) = False
+                                Await message.Channel.SendMessageAsync("The bot will no longer echo uselessley on command with 'echo'")
+                            End If
+                        ElseIf change.StartsWith("last") Or change.StartsWith("previous") Then
+                            If change.Contains("true") Then
+                                enabledCommand(4) = True
+                                Await message.Channel.SendMessageAsync("The bot will now display the last excecuted command with 'last'")
+                            Else
+                                enabledCommand(4) = False
+                                Await message.Channel.SendMessageAsync("The bot will no longer display the last excecuted command with 'last'")
+                            End If
+                        ElseIf change.StartsWith("stats") Then
+                            If change.Contains("true") Then
+                                enabledCommand(5) = True
+                                Await message.Channel.SendMessageAsync("'EXPERAMENTAL' stats feature on, be careful")
+                            Else
+                                enabledCommand(5) = False
+                                Await message.Channel.SendMessageAsync("'EXPERAMENTAL' stats feature off")
+                            End If
+                        ElseIf change.StartsWith("setup") Or change.StartsWith("remote") Or change.StartsWith("admin") Then
+                            If change.Contains("true") Then
+                                remoteControl = True
+                                Await message.Channel.SendMessageAsync("You are using this feature")
+                            Else
+                                remoteControl = False
+                                Await message.Channel.SendMessageAsync("You will no longer be able to remotely administrate this bot")
+                            End If
+                        End If
+                        reload()
                     End If
                 Else
                     Await message.Channel.SendMessageAsync("You do not have a `@moderator` or similar privelage!")
                 End If
             End If
-            'record last>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            'record last
             lastCommand = message.Author.Username & " said : " & vbNewLine & "```" & message.Content & "```" & vbNewLine & "Was the last command executed"
-            'remove>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            'remove
             If enabledCommand(0) Then
                 Await message.DeleteAsync
             End If
         End If
     End Function
+    'changes wake
     Private Sub wakeChange(newWake As String, space As Boolean)
         If space Then
             wake = newWake & " "
@@ -107,10 +173,59 @@ Public Class main
             wake = newWake
             wakeSpace = False
         End If
+        reload()
+    End Sub
+    Private Sub save()
+        My.Settings.remoteControl = remoteControl
+        My.Settings.enabledCommand(0) = enabledCommand(0)
+        My.Settings.enabledCommand(1) = enabledCommand(1)
+        My.Settings.enabledCommand(2) = enabledCommand(2)
+        My.Settings.enabledCommand(3) = enabledCommand(3)
+        My.Settings.enabledCommand(4) = enabledCommand(4)
+        My.Settings.enabledCommand(5) = enabledCommand(5)
+        My.Settings.Save()
     End Sub
     Private Sub reset()
+        Enabled = False
         wake = "/"
-        'save
+        If enabledCommandTemp(0) = True Then
+            enabledCommand(0) = True
+        Else
+            enabledCommand(0) = False
+        End If
+        If enabledCommandTemp(1) = True Then
+            enabledCommand(1) = True
+        Else
+            enabledCommand(1) = False
+        End If
+        If enabledCommandTemp(2) = True Then
+            enabledCommand(2) = True
+        Else
+            enabledCommand(2) = False
+        End If
+        If enabledCommandTemp(3) = True Then
+            enabledCommand(3) = True
+        Else
+            enabledCommand(3) = False
+        End If
+        If enabledCommandTemp(4) = True Then
+            enabledCommand(4) = True
+        Else
+            enabledCommand(4) = False
+        End If
+        If enabledCommandTemp(5) = True Then
+            enabledCommand(5) = True
+        Else
+            enabledCommand(5) = False
+        End If
+        chkDel.Checked = enabledCommand(0)
+        chkHelp.Checked = enabledCommand(1)
+        chkPing.Checked = enabledCommand(2)
+        chkEcho.Checked = enabledCommand(3)
+        chkLast.Checked = enabledCommand(4)
+        chkStats.Checked = enabledCommand(5)
+        remoteControl = My.Settings.remoteControl
+        Enabled = True
     End Sub
     Private Async Sub Check_Tick(sender As Object, e As EventArgs) Handles Check.Tick
         If discord.LoginState = LoginState.LoggedIn Then
@@ -192,6 +307,7 @@ Public Class main
         log.EndUpdate()
     End Sub
     Private Async Sub disconnecting() Handles MyBase.Closing
+        save()
         Await discord.LogoutAsync
     End Sub
 
@@ -202,6 +318,13 @@ Public Class main
     Private Sub reload() Handles Reloader.Tick
         txtWake.Text = wake
         lblWakeCount.Text = "Characters: " & txtWake.TextLength
+        chkDel.Checked = enabledCommand(0)
+        chkHelp.Checked = enabledCommand(1)
+        chkPing.Checked = enabledCommand(2)
+        chkEcho.Checked = enabledCommand(3)
+        chkLast.Checked = enabledCommand(4)
+        chkStats.Checked = enabledCommand(5)
+        chkRemote.Checked = remoteControl
     End Sub
 
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
@@ -214,30 +337,32 @@ Public Class main
         enabledCommand(1) = chkHelp.Checked
     End Sub
     Private Sub chkPing_CheckedChanged(sender As Object, e As EventArgs) Handles chkPing.CheckedChanged
-        enabledCommand(2) = chkHelp.Checked
+        enabledCommand(2) = chkPing.Checked
     End Sub
     Private Sub chkEcho_CheckedChanged(sender As Object, e As EventArgs) Handles chkEcho.CheckedChanged
-        enabledCommand(3) = chkHelp.Checked
+        enabledCommand(3) = chkEcho.Checked
     End Sub
     Private Sub chkLast_CheckedChanged(sender As Object, e As EventArgs) Handles chkLast.CheckedChanged
-        enabledCommand(4) = chkHelp.Checked
+        enabledCommand(4) = chkLast.Checked
     End Sub
     Private Sub chkStats_CheckedChanged(sender As Object, e As EventArgs) Handles chkStats.CheckedChanged
-        enabledCommand(5) = chkHelp.Checked
+        enabledCommand(5) = chkStats.Checked
     End Sub
-
     Private Sub chkRemote_CheckedChanged(sender As Object, e As EventArgs) Handles chkRemote.CheckedChanged
         remoteControl = chkRemote.Checked
     End Sub
-
     Private Function PingNow(Optional address As String = "discord.com", Optional w As Boolean = False)
-        Dim pinger As New Ping
-        Dim reply As PingReply = pinger.Send(address)
-        If w Then
-            Return reply.Address.ToString & "@ " & reply.RoundtripTime & "ms"
-        Else
-            Return reply.RoundtripTime
-        End If
+        Try
+            Dim pinger As New Ping
+            Dim reply As PingReply = pinger.Send(address)
+            If w Then
+                Return reply.Address.ToString & " took " & reply.RoundtripTime & "ms"
+            Else
+                Return reply.RoundtripTime
+            End If
+        Catch
+            Return address & " could not connect!"
+        End Try
     End Function
 
     Private Sub Ping_Tick(sender As Object, e As EventArgs) Handles Ping.Tick

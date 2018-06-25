@@ -29,6 +29,7 @@ Partial Class main
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.lblStatus = New System.Windows.Forms.Label()
         Me.btnCon = New System.Windows.Forms.Button()
+        Me.chkRemote = New System.Windows.Forms.CheckBox()
         Me.tblTop = New System.Windows.Forms.TableLayoutPanel()
         Me.flowTopLeft = New System.Windows.Forms.FlowLayoutPanel()
         Me.picProfile = New System.Windows.Forms.PictureBox()
@@ -65,7 +66,6 @@ Partial Class main
         Me.Check = New System.Windows.Forms.Timer(Me.components)
         Me.Reloader = New System.Windows.Forms.Timer(Me.components)
         Me.Ping = New System.Windows.Forms.Timer(Me.components)
-        Me.chkRemote = New System.Windows.Forms.CheckBox()
         Me.tblMain.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.tblTop.SuspendLayout()
@@ -139,6 +139,19 @@ Partial Class main
         Me.btnCon.TabIndex = 0
         Me.btnCon.Text = "Connect"
         Me.btnCon.UseVisualStyleBackColor = False
+        '
+        'chkRemote
+        '
+        Me.chkRemote.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.chkRemote.AutoSize = True
+        Me.chkRemote.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.chkRemote.Font = New System.Drawing.Font("Segoe UI Semibold", 15.0!, System.Drawing.FontStyle.Bold)
+        Me.chkRemote.Location = New System.Drawing.Point(617, 7)
+        Me.chkRemote.Name = "chkRemote"
+        Me.chkRemote.Size = New System.Drawing.Size(167, 32)
+        Me.chkRemote.TabIndex = 4
+        Me.chkRemote.Text = "Remote Admin"
+        Me.chkRemote.UseVisualStyleBackColor = True
         '
         'tblTop
         '
@@ -551,26 +564,12 @@ Partial Class main
         '
         'Reloader
         '
-        Me.Reloader.Enabled = True
         Me.Reloader.Interval = 1000
         '
         'Ping
         '
         Me.Ping.Enabled = True
         Me.Ping.Interval = 10000
-        '
-        'chkRemote
-        '
-        Me.chkRemote.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.chkRemote.AutoSize = True
-        Me.chkRemote.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.chkRemote.Font = New System.Drawing.Font("Segoe UI Semibold", 15.0!, System.Drawing.FontStyle.Bold)
-        Me.chkRemote.Location = New System.Drawing.Point(617, 7)
-        Me.chkRemote.Name = "chkRemote"
-        Me.chkRemote.Size = New System.Drawing.Size(167, 32)
-        Me.chkRemote.TabIndex = 4
-        Me.chkRemote.Text = "Remote Admin"
-        Me.chkRemote.UseVisualStyleBackColor = True
         '
         'main
         '
