@@ -189,18 +189,18 @@ Public Class update
         done()
     End Sub
     Private Sub done()
-        Dots.Stop()
         btnLaunch.Visible = True
         bottomText = "Update Complete"
         lblText.Text = bottomText & "."
         lblName.Text = "Done"
         doneUpdate = True
+        Dots.Stop()
     End Sub
     Private Sub fatalError()
-        Dots.Stop()
         lblName.Text = "Update failed"
         lblText.Text = bottomText & "." & vbNewLine & "Try the installer."
         btnOK.Visible = True
+        Dots.Stop()
     End Sub
     Private Sub Dots_Tick(sender As Object, e As EventArgs) Handles Dots.Tick
         If bottomDots >= 0 And bottomDots <= 5 Then
@@ -226,7 +226,7 @@ Public Class update
             Process.Start(installLocation & "TheOneBot.exe")
             Close()
         Catch ex As Exception
-            bottomText = "Launch failed"
+            bottomText = "Launch failed, " & vbNewLine & "click OK to close"
             lblText.Text = bottomText & "."
             lblName.Text = "Error"
             btnLaunch.Visible = False

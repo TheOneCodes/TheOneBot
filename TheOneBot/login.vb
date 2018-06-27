@@ -5,8 +5,12 @@ Public Class login
     Public ID                       'the bot's user ID (for added security)
     Dim animTick As Integer         'ticks for the animation
     Dim ready As Boolean = True     'ready to close (lets the animation run)
+    Dim save As Boolean = My.Settings.saveTI
     'On load setup
     Private Sub login_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        UsernameTextBox.Text = My.Settings.id
+        PasswordTextBox.Text = My.Settings.token
+        chkSave.Checked = save
         Size = New Size(210, 231)
         Location = New Point(My.Computer.Screen.WorkingArea.Width / 2 - Width / 2, My.Computer.Screen.WorkingArea.Height / 2 - Height / 2)
         pbFull.Location = New Point(0, 0)
@@ -104,9 +108,21 @@ Public Class login
     'close
     Private Sub login_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         If ready Then
+            If save Then
+                My.Settings.id = UsernameTextBox.Text
+                My.Settings.token = PasswordTextBox.Text
+            Else
+                My.Settings.id = Nothing
+                My.Settings.token = Nothing
+            End If
+            My.Settings.saveTI = save
+            My.Settings.Save()
             e.Cancel = ready
             etamina.Start()
         End If
     End Sub
 
+    Private Sub chkSave_CheckedChanged(sender As Object, e As EventArgs) Handles chkSave.CheckedChanged
+        save = chkSave.Checked
+    End Sub
 End Class

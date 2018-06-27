@@ -103,6 +103,42 @@ Namespace My
                 Me("remoteControl") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property token() As String
+            Get
+                Return CType(Me("token"),String)
+            End Get
+            Set
+                Me("token") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property id() As String
+            Get
+                Return CType(Me("id"),String)
+            End Get
+            Set
+                Me("id") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property saveTI() As Boolean
+            Get
+                Return CType(Me("saveTI"),Boolean)
+            End Get
+            Set
+                Me("saveTI") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

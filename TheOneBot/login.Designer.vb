@@ -43,6 +43,7 @@ Partial Class login
         Me.animate = New System.Windows.Forms.Timer(Me.components)
         Me.pbFull = New System.Windows.Forms.PictureBox()
         Me.etamina = New System.Windows.Forms.Timer(Me.components)
+        Me.chkSave = New System.Windows.Forms.CheckBox()
         CType(Me.pbImg, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbFull, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -157,6 +158,18 @@ Partial Class login
         '
         Me.etamina.Interval = 15
         '
+        'chkSave
+        '
+        Me.chkSave.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.chkSave.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.chkSave.Location = New System.Drawing.Point(298, 132)
+        Me.chkSave.Name = "chkSave"
+        Me.chkSave.Size = New System.Drawing.Size(94, 23)
+        Me.chkSave.TabIndex = 9
+        Me.chkSave.Text = "Save:"
+        Me.chkSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.chkSave.UseVisualStyleBackColor = True
+        '
         'login
         '
         Me.AcceptButton = Me.OK
@@ -165,6 +178,7 @@ Partial Class login
         Me.BackColor = System.Drawing.SystemColors.Control
         Me.CancelButton = Me.Cancel
         Me.ClientSize = New System.Drawing.Size(404, 192)
+        Me.Controls.Add(Me.chkSave)
         Me.Controls.Add(Me.pbImg)
         Me.Controls.Add(Me.Cancel)
         Me.Controls.Add(Me.OK)
@@ -196,4 +210,5 @@ Partial Class login
     Friend WithEvents animate As Timer
     Friend WithEvents pbFull As PictureBox
     Friend WithEvents etamina As Timer
+    Friend WithEvents chkSave As CheckBox
 End Class
