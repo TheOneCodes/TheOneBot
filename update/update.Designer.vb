@@ -23,6 +23,7 @@ Partial Class update
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(update))
         Me.tblMain = New System.Windows.Forms.TableLayoutPanel()
         Me.pbDis = New System.Windows.Forms.PictureBox()
         Me.tblMid = New System.Windows.Forms.TableLayoutPanel()
@@ -185,9 +186,10 @@ Partial Class update
         Me.Controls.Add(Me.tblMain)
         Me.ForeColor = System.Drawing.Color.White
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "update"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Form1"
+        Me.Text = "Updating"
         Me.tblMain.ResumeLayout(False)
         CType(Me.pbDis, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tblMid.ResumeLayout(False)
