@@ -23,7 +23,9 @@ Partial Class loader
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(loader))
         Me.tblMain = New System.Windows.Forms.TableLayoutPanel()
+        Me.pbDis = New System.Windows.Forms.PictureBox()
         Me.tblMid = New System.Windows.Forms.TableLayoutPanel()
         Me.lblText = New System.Windows.Forms.Label()
         Me.lblName = New System.Windows.Forms.Label()
@@ -32,10 +34,9 @@ Partial Class loader
         Me.finish = New System.Windows.Forms.Timer(Me.components)
         Me.updateNow = New System.Windows.Forms.Timer(Me.components)
         Me.start = New System.Windows.Forms.Timer(Me.components)
-        Me.pbDis = New System.Windows.Forms.PictureBox()
         Me.tblMain.SuspendLayout()
-        Me.tblMid.SuspendLayout()
         CType(Me.pbDis, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.tblMid.SuspendLayout()
         Me.SuspendLayout()
         '
         'tblMain
@@ -52,6 +53,17 @@ Partial Class loader
         Me.tblMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tblMain.Size = New System.Drawing.Size(418, 229)
         Me.tblMain.TabIndex = 0
+        '
+        'pbDis
+        '
+        Me.pbDis.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pbDis.Image = Global.TheOneBot.My.Resources.Resources.side
+        Me.pbDis.Location = New System.Drawing.Point(3, 3)
+        Me.pbDis.Name = "pbDis"
+        Me.pbDis.Size = New System.Drawing.Size(113, 223)
+        Me.pbDis.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbDis.TabIndex = 0
+        Me.pbDis.TabStop = False
         '
         'tblMid
         '
@@ -121,17 +133,6 @@ Partial Class loader
         '
         Me.start.Interval = 1000
         '
-        'pbDis
-        '
-        Me.pbDis.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pbDis.Image = Global.TheOneBot.My.Resources.Resources.side
-        Me.pbDis.Location = New System.Drawing.Point(3, 3)
-        Me.pbDis.Name = "pbDis"
-        Me.pbDis.Size = New System.Drawing.Size(113, 223)
-        Me.pbDis.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.pbDis.TabIndex = 0
-        Me.pbDis.TabStop = False
-        '
         'loader
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -143,14 +144,15 @@ Partial Class loader
         Me.Font = New System.Drawing.Font("Segoe UI Semibold", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ForeColor = System.Drawing.Color.White
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "loader"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.tblMain.ResumeLayout(False)
-        Me.tblMid.ResumeLayout(False)
         CType(Me.pbDis, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.tblMid.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

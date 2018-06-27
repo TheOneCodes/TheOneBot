@@ -580,10 +580,11 @@ Partial Class main
         Me.Controls.Add(Me.tblMain)
         Me.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ForeColor = System.Drawing.Color.White
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.MinimumSize = New System.Drawing.Size(624, 540)
         Me.Name = "main"
-        Me.Text = "Serverhost"
+        Me.Text = "TheOneBot - Serverhost"
         Me.tblMain.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
