@@ -1,8 +1,11 @@
 ﻿Imports System.Net
 Imports System.IO
 Public NotInheritable Class loader
-    ReadOnly updateInfo As String = My.Application.Info.DirectoryPath & "\update"           'location to store update info
-    ReadOnly updateFile As String = My.Application.Info.DirectoryPath & "\excecute.exe"     'location to store update
+    ReadOnly updateInfo As String = My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData & "\update"           'location to store update info
+    ReadOnly updateFile As String = My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData & "\update.exe"    'location to store update
+    ReadOnly infoFile As String = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & "\TheOneBot\location.config"
+    ReadOnly infoFolder As String = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & "\TheOneBot"
+    ReadOnly installLocation As String = AppDomain.CurrentDomain.BaseDirectory
     Const version As Decimal = 0.01                                                         'the current version number
     Const stock As Boolean = True                                                           'is this changed (stops auto updates to conserve updates)
     Dim newVersion As Decimal                                                               'the new version id (when loaded from GitHub)
@@ -11,6 +14,20 @@ Public NotInheritable Class loader
     Dim bottomDots As Single = 0                                                            'the tripple dot animation "frame" number
     Dim client As WebClient = New WebClient                                                 'the download client
     Dim reader As StreamReader                                                              'the info reader
+
+    Private Sub loader_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        bottomText = "Prepairing"
+        If Directory.Exists(infoFolder) = False Then
+            Directory.CreateDirectory(infoFolder)
+        End If
+        If File.Exists(infoFile) Then
+            File.Delete(infoFile)
+        End If
+        Dim info = My.Computer.FileSystem.OpenTextFileWriter(infoFile, True)
+        info.WriteLine(installLocation)
+        info.Close()
+        start.Start()
+    End Sub
     'On load
     Private Sub start_Tick(sender As Object, e As EventArgs) Handles start.Tick
         'is this stock
@@ -161,5 +178,4 @@ Public NotInheritable Class loader
         System.Diagnostics.Process.Start(updateFile)
         Close()
     End Sub
-
 End Class

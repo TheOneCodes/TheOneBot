@@ -24,7 +24,6 @@ Partial Class loader
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.tblMain = New System.Windows.Forms.TableLayoutPanel()
-        Me.pbDis = New System.Windows.Forms.PictureBox()
         Me.tblMid = New System.Windows.Forms.TableLayoutPanel()
         Me.lblText = New System.Windows.Forms.Label()
         Me.lblName = New System.Windows.Forms.Label()
@@ -33,9 +32,10 @@ Partial Class loader
         Me.finish = New System.Windows.Forms.Timer(Me.components)
         Me.updateNow = New System.Windows.Forms.Timer(Me.components)
         Me.start = New System.Windows.Forms.Timer(Me.components)
+        Me.pbDis = New System.Windows.Forms.PictureBox()
         Me.tblMain.SuspendLayout()
-        CType(Me.pbDis, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tblMid.SuspendLayout()
+        CType(Me.pbDis, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tblMain
@@ -52,17 +52,6 @@ Partial Class loader
         Me.tblMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tblMain.Size = New System.Drawing.Size(418, 229)
         Me.tblMain.TabIndex = 0
-        '
-        'pbDis
-        '
-        Me.pbDis.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pbDis.Image = Global.TheOneBot.My.Resources.Resources.side
-        Me.pbDis.Location = New System.Drawing.Point(3, 3)
-        Me.pbDis.Name = "pbDis"
-        Me.pbDis.Size = New System.Drawing.Size(113, 223)
-        Me.pbDis.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.pbDis.TabIndex = 0
-        Me.pbDis.TabStop = False
         '
         'tblMid
         '
@@ -90,7 +79,7 @@ Partial Class loader
         Me.lblText.Padding = New System.Windows.Forms.Padding(10, 0, 0, 10)
         Me.lblText.Size = New System.Drawing.Size(287, 98)
         Me.lblText.TabIndex = 7
-        Me.lblText.Text = "Loading..."
+        Me.lblText.Text = "Loading"
         Me.lblText.TextAlign = System.Drawing.ContentAlignment.BottomLeft
         '
         'lblName
@@ -130,8 +119,18 @@ Partial Class loader
         '
         'start
         '
-        Me.start.Enabled = True
         Me.start.Interval = 1000
+        '
+        'pbDis
+        '
+        Me.pbDis.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pbDis.Image = Global.TheOneBot.My.Resources.Resources.side
+        Me.pbDis.Location = New System.Drawing.Point(3, 3)
+        Me.pbDis.Name = "pbDis"
+        Me.pbDis.Size = New System.Drawing.Size(113, 223)
+        Me.pbDis.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbDis.TabIndex = 0
+        Me.pbDis.TabStop = False
         '
         'loader
         '
@@ -143,15 +142,15 @@ Partial Class loader
         Me.Controls.Add(Me.tblMain)
         Me.Font = New System.Drawing.Font("Segoe UI Semibold", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ForeColor = System.Drawing.Color.White
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "loader"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.tblMain.ResumeLayout(False)
-        CType(Me.pbDis, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tblMid.ResumeLayout(False)
+        CType(Me.pbDis, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

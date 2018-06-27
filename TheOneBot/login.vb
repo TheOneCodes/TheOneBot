@@ -31,7 +31,7 @@ Public Class login
     End Sub
     'link to discord developper console (you can obtain a bot id and token here)
     Private Sub lblReset_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles lblReset.LinkClicked
-        System.Diagnostics.Process.Start("https://discordapp.com/developers/applications")
+        Process.Start("https://discordapp.com/developers/applications")
     End Sub
     'when failed (called from other form
     Public Sub failed(e As Exception)
