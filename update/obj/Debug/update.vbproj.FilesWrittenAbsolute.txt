@@ -1,0 +1,5 @@
+C:\GitHub\TheOneBot\update\obj\Debug\.NETFramework,Version=v4.5.AssemblyAttribute.vb
+C:\GitHub\TheOneBot\update\obj\Debug\TheOneBot.Resources.resources
+C:\GitHub\TheOneBot\update\obj\Debug\TheOneBot.update.resources
+C:\GitHub\TheOneBot\update\obj\Debug\TheOneBot.exe
+C:\GitHub\TheOneBot\update\obj\Debug\TheOneBot.pdb

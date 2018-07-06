@@ -1,15 +1,39 @@
 Imports System.ComponentModel
-
+Imports System.IO
 Public Class login
     Public Token                    'discord bot token ID
     Public ID                       'the bot's user ID (for added security)
+    ReadOnly config As String = My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData & "\bot.config"
     Dim animTick As Integer         'ticks for the animation
     Dim ready As Boolean = True     'ready to close (lets the animation run)
     Dim save As Boolean = My.Settings.saveTI
+    Dim reader As StreamReader
+    Dim writer As StreamWriter
     'On load setup
     Private Sub login_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        UsernameTextBox.Text = My.Settings.id
-        PasswordTextBox.Text = My.Settings.token
+        If File.Exists(config) Then
+            reader = My.Computer.FileSystem.OpenTextFileReader(config)
+            ID = reader.ReadLine
+            UsernameTextBox.Text = ID
+            Token = reader.ReadLine
+            PasswordTextBox.Text = Token
+            Dim auto As String = reader.ReadLine.ToLower
+            If ID <> Nothing And Token <> Nothing And auto.StartsWith("t") Or auto.StartsWith("y") Then
+                OK_Click()
+            End If
+            reader.Close()
+        Else
+            File.Create(config)
+            writer = My.Computer.FileSystem.OpenTextFileWriter(config, True)
+            writer.WriteLine("")
+            writer.WriteLine("")
+            writer.WriteLine("No, thank you. I do not wish to automatically sign in with these credentials")
+            writer.Close()
+        End If
+        If ID = Nothing Or Token = Nothing Then
+            UsernameTextBox.Text = My.Settings.id
+            PasswordTextBox.Text = My.Settings.token
+        End If
         chkSave.Checked = save
         Size = New Size(210, 231)
         Location = New Point(My.Computer.Screen.WorkingArea.Width / 2 - Width / 2, My.Computer.Screen.WorkingArea.Height / 2 - Height / 2)
@@ -24,12 +48,7 @@ Public Class login
     End Sub
     'when entries are made
     Private Sub UsernameTextBox_TextChanged(sender As Object, e As EventArgs) Handles UsernameTextBox.TextChanged, PasswordTextBox.TextChanged
-        'Do they follow the Discord Token or ID rules (I'll specify them in a .md file
-        If UsernameTextBox.Text = "" Or PasswordTextBox.Text = "" Or PasswordTextBox.TextLength <> 59 Or UsernameTextBox.Text.Length <> 18 Or PasswordTextBox.Text.IndexOf(".") <> 24 Or PasswordTextBox.Text.LastIndexOf(".") <> 31 Or IsNumeric(UsernameTextBox.Text) = False Then
-            OK.Enabled = False
-        Else
-            OK.Enabled = True
-        End If
+        'Do they follow the Discord Token or ID rules (I'll specify them in a .md file) used to be here (moved)
         Token = PasswordTextBox.Text
         ID = UsernameTextBox.Text
     End Sub
@@ -97,9 +116,13 @@ Public Class login
         End If
     End Sub
     'OK
-    Private Sub OK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK.Click
-        Enabled = False
-        main.Show()
+    Private Sub OK_Click() Handles OK.Click
+        If UsernameTextBox.Text = "" Or PasswordTextBox.Text = "" Or PasswordTextBox.TextLength <> 59 Or UsernameTextBox.Text.Length <> 18 Or PasswordTextBox.Text.IndexOf(".") <> 24 Or PasswordTextBox.Text.LastIndexOf(".") <> 31 Or IsNumeric(UsernameTextBox.Text) = False Then
+            dialog.box("Token or ID not valid", "Login Failed", vbOK)
+        Else
+            Enabled = False
+            main.Show()
+        End If
     End Sub
     'Cancel
     Private Sub Cancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel.Click

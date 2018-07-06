@@ -4,8 +4,9 @@ Imports System.Net
 Imports System.IO
 Imports System.Net.NetworkInformation
 Public Class main
-    Const botOwner As String = "TheOneCode#0445"                                                                        'I put my user name here (replace with your own username on compile
-    Dim adminRole As Decimal = 454406710044393484                                                                       'the numeric ID of the admin or similar role
+    Dim botOwner As String = "TheOneCode#0445"      'I put my user name here (replace with your own username on compile
+    Dim lastDiscrim As String = "0000"
+    Dim adminRole As String = "454406710044393484"                                                                       'the numeric ID of the admin or similar role
     Dim catcher As Integer                                                                                              'catcher for each attempt to catch info
     Dim webClient As WebClient = New WebClient                                                                          'webClient for catching info
     Dim profilePic As Bitmap                                                                                            'profile picture for caught info
@@ -15,7 +16,7 @@ Public Class main
     Dim authUrl As String = "https://discordapp.com/api/oauth2/authorize?client_id=" & id & "&permissions=0&scope=bot"  'gets auth url for adding bot to discord with a few clicks
     Dim wake As String = "/"                                                                                            'gets wake key
     Dim wakeSpace As Boolean = False                                                                                    'is there a space after?
-    Dim lastCommand As String = "[NO VAR SAVED]"                                                                        'last command
+    Dim WithEvents lastCommand As String = "[NO VAR SAVED]"                                                                        'last command
     Dim remoteControl As Boolean = My.Settings.remoteControl
     Dim enabledCommandTemp = My.Settings.enabledCommand.ToArray
     Dim enabledCommand = New Boolean(5) {False, True, True, True, False, False}
@@ -162,8 +163,12 @@ Public Class main
             If enabledCommand(0) Then
                 Await message.DeleteAsync
             End If
+            logger(lastCommand)
         End If
     End Function
+    Private Sub changed()
+
+    End Sub
     'changes wake
     Private Sub wakeChange(newWake As String, space As Boolean)
         If space Then
@@ -237,6 +242,7 @@ Public Class main
                 profilePic = Bitmap.FromStream(New MemoryStream(webClient.DownloadData(discord.CurrentUser.GetAvatarUrl)))
                 picProfile.Image = profilePic
                 picBot.Visible = True
+                Text = "TheOneBot - " & discord.CurrentUser.Username.ToString & "#" & discord.CurrentUser.Discriminator
                 If id <> discord.CurrentUser.Id Then
                     dialog.box("Login failed, check ID", "Login failed", vbOK, "Bot ID does not match the Bot token, check credentials and retry." & vbNewLine & "If error persists, visit https://discordapp.com/developers/applications to get a new token.")
                     Close()
@@ -253,7 +259,7 @@ Public Class main
                 If catcher >= 25 Then
                     Check.Stop()
                     logger("Too many tries, giving up.")
-                    MsgBox("Could not catch info, check network connection." & vbNewLine & "Now restarting")
+                    MsgBox("Could not catch info, check network connection." & vbNewLine & "Now quitting")
                     Close()
                 ElseIf catcher >= 5 Then
                     logger("Loading profile is taking longer than usual (" & catcher & " tries)")
@@ -314,6 +320,31 @@ Public Class main
     Private Sub txtWake_TextChanged(sender As Object, e As EventArgs) Handles txtWake.TextChanged
         wakeChange(txtWake.Text, False)
     End Sub
+    Private Sub txtUser_TextChanged(sender As Object, e As EventArgs) Handles txtUser.TextChanged, txtDiscrim.TextChanged, txtMod.TextChanged
+        txtUser.Text.Replace("@", "")
+        txtMod.Text.Replace("@", "")
+        txtDiscrim.Text.Replace("#", "")
+        txtUser.Text.Replace("&", "")
+        txtUser.Text.Replace("<", "")
+        txtUser.Text.Replace(">", "")
+        If IsNumeric(txtDiscrim.Text) = False Then
+            txtDiscrim.Text = lastDiscrim
+        Else
+            lastDiscrim = txtDiscrim.Text
+        End If
+        If txtUser.Text = Nothing Or txtDiscrim.MaxLength <> 4 Then
+            botOwner = "TheOneCode#0445"
+        Else
+            botOwner = txtUser.Text & "#" & txtDiscrim.Text
+        End If
+        If txtDiscrim.Text.Length > 4 Then
+            txtDiscrim.Text = txtDiscrim.Text.Substring(0, 4)
+        End If
+        If IsNumeric(txtDiscrim.Text) Then
+
+        End If
+        wakeChange(txtWake.Text, False)
+    End Sub
 
     Private Sub reload() Handles Reloader.Tick
         txtWake.Text = wake
@@ -325,10 +356,6 @@ Public Class main
         chkLast.Checked = enabledCommand(4)
         chkStats.Checked = enabledCommand(5)
         chkRemote.Checked = remoteControl
-    End Sub
-
-    Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
-        Process.Start(authUrl)
     End Sub
     Private Sub chkDel_CheckedChanged(sender As Object, e As EventArgs) Handles chkDel.CheckedChanged
         enabledCommand(0) = chkDel.Checked
@@ -374,6 +401,12 @@ Public Class main
             panPing.BackColor = System.Drawing.Color.GreenYellow
         Else
             panPing.BackColor = System.Drawing.Color.Red
+        End If
+    End Sub
+
+    Private Sub Invite(sender As Object, e As EventArgs) Handles picProfile.Click, lblUname.Click, picBot.Click, flowTopLeft.Click
+        If LoginState.LoggedIn Then
+            Process.Start(authUrl)
         End If
     End Sub
 End Class

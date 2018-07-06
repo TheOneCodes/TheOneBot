@@ -141,6 +141,7 @@ Partial Class loader
         Me.ClientSize = New System.Drawing.Size(418, 229)
         Me.ControlBox = False
         Me.Controls.Add(Me.tblMain)
+        Me.Cursor = System.Windows.Forms.Cursors.AppStarting
         Me.Font = New System.Drawing.Font("Segoe UI Semibold", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ForeColor = System.Drawing.Color.White
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -150,6 +151,7 @@ Partial Class loader
         Me.Name = "loader"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Loader"
         Me.tblMain.ResumeLayout(False)
         CType(Me.pbDis, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tblMid.ResumeLayout(False)

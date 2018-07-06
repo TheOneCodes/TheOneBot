@@ -142,9 +142,7 @@ Public Class update
                 directories = New DirectoryInfo(installLocation)
                 directoryInfo = directories.GetFiles()
                 For Each f As FileInfo In directoryInfo
-                    If f.Name.EndsWith(".exe") Or f.Name.EndsWith(".dll") Or f.Name.EndsWith(".xml") Or f.Name.EndsWith(".zip") Then
-                        f.Delete()
-                    Else
+                    If f.Name = "bot.config" Then
                         Try
                             If Directory.Exists(backup) = False Then
                                 Directory.CreateDirectory(backup)
@@ -152,16 +150,17 @@ Public Class update
                         Catch ex As Exception
                             bottomText = bottomText & " error"
                         End Try
+                        MsgBox(backup & "\" & f.Name)
                         If File.Exists(backup & "\" & f.Name) Then
                             File.Delete(backup & "\" & f.Name)
                         End If
                         Try
-                            f.MoveTo(backup)
+                            f.CopyTo(backup & "\" & f.Name)
                         Catch
-                            f.Delete()
-                            bottomText = bottomText & " error"
+                            bottomText = bottomText & " (backup error)"
                         End Try
                     End If
+                    f.Delete()
                 Next f
                 Directory.Delete(installLocation)
             End If

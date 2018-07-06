@@ -167,6 +167,7 @@ Public NotInheritable Class loader
             bottomDots = 0
             lblText.Text = bottomText & "..."
         End If
+        Text = lblText.Text
     End Sub
     'close when done
     Private Sub Finished(sender As Object, e As EventArgs) Handles finish.Tick
@@ -175,7 +176,7 @@ Public NotInheritable Class loader
     End Sub
     'update when done
     Private Sub updateNow_Tick(sender As Object, e As EventArgs) Handles updateNow.Tick
-        System.Diagnostics.Process.Start(updateFile)
+        Process.Start(updateFile)
         Close()
     End Sub
 End Class

@@ -36,16 +36,17 @@ Public Class dialog
 
     Public Sub box(m As String, Optional t As String = "", Optional b As Integer = vbOK, Optional e As String = "")
         Show()
-        If b = vbOKCancel Then
+
+        If b = vbAbort & vbRetry Then
+            btnRetry.Visible = True
+            btnAbort.Visible = True
+        ElseIf b = vbOKCancel Then
             btnOK.Visible = True
             btnCancel.Visible = True
         ElseIf b = vbOK Or b = vbOKOnly Then
             btnOK.Visible = True
         ElseIf b = vbAbortRetryIgnore Then
             btnIgnore.Visible = True
-            btnRetry.Visible = True
-            btnAbort.Visible = True
-        ElseIf b = vbAbort & vbRetry Then
             btnRetry.Visible = True
             btnAbort.Visible = True
         ElseIf b = vbAbort Then
