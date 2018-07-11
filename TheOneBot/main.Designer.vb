@@ -38,43 +38,43 @@ Partial Class main
         Me.flowTopRight = New System.Windows.Forms.FlowLayoutPanel()
         Me.panPing = New System.Windows.Forms.Panel()
         Me.lblPing = New System.Windows.Forms.Label()
+        Me.secondlast = New System.Windows.Forms.TabControl()
+        Me.tabGeneral = New System.Windows.Forms.TabPage()
+        Me.flowGeneral = New System.Windows.Forms.FlowLayoutPanel()
+        Me.tblWake = New System.Windows.Forms.TableLayoutPanel()
+        Me.lblWake = New System.Windows.Forms.Label()
+        Me.txtWake = New System.Windows.Forms.TextBox()
+        Me.lblWakeCount = New System.Windows.Forms.Label()
+        Me.tblUser = New System.Windows.Forms.TableLayoutPanel()
+        Me.txtDiscrim = New System.Windows.Forms.TextBox()
+        Me.lblUser = New System.Windows.Forms.Label()
+        Me.txtUser = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.tblMod = New System.Windows.Forms.TableLayoutPanel()
+        Me.lblMod = New System.Windows.Forms.Label()
+        Me.txtMod = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.lblGeneral = New System.Windows.Forms.Label()
+        Me.tabCom = New System.Windows.Forms.TabPage()
+        Me.flowCommand = New System.Windows.Forms.FlowLayoutPanel()
+        Me.chkDel = New System.Windows.Forms.CheckBox()
+        Me.chkHelp = New System.Windows.Forms.CheckBox()
+        Me.chkPing = New System.Windows.Forms.CheckBox()
+        Me.chkEcho = New System.Windows.Forms.CheckBox()
+        Me.chkLast = New System.Windows.Forms.CheckBox()
+        Me.chkStats = New System.Windows.Forms.CheckBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.tabHelp = New System.Windows.Forms.TabPage()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.panHelpAdm = New System.Windows.Forms.Panel()
+        Me.txtHelpAdmin = New System.Windows.Forms.TextBox()
+        Me.panHelp = New System.Windows.Forms.Panel()
+        Me.txtHelp = New System.Windows.Forms.TextBox()
+        Me.tabLog = New System.Windows.Forms.TabPage()
+        Me.log = New System.Windows.Forms.ListBox()
         Me.Check = New System.Windows.Forms.Timer(Me.components)
         Me.Reloader = New System.Windows.Forms.Timer(Me.components)
         Me.Ping = New System.Windows.Forms.Timer(Me.components)
-        Me.tabLog = New System.Windows.Forms.TabPage()
-        Me.log = New System.Windows.Forms.ListBox()
-        Me.tabHelp = New System.Windows.Forms.TabPage()
-        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.panHelp = New System.Windows.Forms.Panel()
-        Me.txtHelp = New System.Windows.Forms.TextBox()
-        Me.panHelpAdm = New System.Windows.Forms.Panel()
-        Me.txtHelpAdmin = New System.Windows.Forms.TextBox()
-        Me.tabCom = New System.Windows.Forms.TabPage()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.flowCommand = New System.Windows.Forms.FlowLayoutPanel()
-        Me.chkStats = New System.Windows.Forms.CheckBox()
-        Me.chkLast = New System.Windows.Forms.CheckBox()
-        Me.chkEcho = New System.Windows.Forms.CheckBox()
-        Me.chkPing = New System.Windows.Forms.CheckBox()
-        Me.chkHelp = New System.Windows.Forms.CheckBox()
-        Me.chkDel = New System.Windows.Forms.CheckBox()
-        Me.tabGeneral = New System.Windows.Forms.TabPage()
-        Me.lblGeneral = New System.Windows.Forms.Label()
-        Me.flowGeneral = New System.Windows.Forms.FlowLayoutPanel()
-        Me.tblMod = New System.Windows.Forms.TableLayoutPanel()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.txtMod = New System.Windows.Forms.TextBox()
-        Me.lblMod = New System.Windows.Forms.Label()
-        Me.tblUser = New System.Windows.Forms.TableLayoutPanel()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.txtUser = New System.Windows.Forms.TextBox()
-        Me.lblUser = New System.Windows.Forms.Label()
-        Me.txtDiscrim = New System.Windows.Forms.TextBox()
-        Me.tblWake = New System.Windows.Forms.TableLayoutPanel()
-        Me.lblWakeCount = New System.Windows.Forms.Label()
-        Me.txtWake = New System.Windows.Forms.TextBox()
-        Me.lblWake = New System.Windows.Forms.Label()
-        Me.secondlast = New System.Windows.Forms.TabControl()
         Me.tblMain.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.tblTop.SuspendLayout()
@@ -82,19 +82,19 @@ Partial Class main
         CType(Me.picProfile, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picBot, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.flowTopRight.SuspendLayout()
-        Me.tabLog.SuspendLayout()
-        Me.tabHelp.SuspendLayout()
-        Me.TableLayoutPanel1.SuspendLayout()
-        Me.panHelp.SuspendLayout()
-        Me.panHelpAdm.SuspendLayout()
-        Me.tabCom.SuspendLayout()
-        Me.flowCommand.SuspendLayout()
+        Me.secondlast.SuspendLayout()
         Me.tabGeneral.SuspendLayout()
         Me.flowGeneral.SuspendLayout()
-        Me.tblMod.SuspendLayout()
-        Me.tblUser.SuspendLayout()
         Me.tblWake.SuspendLayout()
-        Me.secondlast.SuspendLayout()
+        Me.tblUser.SuspendLayout()
+        Me.tblMod.SuspendLayout()
+        Me.tabCom.SuspendLayout()
+        Me.flowCommand.SuspendLayout()
+        Me.tabHelp.SuspendLayout()
+        Me.TableLayoutPanel1.SuspendLayout()
+        Me.panHelpAdm.SuspendLayout()
+        Me.panHelp.SuspendLayout()
+        Me.tabLog.SuspendLayout()
         Me.SuspendLayout()
         '
         'tblMain
@@ -261,41 +261,356 @@ Partial Class main
         Me.lblPing.Text = "0ms"
         Me.lblPing.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'Check
+        'secondlast
         '
-        Me.Check.Enabled = True
-        Me.Check.Interval = 500
+        Me.secondlast.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.secondlast.Controls.Add(Me.tabGeneral)
+        Me.secondlast.Controls.Add(Me.tabCom)
+        Me.secondlast.Controls.Add(Me.tabHelp)
+        Me.secondlast.Controls.Add(Me.tabLog)
+        Me.secondlast.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.secondlast.Location = New System.Drawing.Point(3, 60)
+        Me.secondlast.Name = "secondlast"
+        Me.secondlast.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.secondlast.SelectedIndex = 0
+        Me.secondlast.Size = New System.Drawing.Size(934, 390)
+        Me.secondlast.TabIndex = 10
         '
-        'Reloader
+        'tabGeneral
         '
-        Me.Reloader.Interval = 1000
+        Me.tabGeneral.Controls.Add(Me.flowGeneral)
+        Me.tabGeneral.Controls.Add(Me.lblGeneral)
+        Me.tabGeneral.Cursor = System.Windows.Forms.Cursors.Default
+        Me.tabGeneral.ForeColor = System.Drawing.Color.Black
+        Me.tabGeneral.Location = New System.Drawing.Point(4, 26)
+        Me.tabGeneral.Name = "tabGeneral"
+        Me.tabGeneral.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabGeneral.Size = New System.Drawing.Size(926, 360)
+        Me.tabGeneral.TabIndex = 0
+        Me.tabGeneral.Text = "General"
+        Me.tabGeneral.UseVisualStyleBackColor = True
         '
-        'Ping
+        'flowGeneral
         '
-        Me.Ping.Enabled = True
-        Me.Ping.Interval = 10000
+        Me.flowGeneral.AutoScroll = True
+        Me.flowGeneral.Controls.Add(Me.tblWake)
+        Me.flowGeneral.Controls.Add(Me.tblUser)
+        Me.flowGeneral.Controls.Add(Me.tblMod)
+        Me.flowGeneral.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.flowGeneral.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
+        Me.flowGeneral.Location = New System.Drawing.Point(3, 43)
+        Me.flowGeneral.Name = "flowGeneral"
+        Me.flowGeneral.Size = New System.Drawing.Size(920, 314)
+        Me.flowGeneral.TabIndex = 5
         '
-        'tabLog
+        'tblWake
         '
-        Me.tabLog.Controls.Add(Me.log)
-        Me.tabLog.Cursor = System.Windows.Forms.Cursors.Arrow
-        Me.tabLog.Location = New System.Drawing.Point(4, 26)
-        Me.tabLog.Name = "tabLog"
-        Me.tabLog.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabLog.Size = New System.Drawing.Size(926, 360)
-        Me.tabLog.TabIndex = 1
-        Me.tabLog.Text = "Log"
-        Me.tabLog.UseVisualStyleBackColor = True
+        Me.tblWake.ColumnCount = 3
+        Me.tblWake.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
+        Me.tblWake.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
+        Me.tblWake.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 151.0!))
+        Me.tblWake.Controls.Add(Me.lblWake, 0, 0)
+        Me.tblWake.Controls.Add(Me.txtWake, 1, 0)
+        Me.tblWake.Controls.Add(Me.lblWakeCount, 2, 0)
+        Me.tblWake.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
+        Me.tblWake.Location = New System.Drawing.Point(3, 3)
+        Me.tblWake.Name = "tblWake"
+        Me.tblWake.RowCount = 1
+        Me.tblWake.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tblWake.Size = New System.Drawing.Size(401, 31)
+        Me.tblWake.TabIndex = 4
         '
-        'log
+        'lblWake
         '
-        Me.log.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.log.FormattingEnabled = True
-        Me.log.ItemHeight = 17
-        Me.log.Location = New System.Drawing.Point(3, 3)
-        Me.log.Name = "log"
-        Me.log.Size = New System.Drawing.Size(920, 354)
-        Me.log.TabIndex = 0
+        Me.lblWake.AutoSize = True
+        Me.lblWake.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lblWake.Location = New System.Drawing.Point(3, 0)
+        Me.lblWake.Name = "lblWake"
+        Me.lblWake.Size = New System.Drawing.Size(144, 31)
+        Me.lblWake.TabIndex = 0
+        Me.lblWake.Text = "Wake key:"
+        Me.lblWake.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtWake
+        '
+        Me.txtWake.BackColor = System.Drawing.SystemColors.Control
+        Me.txtWake.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtWake.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtWake.ForeColor = System.Drawing.Color.Black
+        Me.txtWake.Location = New System.Drawing.Point(153, 3)
+        Me.txtWake.Name = "txtWake"
+        Me.txtWake.Size = New System.Drawing.Size(94, 25)
+        Me.txtWake.TabIndex = 1
+        Me.txtWake.Text = "/"
+        '
+        'lblWakeCount
+        '
+        Me.lblWakeCount.AutoSize = True
+        Me.lblWakeCount.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lblWakeCount.Location = New System.Drawing.Point(253, 0)
+        Me.lblWakeCount.Name = "lblWakeCount"
+        Me.lblWakeCount.Size = New System.Drawing.Size(145, 31)
+        Me.lblWakeCount.TabIndex = 2
+        Me.lblWakeCount.Text = "Characters: "
+        Me.lblWakeCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'tblUser
+        '
+        Me.tblUser.ColumnCount = 4
+        Me.tblUser.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
+        Me.tblUser.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
+        Me.tblUser.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
+        Me.tblUser.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 51.0!))
+        Me.tblUser.Controls.Add(Me.txtDiscrim, 3, 0)
+        Me.tblUser.Controls.Add(Me.lblUser, 0, 0)
+        Me.tblUser.Controls.Add(Me.txtUser, 1, 0)
+        Me.tblUser.Controls.Add(Me.Label3, 2, 0)
+        Me.tblUser.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
+        Me.tblUser.Location = New System.Drawing.Point(3, 40)
+        Me.tblUser.Name = "tblUser"
+        Me.tblUser.RowCount = 1
+        Me.tblUser.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tblUser.Size = New System.Drawing.Size(401, 31)
+        Me.tblUser.TabIndex = 4
+        '
+        'txtDiscrim
+        '
+        Me.txtDiscrim.BackColor = System.Drawing.SystemColors.Control
+        Me.txtDiscrim.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtDiscrim.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtDiscrim.ForeColor = System.Drawing.Color.Black
+        Me.txtDiscrim.Location = New System.Drawing.Point(353, 3)
+        Me.txtDiscrim.Name = "txtDiscrim"
+        Me.txtDiscrim.Size = New System.Drawing.Size(45, 25)
+        Me.txtDiscrim.TabIndex = 3
+        Me.txtDiscrim.Text = "0000"
+        Me.txtDiscrim.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'lblUser
+        '
+        Me.lblUser.AutoSize = True
+        Me.lblUser.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lblUser.Location = New System.Drawing.Point(3, 0)
+        Me.lblUser.Name = "lblUser"
+        Me.lblUser.Size = New System.Drawing.Size(144, 31)
+        Me.lblUser.TabIndex = 0
+        Me.lblUser.Text = "Server admin (you):"
+        Me.lblUser.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtUser
+        '
+        Me.txtUser.BackColor = System.Drawing.SystemColors.Control
+        Me.txtUser.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtUser.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtUser.ForeColor = System.Drawing.Color.Black
+        Me.txtUser.Location = New System.Drawing.Point(153, 3)
+        Me.txtUser.Name = "txtUser"
+        Me.txtUser.Size = New System.Drawing.Size(94, 25)
+        Me.txtUser.TabIndex = 1
+        Me.txtUser.Text = "Username"
+        Me.txtUser.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label3.Location = New System.Drawing.Point(253, 0)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(94, 31)
+        Me.Label3.TabIndex = 2
+        Me.Label3.Text = "Discriminator:"
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'tblMod
+        '
+        Me.tblMod.ColumnCount = 3
+        Me.tblMod.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
+        Me.tblMod.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
+        Me.tblMod.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 151.0!))
+        Me.tblMod.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tblMod.Controls.Add(Me.lblMod, 0, 0)
+        Me.tblMod.Controls.Add(Me.txtMod, 1, 0)
+        Me.tblMod.Controls.Add(Me.Label4, 2, 0)
+        Me.tblMod.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
+        Me.tblMod.Location = New System.Drawing.Point(3, 77)
+        Me.tblMod.Name = "tblMod"
+        Me.tblMod.RowCount = 1
+        Me.tblMod.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tblMod.Size = New System.Drawing.Size(401, 31)
+        Me.tblMod.TabIndex = 4
+        '
+        'lblMod
+        '
+        Me.lblMod.AutoSize = True
+        Me.lblMod.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lblMod.Location = New System.Drawing.Point(3, 0)
+        Me.lblMod.Name = "lblMod"
+        Me.lblMod.Size = New System.Drawing.Size(144, 31)
+        Me.lblMod.TabIndex = 0
+        Me.lblMod.Text = "Moderator role id:"
+        Me.lblMod.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtMod
+        '
+        Me.txtMod.BackColor = System.Drawing.SystemColors.Control
+        Me.txtMod.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtMod.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtMod.ForeColor = System.Drawing.Color.Black
+        Me.txtMod.Location = New System.Drawing.Point(153, 3)
+        Me.txtMod.Name = "txtMod"
+        Me.txtMod.Size = New System.Drawing.Size(94, 25)
+        Me.txtMod.TabIndex = 1
+        Me.txtMod.Text = "000000000000000000"
+        Me.txtMod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label4.Location = New System.Drawing.Point(253, 0)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(145, 31)
+        Me.Label4.TabIndex = 2
+        Me.Label4.Text = "Found by \@role"
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'lblGeneral
+        '
+        Me.lblGeneral.Dock = System.Windows.Forms.DockStyle.Top
+        Me.lblGeneral.Font = New System.Drawing.Font("Segoe UI Semibold", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblGeneral.Location = New System.Drawing.Point(3, 3)
+        Me.lblGeneral.Name = "lblGeneral"
+        Me.lblGeneral.Padding = New System.Windows.Forms.Padding(20, 0, 0, 0)
+        Me.lblGeneral.Size = New System.Drawing.Size(920, 40)
+        Me.lblGeneral.TabIndex = 3
+        Me.lblGeneral.Text = "General"
+        Me.lblGeneral.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'tabCom
+        '
+        Me.tabCom.Controls.Add(Me.flowCommand)
+        Me.tabCom.Controls.Add(Me.Label1)
+        Me.tabCom.Cursor = System.Windows.Forms.Cursors.Default
+        Me.tabCom.ForeColor = System.Drawing.Color.Black
+        Me.tabCom.Location = New System.Drawing.Point(4, 26)
+        Me.tabCom.Name = "tabCom"
+        Me.tabCom.Size = New System.Drawing.Size(926, 360)
+        Me.tabCom.TabIndex = 11
+        Me.tabCom.Text = "Commands"
+        Me.tabCom.UseVisualStyleBackColor = True
+        '
+        'flowCommand
+        '
+        Me.flowCommand.AutoScroll = True
+        Me.flowCommand.Controls.Add(Me.chkDel)
+        Me.flowCommand.Controls.Add(Me.chkHelp)
+        Me.flowCommand.Controls.Add(Me.chkPing)
+        Me.flowCommand.Controls.Add(Me.chkEcho)
+        Me.flowCommand.Controls.Add(Me.chkLast)
+        Me.flowCommand.Controls.Add(Me.chkStats)
+        Me.flowCommand.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.flowCommand.Location = New System.Drawing.Point(0, 40)
+        Me.flowCommand.Name = "flowCommand"
+        Me.flowCommand.Size = New System.Drawing.Size(926, 320)
+        Me.flowCommand.TabIndex = 5
+        '
+        'chkDel
+        '
+        Me.chkDel.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.chkDel.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.chkDel.Location = New System.Drawing.Point(3, 3)
+        Me.chkDel.Name = "chkDel"
+        Me.chkDel.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.chkDel.Size = New System.Drawing.Size(342, 25)
+        Me.chkDel.TabIndex = 2
+        Me.chkDel.Text = "Delete command after excecution:"
+        Me.chkDel.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.chkDel.UseVisualStyleBackColor = True
+        '
+        'chkHelp
+        '
+        Me.chkHelp.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.chkHelp.Checked = True
+        Me.chkHelp.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkHelp.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.chkHelp.Location = New System.Drawing.Point(351, 3)
+        Me.chkHelp.Name = "chkHelp"
+        Me.chkHelp.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.chkHelp.Size = New System.Drawing.Size(168, 25)
+        Me.chkHelp.TabIndex = 2
+        Me.chkHelp.Text = "Help:"
+        Me.chkHelp.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.chkHelp.UseVisualStyleBackColor = True
+        '
+        'chkPing
+        '
+        Me.chkPing.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.chkPing.Checked = True
+        Me.chkPing.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkPing.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.chkPing.Location = New System.Drawing.Point(525, 3)
+        Me.chkPing.Name = "chkPing"
+        Me.chkPing.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.chkPing.Size = New System.Drawing.Size(168, 25)
+        Me.chkPing.TabIndex = 2
+        Me.chkPing.Text = "Ping:"
+        Me.chkPing.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.chkPing.UseVisualStyleBackColor = True
+        '
+        'chkEcho
+        '
+        Me.chkEcho.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.chkEcho.Checked = True
+        Me.chkEcho.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkEcho.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.chkEcho.Location = New System.Drawing.Point(699, 3)
+        Me.chkEcho.Name = "chkEcho"
+        Me.chkEcho.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.chkEcho.Size = New System.Drawing.Size(168, 25)
+        Me.chkEcho.TabIndex = 2
+        Me.chkEcho.Text = "Echo:"
+        Me.chkEcho.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.chkEcho.UseVisualStyleBackColor = True
+        '
+        'chkLast
+        '
+        Me.chkLast.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.chkLast.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.chkLast.Location = New System.Drawing.Point(3, 34)
+        Me.chkLast.Name = "chkLast"
+        Me.chkLast.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.chkLast.Size = New System.Drawing.Size(168, 25)
+        Me.chkLast.TabIndex = 2
+        Me.chkLast.Text = "Previous:"
+        Me.chkLast.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.chkLast.UseVisualStyleBackColor = True
+        '
+        'chkStats
+        '
+        Me.chkStats.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.chkStats.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.chkStats.Location = New System.Drawing.Point(177, 34)
+        Me.chkStats.Name = "chkStats"
+        Me.chkStats.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.chkStats.Size = New System.Drawing.Size(168, 25)
+        Me.chkStats.TabIndex = 2
+        Me.chkStats.Text = "Stats (exparemental):"
+        Me.chkStats.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.chkStats.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Label1.Font = New System.Drawing.Font("Segoe UI Semibold", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(0, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Padding = New System.Windows.Forms.Padding(20, 0, 0, 0)
+        Me.Label1.Size = New System.Drawing.Size(926, 40)
+        Me.Label1.TabIndex = 4
+        Me.Label1.Text = "Command toggles"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'tabHelp
         '
@@ -324,31 +639,6 @@ Partial Class main
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(920, 354)
         Me.TableLayoutPanel1.TabIndex = 0
         '
-        'panHelp
-        '
-        Me.panHelp.Controls.Add(Me.txtHelp)
-        Me.panHelp.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.panHelp.Location = New System.Drawing.Point(3, 3)
-        Me.panHelp.Name = "panHelp"
-        Me.panHelp.Padding = New System.Windows.Forms.Padding(10)
-        Me.panHelp.Size = New System.Drawing.Size(914, 230)
-        Me.panHelp.TabIndex = 1
-        '
-        'txtHelp
-        '
-        Me.txtHelp.BackColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(42, Byte), Integer))
-        Me.txtHelp.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtHelp.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtHelp.Font = New System.Drawing.Font("Lucida Console", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtHelp.ForeColor = System.Drawing.Color.White
-        Me.txtHelp.Location = New System.Drawing.Point(10, 10)
-        Me.txtHelp.Multiline = True
-        Me.txtHelp.Name = "txtHelp"
-        Me.txtHelp.Size = New System.Drawing.Size(894, 210)
-        Me.txtHelp.TabIndex = 0
-        Me.txtHelp.Text = resources.GetString("txtHelp.Text")
-        Me.txtHelp.WordWrap = False
-        '
         'panHelpAdm
         '
         Me.panHelpAdm.Controls.Add(Me.txtHelpAdmin)
@@ -374,356 +664,67 @@ Partial Class main
         Me.txtHelpAdmin.Text = resources.GetString("txtHelpAdmin.Text")
         Me.txtHelpAdmin.WordWrap = False
         '
-        'tabCom
+        'panHelp
         '
-        Me.tabCom.Controls.Add(Me.flowCommand)
-        Me.tabCom.Controls.Add(Me.Label1)
-        Me.tabCom.Cursor = System.Windows.Forms.Cursors.Default
-        Me.tabCom.ForeColor = System.Drawing.Color.Black
-        Me.tabCom.Location = New System.Drawing.Point(4, 26)
-        Me.tabCom.Name = "tabCom"
-        Me.tabCom.Size = New System.Drawing.Size(926, 360)
-        Me.tabCom.TabIndex = 11
-        Me.tabCom.Text = "Commands"
-        Me.tabCom.UseVisualStyleBackColor = True
+        Me.panHelp.Controls.Add(Me.txtHelp)
+        Me.panHelp.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.panHelp.Location = New System.Drawing.Point(3, 3)
+        Me.panHelp.Name = "panHelp"
+        Me.panHelp.Padding = New System.Windows.Forms.Padding(10)
+        Me.panHelp.Size = New System.Drawing.Size(914, 230)
+        Me.panHelp.TabIndex = 1
         '
-        'Label1
+        'txtHelp
         '
-        Me.Label1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Label1.Font = New System.Drawing.Font("Segoe UI Semibold", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(0, 0)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Padding = New System.Windows.Forms.Padding(20, 0, 0, 0)
-        Me.Label1.Size = New System.Drawing.Size(926, 40)
-        Me.Label1.TabIndex = 4
-        Me.Label1.Text = "Command toggles"
-        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.txtHelp.BackColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(42, Byte), Integer))
+        Me.txtHelp.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtHelp.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtHelp.Font = New System.Drawing.Font("Lucida Console", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtHelp.ForeColor = System.Drawing.Color.White
+        Me.txtHelp.Location = New System.Drawing.Point(10, 10)
+        Me.txtHelp.Multiline = True
+        Me.txtHelp.Name = "txtHelp"
+        Me.txtHelp.Size = New System.Drawing.Size(894, 210)
+        Me.txtHelp.TabIndex = 0
+        Me.txtHelp.Text = resources.GetString("txtHelp.Text")
+        Me.txtHelp.WordWrap = False
         '
-        'flowCommand
+        'tabLog
         '
-        Me.flowCommand.AutoScroll = True
-        Me.flowCommand.Controls.Add(Me.chkDel)
-        Me.flowCommand.Controls.Add(Me.chkHelp)
-        Me.flowCommand.Controls.Add(Me.chkPing)
-        Me.flowCommand.Controls.Add(Me.chkEcho)
-        Me.flowCommand.Controls.Add(Me.chkLast)
-        Me.flowCommand.Controls.Add(Me.chkStats)
-        Me.flowCommand.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.flowCommand.Location = New System.Drawing.Point(0, 40)
-        Me.flowCommand.Name = "flowCommand"
-        Me.flowCommand.Size = New System.Drawing.Size(926, 320)
-        Me.flowCommand.TabIndex = 5
+        Me.tabLog.Controls.Add(Me.log)
+        Me.tabLog.Cursor = System.Windows.Forms.Cursors.Arrow
+        Me.tabLog.Location = New System.Drawing.Point(4, 26)
+        Me.tabLog.Name = "tabLog"
+        Me.tabLog.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabLog.Size = New System.Drawing.Size(926, 360)
+        Me.tabLog.TabIndex = 1
+        Me.tabLog.Text = "Log"
+        Me.tabLog.UseVisualStyleBackColor = True
         '
-        'chkStats
+        'log
         '
-        Me.chkStats.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.chkStats.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.chkStats.Location = New System.Drawing.Point(177, 34)
-        Me.chkStats.Name = "chkStats"
-        Me.chkStats.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.chkStats.Size = New System.Drawing.Size(168, 25)
-        Me.chkStats.TabIndex = 2
-        Me.chkStats.Text = "Stats (exparemental):"
-        Me.chkStats.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.chkStats.UseVisualStyleBackColor = True
+        Me.log.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.log.ForeColor = System.Drawing.Color.Black
+        Me.log.FormattingEnabled = True
+        Me.log.ItemHeight = 17
+        Me.log.Location = New System.Drawing.Point(3, 3)
+        Me.log.Name = "log"
+        Me.log.Size = New System.Drawing.Size(920, 354)
+        Me.log.TabIndex = 0
         '
-        'chkLast
+        'Check
         '
-        Me.chkLast.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.chkLast.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.chkLast.Location = New System.Drawing.Point(3, 34)
-        Me.chkLast.Name = "chkLast"
-        Me.chkLast.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.chkLast.Size = New System.Drawing.Size(168, 25)
-        Me.chkLast.TabIndex = 2
-        Me.chkLast.Text = "Previous:"
-        Me.chkLast.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.chkLast.UseVisualStyleBackColor = True
+        Me.Check.Enabled = True
+        Me.Check.Interval = 500
         '
-        'chkEcho
+        'Reloader
         '
-        Me.chkEcho.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.chkEcho.Checked = True
-        Me.chkEcho.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkEcho.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.chkEcho.Location = New System.Drawing.Point(699, 3)
-        Me.chkEcho.Name = "chkEcho"
-        Me.chkEcho.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.chkEcho.Size = New System.Drawing.Size(168, 25)
-        Me.chkEcho.TabIndex = 2
-        Me.chkEcho.Text = "Echo:"
-        Me.chkEcho.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.chkEcho.UseVisualStyleBackColor = True
+        Me.Reloader.Interval = 1000
         '
-        'chkPing
+        'Ping
         '
-        Me.chkPing.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.chkPing.Checked = True
-        Me.chkPing.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkPing.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.chkPing.Location = New System.Drawing.Point(525, 3)
-        Me.chkPing.Name = "chkPing"
-        Me.chkPing.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.chkPing.Size = New System.Drawing.Size(168, 25)
-        Me.chkPing.TabIndex = 2
-        Me.chkPing.Text = "Ping:"
-        Me.chkPing.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.chkPing.UseVisualStyleBackColor = True
-        '
-        'chkHelp
-        '
-        Me.chkHelp.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.chkHelp.Checked = True
-        Me.chkHelp.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkHelp.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.chkHelp.Location = New System.Drawing.Point(351, 3)
-        Me.chkHelp.Name = "chkHelp"
-        Me.chkHelp.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.chkHelp.Size = New System.Drawing.Size(168, 25)
-        Me.chkHelp.TabIndex = 2
-        Me.chkHelp.Text = "Help:"
-        Me.chkHelp.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.chkHelp.UseVisualStyleBackColor = True
-        '
-        'chkDel
-        '
-        Me.chkDel.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.chkDel.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.chkDel.Location = New System.Drawing.Point(3, 3)
-        Me.chkDel.Name = "chkDel"
-        Me.chkDel.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.chkDel.Size = New System.Drawing.Size(342, 25)
-        Me.chkDel.TabIndex = 2
-        Me.chkDel.Text = "Delete command after excecution:"
-        Me.chkDel.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.chkDel.UseVisualStyleBackColor = True
-        '
-        'tabGeneral
-        '
-        Me.tabGeneral.Controls.Add(Me.flowGeneral)
-        Me.tabGeneral.Controls.Add(Me.lblGeneral)
-        Me.tabGeneral.Cursor = System.Windows.Forms.Cursors.Default
-        Me.tabGeneral.ForeColor = System.Drawing.Color.Black
-        Me.tabGeneral.Location = New System.Drawing.Point(4, 26)
-        Me.tabGeneral.Name = "tabGeneral"
-        Me.tabGeneral.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabGeneral.Size = New System.Drawing.Size(926, 360)
-        Me.tabGeneral.TabIndex = 0
-        Me.tabGeneral.Text = "General"
-        Me.tabGeneral.UseVisualStyleBackColor = True
-        '
-        'lblGeneral
-        '
-        Me.lblGeneral.Dock = System.Windows.Forms.DockStyle.Top
-        Me.lblGeneral.Font = New System.Drawing.Font("Segoe UI Semibold", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblGeneral.Location = New System.Drawing.Point(3, 3)
-        Me.lblGeneral.Name = "lblGeneral"
-        Me.lblGeneral.Padding = New System.Windows.Forms.Padding(20, 0, 0, 0)
-        Me.lblGeneral.Size = New System.Drawing.Size(920, 40)
-        Me.lblGeneral.TabIndex = 3
-        Me.lblGeneral.Text = "General"
-        Me.lblGeneral.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'flowGeneral
-        '
-        Me.flowGeneral.AutoScroll = True
-        Me.flowGeneral.Controls.Add(Me.tblWake)
-        Me.flowGeneral.Controls.Add(Me.tblUser)
-        Me.flowGeneral.Controls.Add(Me.tblMod)
-        Me.flowGeneral.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.flowGeneral.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        Me.flowGeneral.Location = New System.Drawing.Point(3, 43)
-        Me.flowGeneral.Name = "flowGeneral"
-        Me.flowGeneral.Size = New System.Drawing.Size(920, 314)
-        Me.flowGeneral.TabIndex = 5
-        '
-        'tblMod
-        '
-        Me.tblMod.ColumnCount = 3
-        Me.tblMod.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
-        Me.tblMod.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
-        Me.tblMod.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 151.0!))
-        Me.tblMod.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tblMod.Controls.Add(Me.lblMod, 0, 0)
-        Me.tblMod.Controls.Add(Me.txtMod, 1, 0)
-        Me.tblMod.Controls.Add(Me.Label4, 2, 0)
-        Me.tblMod.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
-        Me.tblMod.Location = New System.Drawing.Point(3, 77)
-        Me.tblMod.Name = "tblMod"
-        Me.tblMod.RowCount = 1
-        Me.tblMod.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tblMod.Size = New System.Drawing.Size(401, 31)
-        Me.tblMod.TabIndex = 4
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label4.Location = New System.Drawing.Point(253, 0)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(145, 31)
-        Me.Label4.TabIndex = 2
-        Me.Label4.Text = "Found by \@role"
-        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'txtMod
-        '
-        Me.txtMod.BackColor = System.Drawing.SystemColors.Control
-        Me.txtMod.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtMod.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtMod.ForeColor = System.Drawing.Color.Black
-        Me.txtMod.Location = New System.Drawing.Point(153, 3)
-        Me.txtMod.Name = "txtMod"
-        Me.txtMod.Size = New System.Drawing.Size(94, 25)
-        Me.txtMod.TabIndex = 1
-        Me.txtMod.Text = "000000000000000000"
-        Me.txtMod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'lblMod
-        '
-        Me.lblMod.AutoSize = True
-        Me.lblMod.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lblMod.Location = New System.Drawing.Point(3, 0)
-        Me.lblMod.Name = "lblMod"
-        Me.lblMod.Size = New System.Drawing.Size(144, 31)
-        Me.lblMod.TabIndex = 0
-        Me.lblMod.Text = "Moderator role id:"
-        Me.lblMod.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'tblUser
-        '
-        Me.tblUser.ColumnCount = 4
-        Me.tblUser.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
-        Me.tblUser.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
-        Me.tblUser.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
-        Me.tblUser.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 51.0!))
-        Me.tblUser.Controls.Add(Me.txtDiscrim, 3, 0)
-        Me.tblUser.Controls.Add(Me.lblUser, 0, 0)
-        Me.tblUser.Controls.Add(Me.txtUser, 1, 0)
-        Me.tblUser.Controls.Add(Me.Label3, 2, 0)
-        Me.tblUser.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
-        Me.tblUser.Location = New System.Drawing.Point(3, 40)
-        Me.tblUser.Name = "tblUser"
-        Me.tblUser.RowCount = 1
-        Me.tblUser.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tblUser.Size = New System.Drawing.Size(401, 31)
-        Me.tblUser.TabIndex = 4
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label3.Location = New System.Drawing.Point(253, 0)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(94, 31)
-        Me.Label3.TabIndex = 2
-        Me.Label3.Text = "Discriminator:"
-        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'txtUser
-        '
-        Me.txtUser.BackColor = System.Drawing.SystemColors.Control
-        Me.txtUser.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtUser.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtUser.ForeColor = System.Drawing.Color.Black
-        Me.txtUser.Location = New System.Drawing.Point(153, 3)
-        Me.txtUser.Name = "txtUser"
-        Me.txtUser.Size = New System.Drawing.Size(94, 25)
-        Me.txtUser.TabIndex = 1
-        Me.txtUser.Text = "Username"
-        Me.txtUser.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'lblUser
-        '
-        Me.lblUser.AutoSize = True
-        Me.lblUser.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lblUser.Location = New System.Drawing.Point(3, 0)
-        Me.lblUser.Name = "lblUser"
-        Me.lblUser.Size = New System.Drawing.Size(144, 31)
-        Me.lblUser.TabIndex = 0
-        Me.lblUser.Text = "Server admin (you):"
-        Me.lblUser.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'txtDiscrim
-        '
-        Me.txtDiscrim.BackColor = System.Drawing.SystemColors.Control
-        Me.txtDiscrim.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtDiscrim.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtDiscrim.ForeColor = System.Drawing.Color.Black
-        Me.txtDiscrim.Location = New System.Drawing.Point(353, 3)
-        Me.txtDiscrim.Name = "txtDiscrim"
-        Me.txtDiscrim.Size = New System.Drawing.Size(45, 25)
-        Me.txtDiscrim.TabIndex = 3
-        Me.txtDiscrim.Text = "0000"
-        Me.txtDiscrim.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'tblWake
-        '
-        Me.tblWake.ColumnCount = 3
-        Me.tblWake.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
-        Me.tblWake.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
-        Me.tblWake.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 151.0!))
-        Me.tblWake.Controls.Add(Me.lblWake, 0, 0)
-        Me.tblWake.Controls.Add(Me.txtWake, 1, 0)
-        Me.tblWake.Controls.Add(Me.lblWakeCount, 2, 0)
-        Me.tblWake.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
-        Me.tblWake.Location = New System.Drawing.Point(3, 3)
-        Me.tblWake.Name = "tblWake"
-        Me.tblWake.RowCount = 1
-        Me.tblWake.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tblWake.Size = New System.Drawing.Size(401, 31)
-        Me.tblWake.TabIndex = 4
-        '
-        'lblWakeCount
-        '
-        Me.lblWakeCount.AutoSize = True
-        Me.lblWakeCount.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lblWakeCount.Location = New System.Drawing.Point(253, 0)
-        Me.lblWakeCount.Name = "lblWakeCount"
-        Me.lblWakeCount.Size = New System.Drawing.Size(145, 31)
-        Me.lblWakeCount.TabIndex = 2
-        Me.lblWakeCount.Text = "Characters: "
-        Me.lblWakeCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'txtWake
-        '
-        Me.txtWake.BackColor = System.Drawing.SystemColors.Control
-        Me.txtWake.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtWake.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtWake.ForeColor = System.Drawing.Color.Black
-        Me.txtWake.Location = New System.Drawing.Point(153, 3)
-        Me.txtWake.Name = "txtWake"
-        Me.txtWake.Size = New System.Drawing.Size(94, 25)
-        Me.txtWake.TabIndex = 1
-        Me.txtWake.Text = "/"
-        '
-        'lblWake
-        '
-        Me.lblWake.AutoSize = True
-        Me.lblWake.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lblWake.Location = New System.Drawing.Point(3, 0)
-        Me.lblWake.Name = "lblWake"
-        Me.lblWake.Size = New System.Drawing.Size(144, 31)
-        Me.lblWake.TabIndex = 0
-        Me.lblWake.Text = "Wake key:"
-        Me.lblWake.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'secondlast
-        '
-        Me.secondlast.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.secondlast.Controls.Add(Me.tabGeneral)
-        Me.secondlast.Controls.Add(Me.tabCom)
-        Me.secondlast.Controls.Add(Me.tabHelp)
-        Me.secondlast.Controls.Add(Me.tabLog)
-        Me.secondlast.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.secondlast.Location = New System.Drawing.Point(3, 60)
-        Me.secondlast.Name = "secondlast"
-        Me.secondlast.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.secondlast.SelectedIndex = 0
-        Me.secondlast.Size = New System.Drawing.Size(934, 390)
-        Me.secondlast.TabIndex = 10
+        Me.Ping.Enabled = True
+        Me.Ping.Interval = 10000
         '
         'main
         '
@@ -749,24 +750,24 @@ Partial Class main
         CType(Me.picBot, System.ComponentModel.ISupportInitialize).EndInit()
         Me.flowTopRight.ResumeLayout(False)
         Me.flowTopRight.PerformLayout()
-        Me.tabLog.ResumeLayout(False)
-        Me.tabHelp.ResumeLayout(False)
-        Me.TableLayoutPanel1.ResumeLayout(False)
-        Me.panHelp.ResumeLayout(False)
-        Me.panHelp.PerformLayout()
-        Me.panHelpAdm.ResumeLayout(False)
-        Me.panHelpAdm.PerformLayout()
-        Me.tabCom.ResumeLayout(False)
-        Me.flowCommand.ResumeLayout(False)
+        Me.secondlast.ResumeLayout(False)
         Me.tabGeneral.ResumeLayout(False)
         Me.flowGeneral.ResumeLayout(False)
-        Me.tblMod.ResumeLayout(False)
-        Me.tblMod.PerformLayout()
-        Me.tblUser.ResumeLayout(False)
-        Me.tblUser.PerformLayout()
         Me.tblWake.ResumeLayout(False)
         Me.tblWake.PerformLayout()
-        Me.secondlast.ResumeLayout(False)
+        Me.tblUser.ResumeLayout(False)
+        Me.tblUser.PerformLayout()
+        Me.tblMod.ResumeLayout(False)
+        Me.tblMod.PerformLayout()
+        Me.tabCom.ResumeLayout(False)
+        Me.flowCommand.ResumeLayout(False)
+        Me.tabHelp.ResumeLayout(False)
+        Me.TableLayoutPanel1.ResumeLayout(False)
+        Me.panHelpAdm.ResumeLayout(False)
+        Me.panHelpAdm.PerformLayout()
+        Me.panHelp.ResumeLayout(False)
+        Me.panHelp.PerformLayout()
+        Me.tabLog.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

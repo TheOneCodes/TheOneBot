@@ -1,0 +1,436 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>MARKOLENOVO</Machine>
+    <WindowsUser>Marko</WindowsUser>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetOsVersion>10.0</TargetOsVersion>
+    <TargetOsDescription>Windows 10.0</TargetOsDescription>
+    <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
+    <PackageArchitecture>neutral</PackageArchitecture>
+    <PackageIdentityName>7324dfa1-34a9-444a-98a0-5a3e1117af82</PackageIdentityName>
+    <PackageIdentityPublisher>CN=TheOneCode</PackageIdentityPublisher>
+    <IntermediateOutputPath>C:\GitHub\TheOneBot\UWP\obj\Debug\</IntermediateOutputPath>
+    <RemoteDeploymentType>
+    </RemoteDeploymentType>
+    <PackageRegistrationPath>
+    </PackageRegistrationPath>
+    <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
+    <DeployOptionalPackages>false</DeployOptionalPackages>
+    <WindowsSdkPath>
+    </WindowsSdkPath>
+    <LayoutDir>C:\GitHub\TheOneBot\UWP\bin\AnyCPU\Debug\AppX</LayoutDir>
+    <RegisteredManifestChecksum>FF7852AAFC71C8EBBE851722A550027E4BB8761EB48E03857FF11EA62E249F97</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>7324dfa1-34a9-444a-98a0-5a3e1117af82_0.0.1.0_neutral__dd10w57r212xm</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>7324dfa1-34a9-444a-98a0-5a3e1117af82_dd10w57r212xm!App</RegisteredUserModeAppID>
+    <RegisteredPackageID>7324dfa1-34a9-444a-98a0-5a3e1117af82</RegisteredPackageID>
+    <RegisteredPackagePublisher>CN=TheOneCode</RegisteredPackagePublisher>
+    <RegisteredVersion>0.0.1.0</RegisteredVersion>
+    <JitOptimizationSuppressed>True</JitOptimizationSuppressed>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="C:\GitHub\TheOneBot\UWP\bin\AnyCPU\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T03:29:26.630</Modified>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\LargeTile.scale-100.png">
+      <PackagePath>Images\LargeTile.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:28.881</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\LargeTile.scale-125.png">
+      <PackagePath>Images\LargeTile.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:28.935</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\LargeTile.scale-150.png">
+      <PackagePath>Images\LargeTile.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:29.010</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\LargeTile.scale-200.png">
+      <PackagePath>Images\LargeTile.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:29.116</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\LargeTile.scale-400.png">
+      <PackagePath>Images\LargeTile.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:29.514</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\LockScreenLogo.scale-200.png">
+      <PackagePath>Images\LockScreenLogo.scale-200.png</PackagePath>
+      <Modified>2018-07-11T00:23:31.082</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\SmallTile.scale-100.png">
+      <PackagePath>Images\SmallTile.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:28.120</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\SmallTile.scale-125.png">
+      <PackagePath>Images\SmallTile.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:28.137</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\SmallTile.scale-150.png">
+      <PackagePath>Images\SmallTile.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:28.150</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\SmallTile.scale-200.png">
+      <PackagePath>Images\SmallTile.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:28.193</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\SmallTile.scale-400.png">
+      <PackagePath>Images\SmallTile.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:28.247</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\SplashScreen.scale-100.png">
+      <PackagePath>Images\SplashScreen.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T03:27:23.226</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\SplashScreen.scale-125.png">
+      <PackagePath>Images\SplashScreen.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T03:27:23.373</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\SplashScreen.scale-150.png">
+      <PackagePath>Images\SplashScreen.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T03:27:23.582</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\SplashScreen.scale-200.png">
+      <PackagePath>Images\SplashScreen.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T03:27:23.820</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\SplashScreen.scale-400.png">
+      <PackagePath>Images\SplashScreen.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T03:27:24.724</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\Square150x150Logo.scale-100.png">
+      <PackagePath>Images\Square150x150Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:28.272</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\Square150x150Logo.scale-125.png">
+      <PackagePath>Images\Square150x150Logo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:28.294</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\Square150x150Logo.scale-150.png">
+      <PackagePath>Images\Square150x150Logo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:28.349</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\Square150x150Logo.scale-200.png">
+      <PackagePath>Images\Square150x150Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:28.403</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\Square150x150Logo.scale-400.png">
+      <PackagePath>Images\Square150x150Logo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:28.523</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\Square44x44Logo.altform-unplated_targetsize-16.png">
+      <PackagePath>Images\Square44x44Logo.altform-unplated_targetsize-16.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:29.704</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\Square44x44Logo.altform-unplated_targetsize-256.png">
+      <PackagePath>Images\Square44x44Logo.altform-unplated_targetsize-256.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:29.793</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\Square44x44Logo.altform-unplated_targetsize-32.png">
+      <PackagePath>Images\Square44x44Logo.altform-unplated_targetsize-32.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:29.730</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\Square44x44Logo.altform-unplated_targetsize-48.png">
+      <PackagePath>Images\Square44x44Logo.altform-unplated_targetsize-48.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:29.748</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\Square44x44Logo.scale-100.png">
+      <PackagePath>Images\Square44x44Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:29.527</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\Square44x44Logo.scale-125.png">
+      <PackagePath>Images\Square44x44Logo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:29.540</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\Square44x44Logo.scale-150.png">
+      <PackagePath>Images\Square44x44Logo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:29.554</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\Square44x44Logo.scale-200.png">
+      <PackagePath>Images\Square44x44Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:29.581</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\Square44x44Logo.scale-400.png">
+      <PackagePath>Images\Square44x44Logo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:29.608</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\Square44x44Logo.targetsize-16.png">
+      <PackagePath>Images\Square44x44Logo.targetsize-16.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:29.622</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\Square44x44Logo.targetsize-24.png">
+      <PackagePath>Images\Square44x44Logo.targetsize-24.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:29.633</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\Square44x44Logo.targetsize-24_altform-unplated.png">
+      <PackagePath>Images\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:29.717</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\Square44x44Logo.targetsize-256.png">
+      <PackagePath>Images\Square44x44Logo.targetsize-256.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:29.692</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\Square44x44Logo.targetsize-32.png">
+      <PackagePath>Images\Square44x44Logo.targetsize-32.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:29.648</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\Square44x44Logo.targetsize-48.png">
+      <PackagePath>Images\Square44x44Logo.targetsize-48.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:29.661</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\StoreLogo.scale-100.png">
+      <PackagePath>Images\StoreLogo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:31.013</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\StoreLogo.scale-125.png">
+      <PackagePath>Images\StoreLogo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:31.035</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\StoreLogo.scale-150.png">
+      <PackagePath>Images\StoreLogo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:31.063</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\StoreLogo.scale-200.png">
+      <PackagePath>Images\StoreLogo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:31.082</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\StoreLogo.scale-400.png">
+      <PackagePath>Images\StoreLogo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:31.115</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\Wide310x150Logo.scale-100.png">
+      <PackagePath>Images\Wide310x150Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T03:26:52.556</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\Wide310x150Logo.scale-125.png">
+      <PackagePath>Images\Wide310x150Logo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T03:26:52.618</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\Wide310x150Logo.scale-150.png">
+      <PackagePath>Images\Wide310x150Logo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T03:26:52.695</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\Wide310x150Logo.scale-200.png">
+      <PackagePath>Images\Wide310x150Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T03:26:52.795</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\Wide310x150Logo.scale-400.png">
+      <PackagePath>Images\Wide310x150Logo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T03:26:53.039</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.17134.0\Windows.winmd">
+      <PackagePath>WinMetadata\Windows.winmd</PackagePath>
+      <Modified>2018-04-20T03:01:52.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\bin\AnyCPU\Debug\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T03:29:11.317</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\Discord.Net.Commands.1.0.2\lib\netstandard1.1\Discord.Net.Commands.dll">
+      <PackagePath>TheOneBot\Discord.Net.Commands.dll</PackagePath>
+      <Modified>2017-09-09T16:33:38.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\Discord.Net.Core.1.0.2\lib\net45\Discord.Net.Core.dll">
+      <PackagePath>TheOneBot\Discord.Net.Core.dll</PackagePath>
+      <Modified>2017-09-09T16:33:22.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\Discord.Net.Rest.1.0.2\lib\net45\Discord.Net.Rest.dll">
+      <PackagePath>TheOneBot\Discord.Net.Rest.dll</PackagePath>
+      <Modified>2017-09-09T16:33:26.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\Discord.Net.Rpc.1.0.2\lib\net45\Discord.Net.Rpc.dll">
+      <PackagePath>TheOneBot\Discord.Net.Rpc.dll</PackagePath>
+      <Modified>2017-09-09T16:33:36.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\Discord.Net.Webhook.1.0.2\lib\netstandard1.1\Discord.Net.Webhook.dll">
+      <PackagePath>TheOneBot\Discord.Net.Webhook.dll</PackagePath>
+      <Modified>2017-09-09T16:33:42.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\Discord.Net.WebSocket.1.0.2\lib\net45\Discord.Net.WebSocket.dll">
+      <PackagePath>TheOneBot\Discord.Net.WebSocket.dll</PackagePath>
+      <Modified>2017-09-09T16:33:30.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\Microsoft.Extensions.DependencyInjection.Abstractions.1.1.1\lib\netstandard1.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll">
+      <PackagePath>TheOneBot\Microsoft.Extensions.DependencyInjection.Abstractions.dll</PackagePath>
+      <Modified>2017-04-27T23:53:26.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\Microsoft.Extensions.DependencyInjection.1.1.1\lib\netstandard1.1\Microsoft.Extensions.DependencyInjection.dll">
+      <PackagePath>TheOneBot\Microsoft.Extensions.DependencyInjection.dll</PackagePath>
+      <Modified>2017-04-27T23:53:26.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll">
+      <PackagePath>TheOneBot\Microsoft.Win32.Primitives.dll</PackagePath>
+      <Modified>2016-11-05T09:55:32.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll">
+      <PackagePath>TheOneBot\Newtonsoft.Json.dll</PackagePath>
+      <Modified>2017-04-02T22:46:32.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\System.AppContext.4.3.0\lib\net463\System.AppContext.dll">
+      <PackagePath>TheOneBot\System.AppContext.dll</PackagePath>
+      <Modified>2016-11-05T09:55:34.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\System.Collections.Immutable.1.3.1\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll">
+      <PackagePath>TheOneBot\System.Collections.Immutable.dll</PackagePath>
+      <Modified>2016-12-19T18:17:42.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\System.Console.4.3.0\lib\net46\System.Console.dll">
+      <PackagePath>TheOneBot\System.Console.dll</PackagePath>
+      <Modified>2016-11-05T09:55:48.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\System.Diagnostics.DiagnosticSource.4.3.0\lib\net46\System.Diagnostics.DiagnosticSource.dll">
+      <PackagePath>TheOneBot\System.Diagnostics.DiagnosticSource.dll</PackagePath>
+      <Modified>2016-11-05T09:55:52.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\System.Diagnostics.Tracing.4.3.0\lib\net462\System.Diagnostics.Tracing.dll">
+      <PackagePath>TheOneBot\System.Diagnostics.Tracing.dll</PackagePath>
+      <Modified>2016-11-05T09:56:00.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\System.Globalization.Calendars.4.3.0\lib\net46\System.Globalization.Calendars.dll">
+      <PackagePath>TheOneBot\System.Globalization.Calendars.dll</PackagePath>
+      <Modified>2016-11-05T09:56:02.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\System.Interactive.Async.3.1.1\lib\net46\System.Interactive.Async.dll">
+      <PackagePath>TheOneBot\System.Interactive.Async.dll</PackagePath>
+      <Modified>2016-11-21T20:05:54.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll">
+      <PackagePath>TheOneBot\System.IO.Compression.dll</PackagePath>
+      <Modified>2016-11-05T09:56:08.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\System.IO.Compression.ZipFile.4.3.0\lib\net46\System.IO.Compression.ZipFile.dll">
+      <PackagePath>TheOneBot\System.IO.Compression.ZipFile.dll</PackagePath>
+      <Modified>2016-11-05T09:56:04.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\System.IO.4.3.0\lib\net462\System.IO.dll">
+      <PackagePath>TheOneBot\System.IO.dll</PackagePath>
+      <Modified>2016-11-05T09:56:18.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\System.IO.FileSystem.4.3.0\lib\net46\System.IO.FileSystem.dll">
+      <PackagePath>TheOneBot\System.IO.FileSystem.dll</PackagePath>
+      <Modified>2016-11-05T09:56:08.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll">
+      <PackagePath>TheOneBot\System.IO.FileSystem.Primitives.dll</PackagePath>
+      <Modified>2016-11-05T09:56:08.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\System.Linq.4.3.0\lib\net463\System.Linq.dll">
+      <PackagePath>TheOneBot\System.Linq.dll</PackagePath>
+      <Modified>2016-11-05T09:56:20.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\System.Linq.Expressions.4.3.0\lib\net463\System.Linq.Expressions.dll">
+      <PackagePath>TheOneBot\System.Linq.Expressions.dll</PackagePath>
+      <Modified>2016-11-05T09:56:24.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\System.Net.Http.4.3.0\lib\net46\System.Net.Http.dll">
+      <PackagePath>TheOneBot\System.Net.Http.dll</PackagePath>
+      <Modified>2016-11-05T09:56:30.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\System.Net.Sockets.4.3.0\lib\net46\System.Net.Sockets.dll">
+      <PackagePath>TheOneBot\System.Net.Sockets.dll</PackagePath>
+      <Modified>2016-11-05T09:56:34.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\System.Reflection.4.3.0\lib\net462\System.Reflection.dll">
+      <PackagePath>TheOneBot\System.Reflection.dll</PackagePath>
+      <Modified>2016-11-05T09:56:48.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll">
+      <PackagePath>TheOneBot\System.Runtime.dll</PackagePath>
+      <Modified>2016-11-05T09:57:10.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\System.Runtime.Extensions.4.3.0\lib\net462\System.Runtime.Extensions.dll">
+      <PackagePath>TheOneBot\System.Runtime.Extensions.dll</PackagePath>
+      <Modified>2016-11-05T09:56:50.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\System.Runtime.InteropServices.4.3.0\lib\net463\System.Runtime.InteropServices.dll">
+      <PackagePath>TheOneBot\System.Runtime.InteropServices.dll</PackagePath>
+      <Modified>2016-11-05T09:56:54.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll">
+      <PackagePath>TheOneBot\System.Runtime.InteropServices.RuntimeInformation.dll</PackagePath>
+      <Modified>2016-11-05T09:57:00.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll">
+      <PackagePath>TheOneBot\System.Security.Cryptography.Algorithms.dll</PackagePath>
+      <Modified>2016-11-05T09:57:14.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll">
+      <PackagePath>TheOneBot\System.Security.Cryptography.Encoding.dll</PackagePath>
+      <Modified>2016-11-05T09:57:08.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll">
+      <PackagePath>TheOneBot\System.Security.Cryptography.Primitives.dll</PackagePath>
+      <Modified>2016-11-05T09:57:18.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll">
+      <PackagePath>TheOneBot\System.Security.Cryptography.X509Certificates.dll</PackagePath>
+      <Modified>2016-11-05T09:57:18.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\System.Text.RegularExpressions.4.3.0\lib\net463\System.Text.RegularExpressions.dll">
+      <PackagePath>TheOneBot\System.Text.RegularExpressions.dll</PackagePath>
+      <Modified>2016-11-05T09:57:24.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\packages\System.Xml.ReaderWriter.4.3.0\lib\net46\System.Xml.ReaderWriter.dll">
+      <PackagePath>TheOneBot\System.Xml.ReaderWriter.dll</PackagePath>
+      <Modified>2016-11-05T09:57:36.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\compile\TheOneBot\TheOneBot.exe">
+      <PackagePath>TheOneBot\TheOneBot.exe</PackagePath>
+      <Modified>2018-07-10T21:55:56.053</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\compile\TheOneBot\TheOneBot.exe.config">
+      <PackagePath>TheOneBot\TheOneBot.exe.config</PackagePath>
+      <Modified>2018-07-07T00:16:11.569</Modified>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>

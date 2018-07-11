@@ -3,7 +3,7 @@ Imports System.IO
 Public Class login
     Public Token                    'discord bot token ID
     Public ID                       'the bot's user ID (for added security)
-    ReadOnly config As String = My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData & "\bot.config"
+    ReadOnly config As String = My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData & Path.DirectorySeparatorChar & "bot.config"
     Dim animTick As Integer         'ticks for the animation
     Dim ready As Boolean = True     'ready to close (lets the animation run)
     Dim save As Boolean = My.Settings.saveTI
@@ -11,34 +11,50 @@ Public Class login
     Dim writer As StreamWriter
     'On load setup
     Private Sub login_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If Environment.OSVersion.ToString.ToLower.Contains("unix") Then
+            animate.Stop()
+        End If
         If File.Exists(config) Then
             reader = My.Computer.FileSystem.OpenTextFileReader(config)
-            ID = reader.ReadLine
-            UsernameTextBox.Text = ID
-            Token = reader.ReadLine
-            PasswordTextBox.Text = Token
-            Dim auto As String = reader.ReadLine.ToLower
-            If ID <> Nothing And Token <> Nothing And auto.StartsWith("t") Or auto.StartsWith("y") Then
-                OK_Click()
-            End If
+            Try
+                ID = reader.ReadLine
+                UsernameTextBox.Text = ID
+                Token = reader.ReadLine
+                PasswordTextBox.Text = Token
+                Dim auto As String = reader.ReadLine
+                If auto = Nothing Then
+                    auto = "No thank you"
+                End If
+                If ID <> Nothing And Token <> Nothing And auto.StartsWith("T") Or ID <> Nothing And Token <> Nothing And auto.StartsWith("Y") Or ID <> Nothing And Token <> Nothing And auto.StartsWith("t") Or ID <> Nothing And Token <> Nothing And auto.StartsWith("y") Then
+                    OK_Click()
+                End If
+            Catch ex As Exception
+                dialog.box("Error loading config", "Load error", vbOK, ex.ToString)
+            End Try
             reader.Close()
         Else
-            File.Create(config)
-            writer = My.Computer.FileSystem.OpenTextFileWriter(config, True)
-            writer.WriteLine("")
-            writer.WriteLine("")
-            writer.WriteLine("No, thank you. I do not wish to automatically sign in with these credentials")
-            writer.Close()
+            Try
+                File.Create(config)
+                Threading.Thread.Sleep(2000)
+                writer = My.Computer.FileSystem.OpenTextFileWriter(config, True)
+                writer.WriteLine("")
+                writer.WriteLine("")
+                writer.WriteLine("No, thank you. I do not wish to automatically sign in with these credentials")
+                writer.Close()
+            Catch
+            End Try
         End If
         If ID = Nothing Or Token = Nothing Then
             UsernameTextBox.Text = My.Settings.id
             PasswordTextBox.Text = My.Settings.token
         End If
         chkSave.Checked = save
-        Size = New Size(210, 231)
-        Location = New Point(My.Computer.Screen.WorkingArea.Width / 2 - Width / 2, My.Computer.Screen.WorkingArea.Height / 2 - Height / 2)
-        pbFull.Location = New Point(0, 0)
-        pbFull.BringToFront()
+        If Environment.OSVersion.ToString.ToLower.Contains("nt") Then
+            Size = New Size(210, 231)
+            Location = New Point(My.Computer.Screen.WorkingArea.Width / 2 - Width / 2, My.Computer.Screen.WorkingArea.Height / 2 - Height / 2)
+            pbFull.Location = New Point(0, 0)
+            pbFull.BringToFront()
+        End If
         Tooltip.SetToolTip(UsernameTextBox, "Seemingly random, 18 numeric characters, always numeric" & vbNewLine & "The bot ID is not entirely required, but used as an extra level of security")
         Tooltip.SetToolTip(PasswordTextBox, "Seemingly random, 59 alphanumeric characters, always a '.' at character 25 and 32" & vbNewLine & "The token is more of a ""Password"" for the bot")
         If Ping("discord.gg") = False Then
@@ -71,48 +87,55 @@ Public Class login
     End Function
     'Open animation
     Private Sub animate_Tick(sender As Object, e As EventArgs) Handles animate.Tick
-        animTick += 1
-        If animTick > 20 Then
-            If Width <= 420 Then
-                Width += 16
-                Location = New Point(My.Computer.Screen.WorkingArea.Width / 2 - Width / 2, My.Computer.Screen.WorkingArea.Height / 2 - Height / 2)
-            ElseIf Width > 420 Then
-                Width = 420
-            End If
-            If pbFull.Width > pbImg.Width Then
-                pbFull.Width -= 8
-            Else
-                pbFull.Visible = False
-            End If
-            If pbFull.Visible = False And Width = 420 Then
-                animate.Stop()
+        If Environment.OSVersion.ToString.ToLower.Contains("nt") Then
+            animTick += 1
+            If animTick > 20 Then
+                If Width <= 420 Then
+                    Width += 16
+                    Location = New Point(My.Computer.Screen.WorkingArea.Width / 2 - Width / 2, My.Computer.Screen.WorkingArea.Height / 2 - Height / 2)
+                ElseIf Width > 420 Then
+                    Width = 420
+                End If
+                If pbFull.Width > pbImg.Width Then
+                    pbFull.Width -= 8
+                Else
+                    pbFull.Visible = False
+                End If
+                If pbFull.Visible = False And Width = 420 Then
+                    animate.Stop()
+                End If
             End If
         End If
     End Sub
     'close animation
     Private Sub etamina_Tick(sender As Object, e As EventArgs) Handles etamina.Tick
-        animTick -= 1
-        If Width > 210 Then
-            Width -= 16
-            Location = New Point(My.Computer.Screen.WorkingArea.Width / 2 - Width / 2, My.Computer.Screen.WorkingArea.Height / 2 - Height / 2)
-        ElseIf Width < 210 Then
-            Width = 210
-        End If
-        If pbFull.Width >= 194 Then
-            pbFull.Width = 194
-        ElseIf pbFull.Width < pbImg.Width Then
-            pbFull.Visible = False
-            pbFull.Width += 8
-        ElseIf pbFull.Width >= pbImg.Width Then
-            pbFull.Visible = True
-            pbFull.Width += 8
-        End If
-        If pbFull.Width = 194 And Width = 210 Then
-            If animTick = 0 Then
-                ready = False
-                Close()
-                etamina.Stop()
+        If Environment.OSVersion.ToString.ToLower.Contains("nt") Then
+            animTick -= 1
+            If Width > 210 Then
+                Width -= 16
+                Location = New Point(My.Computer.Screen.WorkingArea.Width / 2 - Width / 2, My.Computer.Screen.WorkingArea.Height / 2 - Height / 2)
+            ElseIf Width < 210 Then
+                Width = 210
             End If
+            If pbFull.Width >= 194 Then
+                pbFull.Width = 194
+            ElseIf pbFull.Width < pbImg.Width Then
+                pbFull.Visible = False
+                pbFull.Width += 8
+            ElseIf pbFull.Width >= pbImg.Width Then
+                pbFull.Visible = True
+                pbFull.Width += 8
+            End If
+            If pbFull.Width = 194 And Width = 210 Then
+                If animTick = 0 Then
+                    ready = False
+                    Close()
+                    etamina.Stop()
+                End If
+            End If
+        Else
+            ready = False
+            Close()
         End If
     End Sub
     'OK
@@ -129,6 +152,7 @@ Public Class login
         Me.Close()
     End Sub
     'close
+
     Private Sub login_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         If ready Then
             If save Then
@@ -142,6 +166,8 @@ Public Class login
             My.Settings.Save()
             e.Cancel = ready
             etamina.Start()
+        Else
+            e.Cancel = ready
         End If
     End Sub
 

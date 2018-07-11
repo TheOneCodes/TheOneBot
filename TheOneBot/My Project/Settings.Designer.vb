@@ -56,20 +56,6 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("<?xml version=""1.0"" encoding=""utf-16""?>"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"<ArrayOfAnyType xmlns:xsi=""http://www.w3"& _ 
-            ".org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  <"& _ 
-            "anyType />"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"</ArrayOfAnyType>")>  _
-        Public Property enabledCommand() As Global.system.collections.arraylist
-            Get
-                Return CType(Me("enabledCommand"),Global.system.collections.arraylist)
-            End Get
-            Set
-                Me("enabledCommand") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
         Public Property first() As Boolean
             Get
@@ -137,6 +123,78 @@ Namespace My
             End Get
             Set
                 Me("saveTI") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property comDel() As Boolean
+            Get
+                Return CType(Me("comDel"),Boolean)
+            End Get
+            Set
+                Me("comDel") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property comHelp() As Boolean
+            Get
+                Return CType(Me("comHelp"),Boolean)
+            End Get
+            Set
+                Me("comHelp") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property comPing() As Boolean
+            Get
+                Return CType(Me("comPing"),Boolean)
+            End Get
+            Set
+                Me("comPing") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property comEcho() As Boolean
+            Get
+                Return CType(Me("comEcho"),Boolean)
+            End Get
+            Set
+                Me("comEcho") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property comLast() As Boolean
+            Get
+                Return CType(Me("comLast"),Boolean)
+            End Get
+            Set
+                Me("comLast") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property comStats() As Boolean
+            Get
+                Return CType(Me("comStats"),Boolean)
+            End Get
+            Set
+                Me("comStats") = value
             End Set
         End Property
     End Class

@@ -1,19 +1,21 @@
 ﻿Imports System.Net
 Imports System.IO
 Public NotInheritable Class loader
-    ReadOnly updateInfo As String = My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData & "\update"           'location to store update info
-    ReadOnly updateFile As String = My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData & "\update.exe"    'location to store update
-    ReadOnly infoFile As String = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & "\TheOneBot\location.config"
-    ReadOnly infoFolder As String = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & "\TheOneBot"
+    ReadOnly updateInfo As String = My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData & Path.DirectorySeparatorChar & "update"           'location to store update info
+    ReadOnly updateFile As String = My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData & Path.DirectorySeparatorChar & "update.exe"    'location to store update
+    ReadOnly infoFile As String = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & Path.DirectorySeparatorChar & "TheOneBot" & Path.DirectorySeparatorChar & "location.config"
+    ReadOnly infoFolder As String = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & Path.DirectorySeparatorChar & "TheOneBot"
     ReadOnly installLocation As String = AppDomain.CurrentDomain.BaseDirectory
-    Const version As Decimal = 0.01                                                         'the current version number
+    ReadOnly version As Decimal = My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & My.Application.Info.Version.Build         'the current version number
     Const stock As Boolean = True                                                           'is this changed (stops auto updates to conserve updates)
     Dim newVersion As Decimal                                                               'the new version id (when loaded from GitHub)
     Dim updatePath As Uri                                                                   'the update download url (installation excecutable)
+    Dim uwpUpdatePath As String
     Dim bottomText As String = "Loading"                                                    'the information text
     Dim bottomDots As Single = 0                                                            'the tripple dot animation "frame" number
     Dim client As WebClient = New WebClient                                                 'the download client
     Dim reader As StreamReader                                                              'the info reader
+    Const hardreset As Boolean = False
 
     Private Sub loader_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         bottomText = "Prepairing"
@@ -32,28 +34,27 @@ Public NotInheritable Class loader
     Private Sub start_Tick(sender As Object, e As EventArgs) Handles start.Tick
         'is this stock
         start.Stop()
-        If My.Settings.first Or My.Settings.version < version Or IsNothing(My.Settings.enabledCommand) Then
+        If My.Settings.first Or hardreset Then
             bottomText = "Prepairing for first use"
             My.Settings.Upgrade()
             My.Settings.Save()
-            My.Settings.enabledCommand(0) = New Boolean
-            My.Settings.enabledCommand(0) = False
-            My.Settings.enabledCommand(1) = New Boolean
-            My.Settings.enabledCommand(1) = True
-            My.Settings.enabledCommand(2) = New Boolean
-            My.Settings.enabledCommand(2) = True
-            My.Settings.enabledCommand(3) = New Boolean
-            My.Settings.enabledCommand(3) = True
-            My.Settings.enabledCommand(4) = New Boolean
-            My.Settings.enabledCommand(4) = False
-            My.Settings.enabledCommand(5) = New Boolean
-            My.Settings.enabledCommand(5) = False
+            My.Settings.comDel = False
+            My.Settings.comHelp = True
+            My.Settings.comPing = True
+            My.Settings.comEcho = True
+            My.Settings.comLast = False
+            My.Settings.comStats = False
             My.Settings.Save()
             My.Settings.remoteControl = False
             My.Settings.first = False
             My.Settings.version = version
             My.Settings.Save()
+            Threading.Thread.Sleep(1000)
             bottomText = "First startup"
+        ElseIf My.Settings.version < version Then
+            bottomText = "Updating"
+            My.Settings.Upgrade()
+            My.Settings.Upgrade()
         End If
         If stock = False Then
             bottomText = "Loading v" & version & " (modified)"
@@ -135,8 +136,16 @@ Public NotInheritable Class loader
         reader = My.Computer.FileSystem.OpenTextFileReader(updateInfo)
         newVersion = Convert.ToDecimal(reader.ReadLine)
         updatePath = New Uri(reader.ReadLine)
+        uwpUpdatePath = reader.ReadLine
         If newVersion > version Then
-            updateVersion()
+            If Environment.OSVersion.ToString.Contains("10") Then
+                bottomText = "UWP update available, procede to store"
+                Process.Start(uwpUpdatePath)
+                Threading.Thread.Sleep(5000)
+                Close()
+            Else
+                updateVersion()
+            End If
         Else
             bottomText = "Done"
             finish.Start()
@@ -172,11 +181,22 @@ Public NotInheritable Class loader
     'close when done
     Private Sub Finished(sender As Object, e As EventArgs) Handles finish.Tick
         login.Show()
-        Close()
+        If Environment.OSVersion.ToString.ToLower.Contains("nt") Then
+            Close()
+        Else
+            Hide()
+        End If
     End Sub
     'update when done
     Private Sub updateNow_Tick(sender As Object, e As EventArgs) Handles updateNow.Tick
-        Process.Start(updateFile)
-        Close()
+        If Environment.OSVersion.ToString.ToLower.Contains("nt") Then
+            Process.Start(updateFile)
+            Close()
+        Else
+            MsgBox("Unix (mono) support is extremely exparemental, autoupdate does not yet work (properly)")
+            Process.Start("mono " & updateFile)
+            Process.Start("https://github.com/TheOneTrueCode/TheOneBot/releases")
+            Close()
+        End If
     End Sub
 End Class

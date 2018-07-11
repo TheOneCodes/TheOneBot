@@ -18,10 +18,20 @@ Public Class main
     Dim wakeSpace As Boolean = False                                                                                    'is there a space after?
     Dim WithEvents lastCommand As String = "[NO VAR SAVED]"                                                                        'last command
     Dim remoteControl As Boolean = My.Settings.remoteControl
-    Dim enabledCommandTemp = My.Settings.enabledCommand.ToArray
-    Dim enabledCommand = New Boolean(5) {False, True, True, True, False, False}
+    Dim enabledCommand = New Boolean() {My.Settings.comDel, My.Settings.comHelp, My.Settings.comPing, My.Settings.comEcho, My.Settings.comLast, My.Settings.comStats}
     'load
     Private Async Sub connectForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If Environment.OSVersion.ToString.ToLower.Contains("unix") Then
+            Font = New Font("Arial", 9.75!, FontStyle.Bold)
+            btnCon.Font = New Font("Arial", 12.0!, FontStyle.Bold)
+            Label1.Font = New Font("Arial", 15.0!, FontStyle.Bold)
+            chkRemote.Font = New Font("Arial", 15.0!, FontStyle.Bold)
+            lblGeneral.Font = New Font("Arial", 15.0!, FontStyle.Bold)
+            lblPing.Font = New Font("Arial", 18.0!, FontStyle.Bold)
+            lblUname.Font = New Font("Arial", 18.0!, FontStyle.Bold)
+            lblStatus.Font = New Font("Arial", 15.0!, FontStyle.Bold)
+        End If
+        Text = "TheOneBot " & My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & My.Application.Info.Version.Build & " - Serverhost"
         reset()
         PingNow()
         AddHandler discord.MessageReceived, AddressOf onMessage
@@ -182,47 +192,22 @@ Public Class main
     End Sub
     Private Sub save()
         My.Settings.remoteControl = remoteControl
-        My.Settings.enabledCommand(0) = enabledCommand(0)
-        My.Settings.enabledCommand(1) = enabledCommand(1)
-        My.Settings.enabledCommand(2) = enabledCommand(2)
-        My.Settings.enabledCommand(3) = enabledCommand(3)
-        My.Settings.enabledCommand(4) = enabledCommand(4)
-        My.Settings.enabledCommand(5) = enabledCommand(5)
+        Try
+            My.Settings.comDel = enabledCommand(0)
+            My.Settings.comHelp = enabledCommand(1)
+            My.Settings.comPing = enabledCommand(2)
+            My.Settings.comEcho = enabledCommand(3)
+            My.Settings.comLast = enabledCommand(4)
+            My.Settings.comStats = enabledCommand(5)
+        Catch e As Exception
+            dialog.box("Failed to save", "Error on save", vbOK, e.ToString)
+        End Try
         My.Settings.Save()
     End Sub
     Private Sub reset()
         Enabled = False
         wake = "/"
-        If enabledCommandTemp(0) = True Then
-            enabledCommand(0) = True
-        Else
-            enabledCommand(0) = False
-        End If
-        If enabledCommandTemp(1) = True Then
-            enabledCommand(1) = True
-        Else
-            enabledCommand(1) = False
-        End If
-        If enabledCommandTemp(2) = True Then
-            enabledCommand(2) = True
-        Else
-            enabledCommand(2) = False
-        End If
-        If enabledCommandTemp(3) = True Then
-            enabledCommand(3) = True
-        Else
-            enabledCommand(3) = False
-        End If
-        If enabledCommandTemp(4) = True Then
-            enabledCommand(4) = True
-        Else
-            enabledCommand(4) = False
-        End If
-        If enabledCommandTemp(5) = True Then
-            enabledCommand(5) = True
-        Else
-            enabledCommand(5) = False
-        End If
+        enabledCommand = {My.Settings.comDel, My.Settings.comHelp, My.Settings.comPing, My.Settings.comEcho, My.Settings.comLast, My.Settings.comStats}
         chkDel.Checked = enabledCommand(0)
         chkHelp.Checked = enabledCommand(1)
         chkPing.Checked = enabledCommand(2)
@@ -242,13 +227,21 @@ Public Class main
                 profilePic = Bitmap.FromStream(New MemoryStream(webClient.DownloadData(discord.CurrentUser.GetAvatarUrl)))
                 picProfile.Image = profilePic
                 picBot.Visible = True
-                Text = "TheOneBot - " & discord.CurrentUser.Username.ToString & "#" & discord.CurrentUser.Discriminator
+                Text = "TheOneBot " & My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & My.Application.Info.Version.Build & " - " & discord.CurrentUser.Username.ToString & "#" & discord.CurrentUser.Discriminator
                 If id <> discord.CurrentUser.Id Then
                     dialog.box("Login failed, check ID", "Login failed", vbOK, "Bot ID does not match the Bot token, check credentials and retry." & vbNewLine & "If error persists, visit https://discordapp.com/developers/applications to get a new token.")
-                    Close()
+                    If Environment.OSVersion.ToString.ToLower.Contains("unix") Then
+                        Hide()
+                    Else
+                        Close()
+                    End If
                 Else
                     Show()
-                    login.Close()
+                    If Environment.OSVersion.ToString.ToLower.Contains("unix") Then
+                        login.Hide()
+                    Else
+                        login.Close()
+                    End If
                 End If
                 Await discord.SetGameAsync("TheOneBot by TheOneCode", "https://github.com/TheOneTrueCode/TheOneBot", StreamType.Twitch)
                 logger("Loaded profile info sucessfully with " & catcher & " attempts")
@@ -260,7 +253,11 @@ Public Class main
                     Check.Stop()
                     logger("Too many tries, giving up.")
                     MsgBox("Could not catch info, check network connection." & vbNewLine & "Now quitting")
-                    Close()
+                    If Environment.OSVersion.ToString.ToLower.Contains("unix") Then
+                        Hide()
+                    Else
+                        Close()
+                    End If
                 ElseIf catcher >= 5 Then
                     logger("Loading profile is taking longer than usual (" & catcher & " tries)")
                 ElseIf catcher = 1 Then
@@ -268,6 +265,7 @@ Public Class main
                 End If
             End Try
         ElseIf discord.LoginState = LoginState.LoggedOut Then
+            Text = "TheOneBot " & My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & My.Application.Info.Version.Build & " - Serverhost"
             logger("Now offline.")
             lblStatus.Text = "Offline"
             btnCon.Text = "Connect"
@@ -291,7 +289,11 @@ Public Class main
             picProfile.Image = My.Resources.none
         Else
             MsgBox("Idk what happened")
-            Close()
+            If Environment.OSVersion.ToString.ToLower.Contains("unix") Then
+                Hide()
+            Else
+                Close()
+            End If
         End If
     End Sub
 
@@ -304,7 +306,11 @@ Public Class main
             Check.Start()
         Else
             MsgBox("Idk what happened")
-            Close()
+            If Environment.OSVersion.ToString.ToLower.Contains("unix") Then
+                Hide()
+            Else
+                Close()
+            End If
         End If
     End Sub
     Private Sub logger(e As String)
@@ -408,5 +414,9 @@ Public Class main
         If LoginState.LoggedIn Then
             Process.Start(authUrl)
         End If
+    End Sub
+
+    Private Sub main_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+        Environment.Exit(1)
     End Sub
 End Class
