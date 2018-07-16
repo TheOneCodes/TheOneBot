@@ -125,12 +125,14 @@ Partial Class login
         '
         'pbImg
         '
+        Me.pbImg.BackColor = System.Drawing.Color.FromArgb(CType(CType(114, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(218, Byte), Integer))
+        Me.pbImg.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.pbImg.Dock = System.Windows.Forms.DockStyle.Left
         Me.pbImg.Image = Global.TheOneBot.My.Resources.Resources.side
         Me.pbImg.Location = New System.Drawing.Point(0, 0)
         Me.pbImg.Name = "pbImg"
         Me.pbImg.Size = New System.Drawing.Size(97, 192)
-        Me.pbImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.pbImg.TabIndex = 6
         Me.pbImg.TabStop = False
         '
@@ -145,10 +147,11 @@ Partial Class login
         '
         'pbFull
         '
-        Me.pbFull.Image = Global.TheOneBot.My.Resources.Resources.none
+        Me.pbFull.BackColor = System.Drawing.Color.FromArgb(CType(CType(114, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(218, Byte), Integer))
+        Me.pbFull.Image = Global.TheOneBot.My.Resources.Resources.full
         Me.pbFull.Location = New System.Drawing.Point(-97, 0)
         Me.pbFull.Name = "pbFull"
-        Me.pbFull.Size = New System.Drawing.Size(194, 192)
+        Me.pbFull.Size = New System.Drawing.Size(192, 192)
         Me.pbFull.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.pbFull.TabIndex = 8
         Me.pbFull.TabStop = False

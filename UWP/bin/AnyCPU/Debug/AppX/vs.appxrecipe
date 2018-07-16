@@ -32,10 +32,35 @@
     <AppXManifest Include="C:\GitHub\TheOneBot\UWP\bin\AnyCPU\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-07-11T03:29:26.630</Modified>
+      <Modified>2018-07-12T00:40:48.534</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\BadgeLogo.scale-100.png">
+      <PackagePath>Images\BadgeLogo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:53.484</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\BadgeLogo.scale-125.png">
+      <PackagePath>Images\BadgeLogo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:53.501</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\BadgeLogo.scale-150.png">
+      <PackagePath>Images\BadgeLogo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:53.518</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\BadgeLogo.scale-200.png">
+      <PackagePath>Images\BadgeLogo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:53.543</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\BadgeLogo.scale-400.png">
+      <PackagePath>Images\BadgeLogo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-07-11T00:23:53.584</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\GitHub\TheOneBot\UWP\Images\LargeTile.scale-100.png">
       <PackagePath>Images\LargeTile.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
@@ -422,9 +447,13 @@
       <PackagePath>TheOneBot\System.Xml.ReaderWriter.dll</PackagePath>
       <Modified>2016-11-05T09:57:36.000</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\GitHub\TheOneBot\TheOneBot\Resources\shadow.ico">
+      <PackagePath>TheOneBot\Resources\shadow.ico</PackagePath>
+      <Modified>2018-07-12T00:25:51.254</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\GitHub\compile\TheOneBot\TheOneBot.exe">
       <PackagePath>TheOneBot\TheOneBot.exe</PackagePath>
-      <Modified>2018-07-10T21:55:56.053</Modified>
+      <Modified>2018-07-12T00:38:51.452</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\GitHub\compile\TheOneBot\TheOneBot.exe.config">
       <PackagePath>TheOneBot\TheOneBot.exe.config</PackagePath>

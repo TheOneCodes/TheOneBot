@@ -87,9 +87,10 @@ Partial Class loader
         Me.lblText.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lblText.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblText.Location = New System.Drawing.Point(3, 100)
+        Me.lblText.Margin = New System.Windows.Forms.Padding(3, 0, 0, 0)
         Me.lblText.Name = "lblText"
         Me.lblText.Padding = New System.Windows.Forms.Padding(10, 0, 0, 10)
-        Me.lblText.Size = New System.Drawing.Size(287, 98)
+        Me.lblText.Size = New System.Drawing.Size(290, 98)
         Me.lblText.TabIndex = 7
         Me.lblText.Text = "Loading"
         Me.lblText.TextAlign = System.Drawing.ContentAlignment.BottomLeft
@@ -149,9 +150,9 @@ Partial Class loader
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "loader"
-        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Loader"
+        Me.TopMost = True
         Me.tblMain.ResumeLayout(False)
         CType(Me.pbDis, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tblMid.ResumeLayout(False)

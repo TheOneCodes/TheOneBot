@@ -1,9 +1,10 @@
 Imports System.ComponentModel
 Imports System.IO
+Imports System.Windows.SystemParameters
 Public Class login
     Public Token                    'discord bot token ID
     Public ID                       'the bot's user ID (for added security)
-    ReadOnly config As String = My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData & Path.DirectorySeparatorChar & "bot.config"
+    ReadOnly config As String = Directory.GetParent(Directory.GetParent(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData).FullName).FullName & Path.DirectorySeparatorChar & "bot.config"
     Dim animTick As Integer         'ticks for the animation
     Dim ready As Boolean = True     'ready to close (lets the animation run)
     Dim save As Boolean = My.Settings.saveTI
@@ -11,6 +12,8 @@ Public Class login
     Dim writer As StreamWriter
     'On load setup
     Private Sub login_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        pbFull.BackColor = Color.FromArgb(WindowGlassColor.R, WindowGlassColor.G, WindowGlassColor.B)
+        pbImg.BackColor = Color.FromArgb(WindowGlassColor.R, WindowGlassColor.G, WindowGlassColor.B)
         If Environment.OSVersion.ToString.ToLower.Contains("unix") Then
             animate.Stop()
         End If

@@ -196,8 +196,11 @@ Partial Class main
         '
         'picProfile
         '
+        Me.picProfile.BackColor = System.Drawing.Color.FromArgb(CType(CType(114, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(218, Byte), Integer))
+        Me.picProfile.BackgroundImage = Global.TheOneBot.My.Resources.Resources.full
+        Me.picProfile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.picProfile.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.picProfile.Image = Global.TheOneBot.My.Resources.Resources.none
+        Me.picProfile.Image = Global.TheOneBot.My.Resources.Resources.circle
         Me.picProfile.Location = New System.Drawing.Point(3, 3)
         Me.picProfile.Name = "picProfile"
         Me.picProfile.Size = New System.Drawing.Size(40, 40)
@@ -385,7 +388,6 @@ Partial Class main
         Me.txtDiscrim.Name = "txtDiscrim"
         Me.txtDiscrim.Size = New System.Drawing.Size(45, 25)
         Me.txtDiscrim.TabIndex = 3
-        Me.txtDiscrim.Text = "0000"
         Me.txtDiscrim.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'lblUser
@@ -409,7 +411,6 @@ Partial Class main
         Me.txtUser.Name = "txtUser"
         Me.txtUser.Size = New System.Drawing.Size(94, 25)
         Me.txtUser.TabIndex = 1
-        Me.txtUser.Text = "Username"
         Me.txtUser.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label3

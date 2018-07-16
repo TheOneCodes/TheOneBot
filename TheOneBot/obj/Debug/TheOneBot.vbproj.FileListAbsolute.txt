@@ -69,4 +69,4 @@ C:\GitHub\compile\TheOneBot\TheOneBot.exe
 C:\GitHub\compile\TheOneBot\TheOneBot.pdb
 C:\GitHub\TheOneBot\TheOneBot\obj\Debug\TheOneBot.vbprojAssemblyReference.cache
 C:\GitHub\TheOneBot\TheOneBot\obj\Debug\TheOneBot.vbproj.CoreCompileInputs.cache
-C:\GitHub\TheOneBot\TheOneBot\obj\Debug\TheOneBot.vbproj.CopyComplete
+C:\GitHub\TheOneBot\TheOneBot\obj\Debug\TheOneBot.exe.config

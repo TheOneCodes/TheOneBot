@@ -11,7 +11,7 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("TheOneBot")>
 <Assembly: AssemblyDescription("TheOneCode's bot system.")>
-<Assembly: AssemblyCompany("Mark0 Technologies Inc.")>
+<Assembly: AssemblyCompany("")>
 <Assembly: AssemblyProduct("TheOneBot")>
 <Assembly: AssemblyCopyright("Copyright © Mark0 Technologies 2018")>
 <Assembly: AssemblyTrademark("")>

@@ -9,10 +9,10 @@ Imports System.Runtime.InteropServices
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("update")>
-<Assembly: AssemblyDescription("")>
+<Assembly: AssemblyDescription("Updater")>
 <Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("update")>
-<Assembly: AssemblyCopyright("Copyright ©  2018")>
+<Assembly: AssemblyProduct("TheOneBot Updater")>
+<Assembly: AssemblyCopyright("Copyright © Mark0Technologies inc. 2018")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>

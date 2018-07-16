@@ -3,24 +3,31 @@ Imports Discord.WebSocket
 Imports System.Net
 Imports System.IO
 Imports System.Net.NetworkInformation
+Imports System.Windows.SystemParameters
 Public Class main
-    Dim botOwner As String = "TheOneCode#0445"      'I put my user name here (replace with your own username on compile
+    Dim botOwner As String = My.Settings.owner & "#" & My.Settings.ownerDiscrim.ToString("D4")                          'Username of owner
     Dim lastDiscrim As String = "0000"
-    Dim adminRole As String = "454406710044393484"                                                                       'the numeric ID of the admin or similar role
-    Dim catcher As Integer                                                                                              'catcher for each attempt to catch info
+    Dim adminRole As String = "454406710044393484"                                                                      'the numeric ID of the admin or similar role
+    Dim catcher As Integer = 1                                                                                          'catcher for each attempt to catch info
     Dim webClient As WebClient = New WebClient                                                                          'webClient for catching info
     Dim profilePic As Bitmap                                                                                            'profile picture for caught info
     Dim discord As New DiscordSocketClient(New DiscordSocketConfig With {.MessageCacheSize = 50})                       'discord socket configuration
     Dim id As String = login.ID                                                                                         'gets ID from login
     Dim token As String = login.Token                                                                                   'gets token from login
     Dim authUrl As String = "https://discordapp.com/api/oauth2/authorize?client_id=" & id & "&permissions=0&scope=bot"  'gets auth url for adding bot to discord with a few clicks
-    Dim wake As String = "/"                                                                                            'gets wake key
+    Dim wake As String = My.Settings.wake                                                                               'gets wake key
     Dim wakeSpace As Boolean = False                                                                                    'is there a space after?
-    Dim WithEvents lastCommand As String = "[NO VAR SAVED]"                                                                        'last command
+    Dim WithEvents lastCommand As String = "[NO VAR SAVED]"                                                             'last command
     Dim remoteControl As Boolean = My.Settings.remoteControl
     Dim enabledCommand = New Boolean() {My.Settings.comDel, My.Settings.comHelp, My.Settings.comPing, My.Settings.comEcho, My.Settings.comLast, My.Settings.comStats}
+    Dim appConfig = Directory.GetParent(Directory.GetParent(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData).FullName).FullName & Path.DirectorySeparatorChar & "app.config"
+    Dim reader As StreamReader
+    Dim writer As StreamWriter
     'load
     Private Async Sub connectForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        txtUser.Text = My.Settings.owner
+        txtDiscrim.Text = My.Settings.ownerDiscrim.ToString("D4")
+        picProfile.BackColor = Drawing.Color.FromArgb(WindowGlassColor.R, WindowGlassColor.G, WindowGlassColor.B)
         If Environment.OSVersion.ToString.ToLower.Contains("unix") Then
             Font = New Font("Arial", 9.75!, FontStyle.Bold)
             btnCon.Font = New Font("Arial", 12.0!, FontStyle.Bold)
@@ -31,7 +38,7 @@ Public Class main
             lblUname.Font = New Font("Arial", 18.0!, FontStyle.Bold)
             lblStatus.Font = New Font("Arial", 15.0!, FontStyle.Bold)
         End If
-        Text = "TheOneBot " & My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & My.Application.Info.Version.Build & " - Serverhost"
+        Text = "TheOneBot " & My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & My.Application.Info.Version.Build & " - Serverhost | " & My.Settings.owner & "#" & My.Settings.ownerDiscrim
         reset()
         PingNow()
         AddHandler discord.MessageReceived, AddressOf onMessage
@@ -176,9 +183,6 @@ Public Class main
             logger(lastCommand)
         End If
     End Function
-    Private Sub changed()
-
-    End Sub
     'changes wake
     Private Sub wakeChange(newWake As String, space As Boolean)
         If space Then
@@ -199,14 +203,48 @@ Public Class main
             My.Settings.comEcho = enabledCommand(3)
             My.Settings.comLast = enabledCommand(4)
             My.Settings.comStats = enabledCommand(5)
+            My.Settings.wake = wake
         Catch e As Exception
             dialog.box("Failed to save", "Error on save", vbOK, e.ToString)
         End Try
         My.Settings.Save()
     End Sub
     Private Sub reset()
+        If File.Exists(appConfig) Then
+            Try
+                Dim line
+                reader = My.Computer.FileSystem.OpenTextFileReader(appConfig)
+                line = reader.ReadLine
+                If line <> "" Then
+                    txtUser.Text = line
+                    txtUser.Enabled = False
+                Else
+                    txtUser.Text = My.Settings.owner
+                End If
+                line = reader.ReadLine
+                If line <> "" Then
+                    txtDiscrim.Text = line
+                    txtDiscrim.Enabled = False
+                Else
+                    txtDiscrim.Text = My.Settings.ownerDiscrim
+                End If
+                line = reader.ReadLine
+                botOwner = txtUser.Text & "#" & txtDiscrim.Text
+                If line <> "" Then
+                    adminRole = line
+                    txtMod.Enabled = False
+                End If
+                reader.Close()
+            Catch ex As Exception
+                dialog.box("app.config is improper." & vbNewLine & ex.ToString)
+            End Try
+        Else
+            File.Create(appConfig)
+        End If
         Enabled = False
-        wake = "/"
+        wake = My.Settings.wake
+        txtWake.Text = wake
+        txtMod.Text = adminRole
         enabledCommand = {My.Settings.comDel, My.Settings.comHelp, My.Settings.comPing, My.Settings.comEcho, My.Settings.comLast, My.Settings.comStats}
         chkDel.Checked = enabledCommand(0)
         chkHelp.Checked = enabledCommand(1)
@@ -225,9 +263,9 @@ Public Class main
             Try
                 lblUname.Text = discord.CurrentUser.Username.ToString & "#" & discord.CurrentUser.Discriminator
                 profilePic = Bitmap.FromStream(New MemoryStream(webClient.DownloadData(discord.CurrentUser.GetAvatarUrl)))
-                picProfile.Image = profilePic
+                picProfile.BackgroundImage = profilePic
                 picBot.Visible = True
-                Text = "TheOneBot " & My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & My.Application.Info.Version.Build & " - " & discord.CurrentUser.Username.ToString & "#" & discord.CurrentUser.Discriminator
+                Text = "TheOneBot " & My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & My.Application.Info.Version.Build & " - " & discord.CurrentUser.Username.ToString & "#" & discord.CurrentUser.Discriminator & "Serverhost | " & My.Settings.owner & "#" & My.Settings.ownerDiscrim.ToString("D4")
                 If id <> discord.CurrentUser.Id Then
                     dialog.box("Login failed, check ID", "Login failed", vbOK, "Bot ID does not match the Bot token, check credentials and retry." & vbNewLine & "If error persists, visit https://discordapp.com/developers/applications to get a new token.")
                     If Environment.OSVersion.ToString.ToLower.Contains("unix") Then
@@ -271,7 +309,7 @@ Public Class main
             btnCon.Text = "Connect"
             btnCon.Enabled = True
             lblUname.Text = "Offline"
-            picProfile.Image = My.Resources.none
+            picProfile.BackgroundImage = My.Resources.full
             Check.Stop()
         ElseIf discord.LoginState = LoginState.LoggingIn Then
             logger("Connecting to discord...")
@@ -279,14 +317,14 @@ Public Class main
             btnCon.Text = "Connecting"
             btnCon.Enabled = False
             lblUname.Text = "Loading"
-            picProfile.Image = My.Resources.none
+            picProfile.BackgroundImage = My.Resources.full
         ElseIf discord.LoginState = LoginState.LoggingOut Then
             logger("Disconnecting from discord...")
             lblStatus.Text = "Disconnecting"
             btnCon.Text = "Disconnecting"
             btnCon.Enabled = False
             lblUname.Text = "Offline"
-            picProfile.Image = My.Resources.none
+            picProfile.BackgroundImage = My.Resources.full
         Else
             MsgBox("Idk what happened")
             If Environment.OSVersion.ToString.ToLower.Contains("unix") Then
@@ -333,26 +371,36 @@ Public Class main
         txtUser.Text.Replace("&", "")
         txtUser.Text.Replace("<", "")
         txtUser.Text.Replace(">", "")
-        If IsNumeric(txtDiscrim.Text) = False Then
-            txtDiscrim.Text = lastDiscrim
-        Else
-            lastDiscrim = txtDiscrim.Text
-        End If
-        If txtUser.Text = Nothing Or txtDiscrim.MaxLength <> 4 Then
-            botOwner = "TheOneCode#0445"
-        Else
-            botOwner = txtUser.Text & "#" & txtDiscrim.Text
+        If txtUser.Text <> "" Or txtDiscrim.Text <> "0000" Then
+            If IsNumeric(txtDiscrim.Text) = False Then
+                txtDiscrim.Text = lastDiscrim
+            Else
+                lastDiscrim = txtDiscrim.Text
+            End If
+            If txtUser.Text = Nothing Or txtDiscrim.MaxLength <> 4 Then
+                botOwner = My.Settings.owner & "#" & My.Settings.ownerDiscrim.ToString("D4")
+            Else
+                botOwner = txtUser.Text & "#" & txtDiscrim.Text
+                txtUser.Text = My.Settings.owner
+            End If
+            My.Settings.owner = txtUser.Text
+            My.Settings.ownerDiscrim = txtDiscrim.Text
+            My.Settings.Save()
         End If
         If txtDiscrim.Text.Length > 4 Then
             txtDiscrim.Text = txtDiscrim.Text.Substring(0, 4)
         End If
-        If IsNumeric(txtDiscrim.Text) Then
+        If IsNumeric(txtDiscrim.Text) = False Then
 
         End If
         wakeChange(txtWake.Text, False)
+        If catcher = 0 Then
+            Text = "TheOneBot " & My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & My.Application.Info.Version.Build & " - " & discord.CurrentUser.Username.ToString & "#" & discord.CurrentUser.Discriminator & " | " & My.Settings.owner & "#" & My.Settings.ownerDiscrim.ToString("D4")
+        End If
     End Sub
 
     Private Sub reload() Handles Reloader.Tick
+
         txtWake.Text = wake
         lblWakeCount.Text = "Characters: " & txtWake.TextLength
         chkDel.Checked = enabledCommand(0)

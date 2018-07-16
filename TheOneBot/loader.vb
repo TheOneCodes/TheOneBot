@@ -1,10 +1,12 @@
 ﻿Imports System.Net
 Imports System.IO
+Imports System.Threading
+Imports System.Windows.SystemParameters
 Public NotInheritable Class loader
-    ReadOnly updateInfo As String = My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData & Path.DirectorySeparatorChar & "update"           'location to store update info
-    ReadOnly updateFile As String = My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData & Path.DirectorySeparatorChar & "update.exe"    'location to store update
-    ReadOnly infoFile As String = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & Path.DirectorySeparatorChar & "TheOneBot" & Path.DirectorySeparatorChar & "location.config"
-    ReadOnly infoFolder As String = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & Path.DirectorySeparatorChar & "TheOneBot"
+    ReadOnly updateInfo As String = Directory.GetParent(Directory.GetParent(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData).FullName).FullName & Path.DirectorySeparatorChar & "update.config"           'location to store update info
+    ReadOnly updateFile As String = Directory.GetParent(Directory.GetParent(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData).FullName).FullName & Path.DirectorySeparatorChar & "update.exe"    'location to store update
+    ReadOnly infoFile As String = Directory.GetParent(Directory.GetParent(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData).FullName).FullName & Path.DirectorySeparatorChar & "location.config"
+    ReadOnly infoFolder As String = Directory.GetParent(Directory.GetParent(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData).FullName).FullName
     ReadOnly installLocation As String = AppDomain.CurrentDomain.BaseDirectory
     ReadOnly version As Decimal = My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & My.Application.Info.Version.Build         'the current version number
     Const stock As Boolean = True                                                           'is this changed (stops auto updates to conserve updates)
@@ -18,6 +20,7 @@ Public NotInheritable Class loader
     Const hardreset As Boolean = False
 
     Private Sub loader_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        BackColor = Color.FromArgb(WindowGlassColor.R, WindowGlassColor.G, WindowGlassColor.B)
         bottomText = "Prepairing"
         If Directory.Exists(infoFolder) = False Then
             Directory.CreateDirectory(infoFolder)
@@ -49,7 +52,7 @@ Public NotInheritable Class loader
             My.Settings.first = False
             My.Settings.version = version
             My.Settings.Save()
-            Threading.Thread.Sleep(1000)
+            Thread.Sleep(1000)
             bottomText = "First startup"
         ElseIf My.Settings.version < version Then
             bottomText = "Updating"
@@ -141,7 +144,7 @@ Public NotInheritable Class loader
             If Environment.OSVersion.ToString.Contains("10") Then
                 bottomText = "UWP update available, procede to store"
                 Process.Start(uwpUpdatePath)
-                Threading.Thread.Sleep(5000)
+                Thread.Sleep(5000)
                 Close()
             Else
                 updateVersion()

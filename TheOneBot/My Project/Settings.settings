@@ -38,5 +38,14 @@
     <Setting Name="comStats" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="wake" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/</Value>
+    </Setting>
+    <Setting Name="owner" Type="System.String" Scope="User">
+      <Value Profile="(Default)">TheOneCode</Value>
+    </Setting>
+    <Setting Name="ownerDiscrim" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">445</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

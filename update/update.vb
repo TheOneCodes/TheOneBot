@@ -1,6 +1,5 @@
 ﻿Imports System.Net
 Imports System.IO
-Imports System.IO.Compression.ZipFile
 Imports System.Threading.Thread
 Imports System.ComponentModel
 
@@ -9,59 +8,65 @@ Public Class update
     Const netRequired As Double = 4.7
     Const version As Double = 0.01
     Const netDownload As String = "http://go.microsoft.com/fwlink/?LinkId=863262"
-    Const TheOneBotZip As String = "https://cdn.discordapp.com/attachments/459412645951569920/461336795574173716/test.zip"
-    ReadOnly backup As String = My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData & "\backup"
-    ReadOnly configure As String = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & "\TheOneBot\location.config"
-    Dim TheOneBotZipLocation As String = AppDomain.CurrentDomain.BaseDirectory & "update\update.zip"
-    Dim installLocation As String = ""
-    Dim updateLocation As String = AppDomain.CurrentDomain.BaseDirectory & "update\"
+    Const TheOneBot As String = "https://cdn.discordapp.com/attachments/459412645951569920/468134501684477954/TheOneBot.exe"
+    ReadOnly configure As String = Directory.GetParent(Directory.GetParent(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData).FullName).FullName & Path.DirectorySeparatorChar & "location.config"
+    Dim TheOneBotLocation As String = AppDomain.CurrentDomain.BaseDirectory & "updated.exe"
+    Dim installLocation As String = "C:\Program Files\TheOneBot\"
     Dim netDownloadLocation As String = My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData & "\dotnet4.7.exe"
     Dim netversion As String = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full", "Version", 4)
-    Dim bottomText = ""
+    Public bottomText = "Waiting"
     Dim bottomDots As Integer = 0
     Dim client As WebClient = New WebClient
     Dim reader As StreamReader
     Dim doneUpdate As Boolean = False
-    Private Sub update_Shown(sender As Object, e As EventArgs) Handles Me.Shown
-        If Directory.Exists(updateLocation) Then
-            Dim directories As New DirectoryInfo(updateLocation)
-            ' Get a reference to each file in that directory.
-            Dim directoryInfo As FileInfo() = directories.GetFiles()
-            ' Display the names of the files.
-            For Each f As FileInfo In directoryInfo
-                f.Delete()
-            Next f
-            Directory.Delete(updateLocation)
-        End If
-        If Directory.Exists(backup) Then
-            Dim directories As New DirectoryInfo(backup)
-            Dim directoryInfo As FileInfo() = directories.GetFiles()
-            For Each f As FileInfo In directoryInfo
-                f.Delete()
-            Next f
-        ElseIf Directory.Exists(backup) = False Then
-            Try
-                Directory.CreateDirectory(backup)
-            Catch ex As Exception
-                bottomText = "(╯°□°）╯︵ ┻━┻"
-                Sleep(5000)
-            End Try
-        End If
-        Directory.CreateDirectory(updateLocation)
-        If File.Exists(TheOneBotZipLocation) Then
-            File.Delete(TheOneBotZipLocation)
-        End If
+    Private Sub Update_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         If File.Exists(configure) Then
             reader = My.Computer.FileSystem.OpenTextFileReader(configure)
             installLocation = reader.ReadLine
             reader.Close()
-            checkFramework()
+            Try
+                If File.Exists(installLocation & "TheOneBot.exe") Then
+                    Try
+                        File.Delete(installLocation & "TheOneBot.exe")
+                    Catch ex As DirectoryNotFoundException
+                        FatalError("Origional not found," & vbNewLine & "Try the installer.")
+                    Catch ex As UnauthorizedAccessException
+                        Dim user As System.Security.Principal.WindowsIdentity = System.Security.Principal.WindowsIdentity.GetCurrent()
+                        Dim principal As System.Security.Principal.WindowsPrincipal = New System.Security.Principal.WindowsPrincipal(user)
+                        If principal.IsInRole(System.Security.Principal.WindowsBuiltInRole.Administrator) Then
+                            FatalError()
+                        Else
+                            RequireAdmin()
+                        End If
+                    End Try
+                End If
+            Catch
+                Dim user As System.Security.Principal.WindowsIdentity = System.Security.Principal.WindowsIdentity.GetCurrent()
+                Dim principal As System.Security.Principal.WindowsPrincipal = New System.Security.Principal.WindowsPrincipal(user)
+                If principal.IsInRole(System.Security.Principal.WindowsBuiltInRole.Administrator) Then
+                    FatalError()
+                Else
+                    RequireAdmin()
+                End If
+            End Try
+            CheckFramework()
         Else
             bottomText = "Previous version could not be found"
-            fatalError()
+            FatalError("Origional not found," & vbNewLine & "Try the installer.")
         End If
     End Sub
-    Private Sub checkFramework()
+    Private Sub RequireAdmin()
+        bottomText = "Asking for admin"
+        Dim procStartInfo As New ProcessStartInfo With {
+            .FileName = Application.ExecutablePath(),
+            .Verb = "runas"
+        }
+        Process.Start(procStartInfo)
+        Sleep(1000)
+        doneUpdate = True
+        Close()
+    End Sub
+    Private Sub CheckFramework()
         bottomText = "Checking .net framework"
         Dim netVersionDot = netversion.LastIndexOf(".")
         Dim netversionDoub As Double = netversion.Substring(0, netVersionDot)
@@ -73,7 +78,7 @@ Public Class update
             updateTheOneBot()
         End If
     End Sub
-    Private Sub getFramework()
+    Private Sub GetFramework()
         progress.Visible = True
         AddHandler client.DownloadProgressChanged, AddressOf ProgressChanged
         AddHandler client.DownloadFileCompleted, AddressOf DownloadCompleted
@@ -87,107 +92,45 @@ Public Class update
         bottomText = "Downloading .net " & netRequired & " " & percentageOn100 & "% complete"
         progress.Value = Int32.Parse(Math.Truncate(percentage).ToString())
     End Sub
-    Private Sub DownloadCompleted(ByVal sender As Object, ByVal e As System.ComponentModel.AsyncCompletedEventArgs)
+    Private Sub DownloadCompleted(ByVal sender As Object, ByVal e As AsyncCompletedEventArgs)
         bottomText = "Installing .net framework " & netRequired
         progress.Value = 0
         progress.Visible = False
         Try
             Process.Start(netDownloadLocation).WaitForExit()
-            updateTheOneBot()
+            UpdateTheOneBot()
         Catch ex As Exception
             bottomText = "Canceled by user"
-            fatalError()
+            FatalError()
         End Try
     End Sub
-    Private Sub updateTheOneBot()
+    Private Sub UpdateTheOneBot()
         bottomText = "Downloading update"
         progress.Visible = True
         AddHandler client.DownloadProgressChanged, AddressOf UpdateProgressChanged
-        AddHandler client.DownloadFileCompleted, AddressOf UpdateExtract
-        client.DownloadFileAsync(New Uri(TheOneBotZip), TheOneBotZipLocation)
+        AddHandler client.DownloadFileCompleted, AddressOf updateNow
+        client.DownloadFileAsync(New Uri(TheOneBot), TheOneBotLocation)
     End Sub
     Private Sub UpdateProgressChanged(ByVal sender As Object, ByVal e As DownloadProgressChangedEventArgs)
         Dim bytesIn As Double = Double.Parse(e.BytesReceived.ToString())
         Dim totalBytes As Double = Double.Parse(e.TotalBytesToReceive.ToString())
         Dim percentage As Double = bytesIn / totalBytes * 1000
         Dim percentageOn100 As Integer = bytesIn / totalBytes * 100
-        bottomText = "Downloading update " & version & " " & percentageOn100 & "% complete"
+        bottomText = "Downloading update" & vbNewLine & Math.Round(bytesIn / 1000000, 2, MidpointRounding.AwayFromZero) & "MB " & percentageOn100 & "% complete"
         progress.Value = Int32.Parse(Math.Truncate(percentage).ToString())
     End Sub
-    Private Sub UpdateExtract(ByVal sender As Object, ByVal e As System.ComponentModel.AsyncCompletedEventArgs)
-        bottomText = "Extracting update contents"
-        progress.Value = 0
+    Private Sub UpdateNow()
         progress.Visible = False
-        Try
-            ExtractToDirectory(TheOneBotZipLocation, updateLocation)
-            bottomText = "Extracted successfully"
-            deleteZip()
-        Catch ex As Exception
-            bottomText = "Corrupted .zip file"
-            fatalError()
-            MsgBox(ex.ToString)
-        End Try
-    End Sub
-    Private Sub deleteZip()
-        File.Delete(TheOneBotZipLocation)
-        Sleep(1000)
-        updateNow()
-    End Sub
-    Private Sub updateNow()
         bottomText = "Installing"
-        Try
-            Dim directories
-            Dim directoryInfo As FileInfo()
-            If Directory.Exists(installLocation) Then
-                directories = New DirectoryInfo(installLocation)
-                directoryInfo = directories.GetFiles()
-                For Each f As FileInfo In directoryInfo
-                    If f.Name = "bot.config" Then
-                        Try
-                            If Directory.Exists(backup) = False Then
-                                Directory.CreateDirectory(backup)
-                            End If
-                        Catch ex As Exception
-                            bottomText = bottomText & " error"
-                        End Try
-                        MsgBox(backup & "\" & f.Name)
-                        If File.Exists(backup & "\" & f.Name) Then
-                            File.Delete(backup & "\" & f.Name)
-                        End If
-                        Try
-                            f.CopyTo(backup & "\" & f.Name)
-                        Catch
-                            bottomText = bottomText & " (backup error)"
-                        End Try
-                    End If
-                    f.Delete()
-                Next f
-                Directory.Delete(installLocation)
-            End If
-            Sleep(100)
-            Directory.Move(updateLocation, installLocation)
-            If Directory.Exists(backup) Then
-                directories = New DirectoryInfo(backup)
-                directoryInfo = directories.GetFiles
-                For Each f As FileInfo In directoryInfo
-                    f.MoveTo(installLocation)
-                Next f
-            Else
-                bottomText = bottomText & " error"
-            End If
-        Catch ex As Exception
-            bottomText = "Couldn't copy, check permissions"
-            fatalError()
-        End Try
-        If bottomText.Contains("error") Then
-            bottomText = "Installation complete, with backup errors"
-            Sleep(2000)
-        End If
+        File.Move(TheOneBotLocation, installLocation & "TheOneBot.exe")
         bottomText = "Installation complete, cleaning up"
         Sleep(1000)
-        done()
+        Done()
     End Sub
-    Private Sub done()
+    Private Sub Done()
+        progress.Visible = False
+        WindowState = FormWindowState.Normal
+        Cursor = Cursors.Default
         btnLaunch.Visible = True
         bottomText = "Update Complete"
         lblText.Text = bottomText & "."
@@ -195,9 +138,12 @@ Public Class update
         doneUpdate = True
         Dots.Stop()
     End Sub
-    Private Sub fatalError()
+    Public Sub FatalError(Optional s As String = "Fatal Error," & vbNewLine & "Try the installer.")
+        progress.Visible = False
+        WindowState = FormWindowState.Normal
+        Cursor = Cursors.Default
         lblName.Text = "Update failed"
-        lblText.Text = bottomText & "." & vbNewLine & "Try the installer."
+        lblText.Text = s
         btnOK.Visible = True
         Dots.Stop()
     End Sub
@@ -220,7 +166,7 @@ Public Class update
         End If
     End Sub
 
-    Private Sub btnLaunch_Click(sender As Object, e As EventArgs) Handles btnLaunch.Click
+    Private Sub BtnLaunch_Click(sender As Object, e As EventArgs) Handles btnLaunch.Click
         Try
             Process.Start(installLocation & "TheOneBot.exe")
             Close()
@@ -233,7 +179,7 @@ Public Class update
         End Try
     End Sub
 
-    Private Sub update_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+    Private Sub Update_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         If doneUpdate = False Then
             Dim message = MsgBox("Are you sure you would like to cancel" & vbNewLine & "(probably a bad idea)", vbYesNo)
             If message = vbYes Then
@@ -244,8 +190,32 @@ Public Class update
         End If
     End Sub
 
-    Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
+    Private Sub BtnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
         doneUpdate = True
         Close()
+    End Sub
+
+    Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
+        Close()
+    End Sub
+
+    Private Sub btnClose_MouseEnter(sender As Object, e As EventArgs) Handles btnClose.MouseEnter
+        btnClose.ForeColor = Color.Blue
+    End Sub
+
+    Private Sub btnClose_MouseLeave(sender As Object, e As EventArgs) Handles btnClose.MouseLeave
+        btnClose.ForeColor = Color.White
+    End Sub
+
+    Private Sub btnMini_Click(sender As Object, e As EventArgs) Handles btnMini.Click
+        WindowState = FormWindowState.Minimized
+    End Sub
+
+    Private Sub btnMini_MouseEnter(sender As Object, e As EventArgs) Handles btnMini.MouseEnter
+        btnMini.Image = My.Resources.minimize_hover
+    End Sub
+
+    Private Sub btnMini_MouseLeave(sender As Object, e As EventArgs) Handles btnMini.MouseLeave
+        btnMini.Image = My.Resources.minimize
     End Sub
 End Class
