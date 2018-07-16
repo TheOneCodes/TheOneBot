@@ -2,6 +2,7 @@
 Imports System.IO
 Imports System.Threading
 Imports System.Windows.SystemParameters
+Imports System.Windows.Shell
 Public NotInheritable Class loader
     ReadOnly updateInfo As String = Directory.GetParent(Directory.GetParent(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData).FullName).FullName & Path.DirectorySeparatorChar & "update.config"           'location to store update info
     ReadOnly updateFile As String = Directory.GetParent(Directory.GetParent(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData).FullName).FullName & Path.DirectorySeparatorChar & "update.exe"    'location to store update
@@ -18,6 +19,7 @@ Public NotInheritable Class loader
     Dim client As WebClient = New WebClient                                                 'the download client
     Dim reader As StreamReader                                                              'the info reader
     Const hardreset As Boolean = False
+    Dim taskProgress As TaskbarItemInfo = New TaskbarItemInfo
 
     Private Sub loader_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         BackColor = Color.FromArgb(WindowGlassColor.R, WindowGlassColor.G, WindowGlassColor.B)
@@ -130,7 +132,14 @@ Public NotInheritable Class loader
         Dim bytesIn As Double = Double.Parse(e.BytesReceived.ToString())
         Dim totalBytes As Double = Double.Parse(e.TotalBytesToReceive.ToString())
         Dim percentage As Double = bytesIn / totalBytes * 1000
-        progress.Value = Int32.Parse(Math.Truncate(percentage).ToString())
+        If percentage <= 1 Then
+            progress.Value = 1000
+            taskProgress.ProgressValue = 100
+        Else
+            progress.Value = Int32.Parse(Math.Truncate(percentage).ToString())
+            taskProgress.ProgressValue = percentage / 10
+        End If
+
     End Sub
     '100% loaded version info
     Private Sub LoadCompleted(ByVal sender As Object, ByVal e As System.ComponentModel.AsyncCompletedEventArgs)

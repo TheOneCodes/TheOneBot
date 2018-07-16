@@ -54,6 +54,9 @@ Partial Class main
         Me.lblMod = New System.Windows.Forms.Label()
         Me.txtMod = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
+        Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+        Me.lblGame = New System.Windows.Forms.Label()
+        Me.txtGame = New System.Windows.Forms.TextBox()
         Me.lblGeneral = New System.Windows.Forms.Label()
         Me.tabCom = New System.Windows.Forms.TabPage()
         Me.flowCommand = New System.Windows.Forms.FlowLayoutPanel()
@@ -75,6 +78,17 @@ Partial Class main
         Me.Check = New System.Windows.Forms.Timer(Me.components)
         Me.Reloader = New System.Windows.Forms.Timer(Me.components)
         Me.Ping = New System.Windows.Forms.Timer(Me.components)
+        Me.trayIcon = New System.Windows.Forms.NotifyIcon(Me.components)
+        Me.trayMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.toolName = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.trayWake = New System.Windows.Forms.ToolStripTextBox()
+        Me.trayGame = New System.Windows.Forms.ToolStripTextBox()
+        Me.trayStatus = New System.Windows.Forms.ToolStripMenuItem()
+        Me.trayConnect = New System.Windows.Forms.ToolStripMenuItem()
+        Me.trayDisconnect = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.trayQuit = New System.Windows.Forms.ToolStripMenuItem()
         Me.tblMain.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.tblTop.SuspendLayout()
@@ -88,6 +102,7 @@ Partial Class main
         Me.tblWake.SuspendLayout()
         Me.tblUser.SuspendLayout()
         Me.tblMod.SuspendLayout()
+        Me.TableLayoutPanel2.SuspendLayout()
         Me.tabCom.SuspendLayout()
         Me.flowCommand.SuspendLayout()
         Me.tabHelp.SuspendLayout()
@@ -95,6 +110,7 @@ Partial Class main
         Me.panHelpAdm.SuspendLayout()
         Me.panHelp.SuspendLayout()
         Me.tabLog.SuspendLayout()
+        Me.trayMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'tblMain
@@ -301,6 +317,7 @@ Partial Class main
         Me.flowGeneral.Controls.Add(Me.tblWake)
         Me.flowGeneral.Controls.Add(Me.tblUser)
         Me.flowGeneral.Controls.Add(Me.tblMod)
+        Me.flowGeneral.Controls.Add(Me.TableLayoutPanel2)
         Me.flowGeneral.Dock = System.Windows.Forms.DockStyle.Fill
         Me.flowGeneral.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
         Me.flowGeneral.Location = New System.Drawing.Point(3, 43)
@@ -476,6 +493,45 @@ Partial Class main
         Me.Label4.TabIndex = 2
         Me.Label4.Text = "Found by \@role"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'TableLayoutPanel2
+        '
+        Me.TableLayoutPanel2.ColumnCount = 2
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 251.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel2.Controls.Add(Me.lblGame, 0, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.txtGame, 1, 0)
+        Me.TableLayoutPanel2.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(3, 114)
+        Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
+        Me.TableLayoutPanel2.RowCount = 1
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(401, 31)
+        Me.TableLayoutPanel2.TabIndex = 4
+        '
+        'lblGame
+        '
+        Me.lblGame.AutoSize = True
+        Me.lblGame.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lblGame.Location = New System.Drawing.Point(3, 0)
+        Me.lblGame.Name = "lblGame"
+        Me.lblGame.Size = New System.Drawing.Size(144, 31)
+        Me.lblGame.TabIndex = 0
+        Me.lblGame.Text = "Game Info:"
+        Me.lblGame.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtGame
+        '
+        Me.txtGame.BackColor = System.Drawing.SystemColors.Control
+        Me.txtGame.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtGame.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtGame.ForeColor = System.Drawing.Color.Black
+        Me.txtGame.Location = New System.Drawing.Point(153, 3)
+        Me.txtGame.Name = "txtGame"
+        Me.txtGame.Size = New System.Drawing.Size(245, 25)
+        Me.txtGame.TabIndex = 1
+        Me.txtGame.Text = "TheOneBot"
         '
         'lblGeneral
         '
@@ -727,6 +783,73 @@ Partial Class main
         Me.Ping.Enabled = True
         Me.Ping.Interval = 10000
         '
+        'trayIcon
+        '
+        Me.trayIcon.ContextMenuStrip = Me.trayMenu
+        Me.trayIcon.Icon = CType(resources.GetObject("trayIcon.Icon"), System.Drawing.Icon)
+        Me.trayIcon.Text = "TheOneBot"
+        '
+        'trayMenu
+        '
+        Me.trayMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.toolName, Me.ToolStripSeparator1, Me.trayWake, Me.trayGame, Me.trayStatus, Me.ToolStripSeparator2, Me.trayQuit})
+        Me.trayMenu.Name = "trayMenu"
+        Me.trayMenu.Size = New System.Drawing.Size(161, 132)
+        '
+        'toolName
+        '
+        Me.toolName.BackgroundImage = Global.TheOneBot.My.Resources.Resources.shadow
+        Me.toolName.Name = "toolName"
+        Me.toolName.Size = New System.Drawing.Size(160, 22)
+        Me.toolName.Text = "TheOneBot"
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(157, 6)
+        '
+        'trayWake
+        '
+        Me.trayWake.Name = "trayWake"
+        Me.trayWake.Size = New System.Drawing.Size(100, 23)
+        Me.trayWake.Text = "/"
+        '
+        'trayGame
+        '
+        Me.trayGame.Name = "trayGame"
+        Me.trayGame.Size = New System.Drawing.Size(100, 23)
+        Me.trayGame.Text = "TheOneBot"
+        '
+        'trayStatus
+        '
+        Me.trayStatus.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.trayConnect, Me.trayDisconnect})
+        Me.trayStatus.Name = "trayStatus"
+        Me.trayStatus.Size = New System.Drawing.Size(160, 22)
+        Me.trayStatus.Text = "Offline"
+        '
+        'trayConnect
+        '
+        Me.trayConnect.Name = "trayConnect"
+        Me.trayConnect.Size = New System.Drawing.Size(133, 22)
+        Me.trayConnect.Text = "Connect"
+        '
+        'trayDisconnect
+        '
+        Me.trayDisconnect.Enabled = False
+        Me.trayDisconnect.Name = "trayDisconnect"
+        Me.trayDisconnect.Size = New System.Drawing.Size(133, 22)
+        Me.trayDisconnect.Text = "Disconnect"
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(157, 6)
+        '
+        'trayQuit
+        '
+        Me.trayQuit.Name = "trayQuit"
+        Me.trayQuit.Size = New System.Drawing.Size(160, 22)
+        Me.trayQuit.Text = "Quit"
+        '
         'main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
@@ -760,6 +883,8 @@ Partial Class main
         Me.tblUser.PerformLayout()
         Me.tblMod.ResumeLayout(False)
         Me.tblMod.PerformLayout()
+        Me.TableLayoutPanel2.ResumeLayout(False)
+        Me.TableLayoutPanel2.PerformLayout()
         Me.tabCom.ResumeLayout(False)
         Me.flowCommand.ResumeLayout(False)
         Me.tabHelp.ResumeLayout(False)
@@ -769,6 +894,8 @@ Partial Class main
         Me.panHelp.ResumeLayout(False)
         Me.panHelp.PerformLayout()
         Me.tabLog.ResumeLayout(False)
+        Me.trayMenu.ResumeLayout(False)
+        Me.trayMenu.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -823,4 +950,18 @@ Partial Class main
     Friend WithEvents txtHelp As TextBox
     Friend WithEvents tabLog As TabPage
     Friend WithEvents log As ListBox
+    Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
+    Friend WithEvents lblGame As Label
+    Friend WithEvents txtGame As TextBox
+    Friend WithEvents trayIcon As NotifyIcon
+    Friend WithEvents trayMenu As ContextMenuStrip
+    Friend WithEvents toolName As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
+    Friend WithEvents trayWake As ToolStripTextBox
+    Friend WithEvents trayGame As ToolStripTextBox
+    Friend WithEvents trayStatus As ToolStripMenuItem
+    Friend WithEvents trayConnect As ToolStripMenuItem
+    Friend WithEvents trayDisconnect As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
+    Friend WithEvents trayQuit As ToolStripMenuItem
 End Class

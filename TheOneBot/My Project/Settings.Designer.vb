@@ -224,10 +224,10 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("445")>  _
-        Public Property ownerDiscrim() As Integer
+         Global.System.Configuration.DefaultSettingValueAttribute("0445")>  _
+        Public Property ownerDiscrim() As String
             Get
-                Return CType(Me("ownerDiscrim"),Integer)
+                Return CType(Me("ownerDiscrim"),String)
             End Get
             Set
                 Me("ownerDiscrim") = value

@@ -684,14 +684,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TheOneBot.exe" size="3610568">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TheOneBot.exe" size="3744712">
       <assemblyIdentity name="TheOneBot" version="0.0.1.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>1W2LxWVg6ktDPPDCSLpOkHqDRhmYeuTfbAD6bHUHIWM=</dsig:DigestValue>
+        <dsig:DigestValue>MD3OAFYUhXqZ/thRiObxCoXQ/VT6ZIh208RpE8MXSeQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -713,13 +713,13 @@
       <dsig:DigestValue>W8qvlSUlYbY89gro/xVGSEM2oZDAd5HiNM+/of63OSI=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="TheOneBot.exe.config" size="20413">
+  <file name="TheOneBot.exe.config" size="20414">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>55kwMf3IVboknRtC4FCaigPhswVPoTYGrZiqx+7h5s8=</dsig:DigestValue>
+      <dsig:DigestValue>kzTCOzsSe88fcDP4Ootxu4FuWvkYJh9t4DqmB9OtSbY=</dsig:DigestValue>
     </hash>
   </file>
   <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">

@@ -44,8 +44,8 @@
     <Setting Name="owner" Type="System.String" Scope="User">
       <Value Profile="(Default)">TheOneCode</Value>
     </Setting>
-    <Setting Name="ownerDiscrim" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">445</Value>
+    <Setting Name="ownerDiscrim" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0445</Value>
     </Setting>
   </Settings>
 </SettingsFile>
