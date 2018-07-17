@@ -15,7 +15,7 @@ This bot is not at a state where it should be relied on, however you can use thi
 - Independent stats info
 - Moderation/ administration tools
 ## Overview
-- Here's the basics
+- Here's the basics of TheOneCode's bot system
 ![loader form](https://theonetruecode.github.io/TheOneBot/images/splash.png "Automatic updates")
 - It takes just a few seconds to check for updates and load the app
 ![login form](https://theonetruecode.github.io/TheOneBot/images/login.png "Login")
