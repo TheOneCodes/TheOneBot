@@ -8,7 +8,7 @@ Public NotInheritable Class loader
     ReadOnly updateFile As String = Directory.GetParent(Directory.GetParent(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData).FullName).FullName & Path.DirectorySeparatorChar & "update.exe"    'location to store update
     ReadOnly infoFile As String = Directory.GetParent(Directory.GetParent(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData).FullName).FullName & Path.DirectorySeparatorChar & "location.config"
     ReadOnly infoFolder As String = Directory.GetParent(Directory.GetParent(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData).FullName).FullName
-    ReadOnly installLocation As String = AppDomain.CurrentDomain.BaseDirectory
+    ReadOnly installLocation As String = Application.ExecutablePath
     ReadOnly version As Decimal = My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & My.Application.Info.Version.Build         'the current version number
     Const stock As Boolean = True                                                           'is this changed (stops auto updates to conserve updates)
     Dim newVersion As Decimal                                                               'the new version id (when loaded from GitHub)

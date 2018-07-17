@@ -80,7 +80,7 @@ Partial Class main
         Me.Ping = New System.Windows.Forms.Timer(Me.components)
         Me.trayIcon = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.trayMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.toolName = New System.Windows.Forms.ToolStripMenuItem()
+        Me.trayName = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.trayWake = New System.Windows.Forms.ToolStripTextBox()
         Me.trayGame = New System.Windows.Forms.ToolStripTextBox()
@@ -791,16 +791,16 @@ Partial Class main
         '
         'trayMenu
         '
-        Me.trayMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.toolName, Me.ToolStripSeparator1, Me.trayWake, Me.trayGame, Me.trayStatus, Me.ToolStripSeparator2, Me.trayQuit})
+        Me.trayMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.trayName, Me.ToolStripSeparator1, Me.trayWake, Me.trayGame, Me.trayStatus, Me.ToolStripSeparator2, Me.trayQuit})
         Me.trayMenu.Name = "trayMenu"
         Me.trayMenu.Size = New System.Drawing.Size(161, 132)
         '
-        'toolName
+        'trayName
         '
-        Me.toolName.BackgroundImage = Global.TheOneBot.My.Resources.Resources.shadow
-        Me.toolName.Name = "toolName"
-        Me.toolName.Size = New System.Drawing.Size(160, 22)
-        Me.toolName.Text = "TheOneBot"
+        Me.trayName.BackgroundImage = Global.TheOneBot.My.Resources.Resources.shadow
+        Me.trayName.Name = "trayName"
+        Me.trayName.Size = New System.Drawing.Size(160, 22)
+        Me.trayName.Text = "TheOneBot"
         '
         'ToolStripSeparator1
         '
@@ -829,14 +829,14 @@ Partial Class main
         'trayConnect
         '
         Me.trayConnect.Name = "trayConnect"
-        Me.trayConnect.Size = New System.Drawing.Size(133, 22)
+        Me.trayConnect.Size = New System.Drawing.Size(180, 22)
         Me.trayConnect.Text = "Connect"
         '
         'trayDisconnect
         '
         Me.trayDisconnect.Enabled = False
         Me.trayDisconnect.Name = "trayDisconnect"
-        Me.trayDisconnect.Size = New System.Drawing.Size(133, 22)
+        Me.trayDisconnect.Size = New System.Drawing.Size(180, 22)
         Me.trayDisconnect.Text = "Disconnect"
         '
         'ToolStripSeparator2
@@ -955,7 +955,7 @@ Partial Class main
     Friend WithEvents txtGame As TextBox
     Friend WithEvents trayIcon As NotifyIcon
     Friend WithEvents trayMenu As ContextMenuStrip
-    Friend WithEvents toolName As ToolStripMenuItem
+    Friend WithEvents trayName As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents trayWake As ToolStripTextBox
     Friend WithEvents trayGame As ToolStripTextBox

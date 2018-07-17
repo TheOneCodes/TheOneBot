@@ -291,6 +291,8 @@ Public Class main
                 Await discord.SetGameAsync("TheOneBot by TheOneCode", "https://github.com/TheOneTrueCode/TheOneBot", StreamType.Twitch)
                 logger("Loaded profile info sucessfully with " & catcher & " attempts")
                 catcher = 0
+                trayConnect.Enabled = False
+                trayDisconnect.Enabled = True
                 Check.Stop()
             Catch
                 catcher += 1
@@ -317,6 +319,8 @@ Public Class main
             btnCon.Enabled = True
             lblUname.Text = "Offline"
             picProfile.BackgroundImage = My.Resources.full
+            trayConnect.Enabled = True
+            trayDisconnect.Enabled = False
             Check.Stop()
         ElseIf discord.LoginState = LoginState.LoggingIn Then
             logger("Connecting to discord...")
@@ -325,6 +329,8 @@ Public Class main
             btnCon.Enabled = False
             lblUname.Text = "Loading"
             picProfile.BackgroundImage = My.Resources.full
+            trayConnect.Enabled = False
+            trayDisconnect.Enabled = False
         ElseIf discord.LoginState = LoginState.LoggingOut Then
             logger("Disconnecting from discord...")
             lblStatus.Text = "Disconnecting"
@@ -332,6 +338,8 @@ Public Class main
             btnCon.Enabled = False
             lblUname.Text = "Offline"
             picProfile.BackgroundImage = My.Resources.full
+            trayConnect.Enabled = False
+            trayDisconnect.Enabled = False
         Else
             MsgBox("Idk what happened")
             If Environment.OSVersion.ToString.ToLower.Contains("unix") Then
@@ -342,7 +350,7 @@ Public Class main
         End If
     End Sub
 
-    Private Async Sub btnCon_Click(sender As Object, e As EventArgs) Handles btnCon.Click
+    Private Async Sub btnCon_Click(sender As Object, e As EventArgs) Handles btnCon.Click, trayConnect.Click, trayDisconnect.Click
         If discord.LoginState = LoginState.LoggedIn Then
             Await discord.LogoutAsync
             Check.Start()
@@ -367,8 +375,11 @@ Public Class main
         save()
         Await discord.LogoutAsync
     End Sub
-    Private Sub txtWake_TextChanged(sender As Object, e As EventArgs) Handles txtWake.TextChanged
+    Private Sub txtWake_TextChanged(sender As Object, e As EventArgs) Handles txtWake.TextChanged, trayWake.TextChanged
         wakeChange(txtWake.Text, False)
+    End Sub
+    Private Sub trayWake_Click(sender As Object, e As EventArgs) Handles trayWake.Click
+        wakeChange(trayWake.Text, False)
     End Sub
     Private Sub txtUser_TextChanged(sender As Object, e As EventArgs) Handles txtUser.TextChanged, txtDiscrim.TextChanged, txtMod.TextChanged
         txtUser.Text.Replace("@", "")
@@ -475,6 +486,11 @@ Public Class main
 
     Private Sub txtGame_TextChanged(sender As Object, e As EventArgs) Handles txtGame.TextChanged
         GameChange(txtGame.Text)
+        trayGame.Text = txtGame.Text
+    End Sub
+    Private Sub trayGame_TextChanged(sender As Object, e As EventArgs) Handles trayGame.TextChanged
+        GameChange(trayGame.Text)
+        txtGame.Text = trayGame.Text
     End Sub
     Private Sub GameChange(e As String)
         Threading.Thread.Sleep(1000)
@@ -491,15 +507,17 @@ Public Class main
             trayIcon.Visible = True
             Visible = False
             ShowInTaskbar = False
+            Ping.Stop()
         Else
             disconnecting()
         End If
     End Sub
 
-    Private Sub toolName_Click(sender As Object, e As EventArgs) Handles toolName.Click
+    Private Sub toolName_Click(sender As Object, e As EventArgs) Handles trayName.Click
         trayIcon.Visible = False
         Visible = True
         ShowInTaskbar = True
+        Ping.Start()
     End Sub
 
     Private Sub trayQuit_Click(sender As Object, e As EventArgs) Handles trayQuit.Click

@@ -11,7 +11,7 @@ Public Class update
     Const TheOneBot As String = "https://cdn.discordapp.com/attachments/459412645951569920/468134501684477954/TheOneBot.exe"
     ReadOnly configure As String = Directory.GetParent(Directory.GetParent(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData).FullName).FullName & Path.DirectorySeparatorChar & "location.config"
     Dim TheOneBotLocation As String = AppDomain.CurrentDomain.BaseDirectory & "updated.exe"
-    Dim installLocation As String = "C:\Program Files\TheOneBot\"
+    Dim installLocation As String
     Dim netDownloadLocation As String = My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData & "\dotnet4.7.exe"
     Dim netversion As String = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full", "Version", 4)
     Public bottomText = "Waiting"
@@ -25,9 +25,9 @@ Public Class update
             installLocation = reader.ReadLine
             reader.Close()
             Try
-                If File.Exists(installLocation & "TheOneBot.exe") Then
+                If File.Exists(installLocation) Then
                     Try
-                        File.Delete(installLocation & "TheOneBot.exe")
+                        File.Delete(installLocation)
                     Catch ex As DirectoryNotFoundException
                         FatalError("Origional not found," & vbNewLine & "Try the installer.")
                     Catch ex As UnauthorizedAccessException
@@ -122,7 +122,7 @@ Public Class update
     Private Sub UpdateNow()
         progress.Visible = False
         bottomText = "Installing"
-        File.Move(TheOneBotLocation, installLocation & "TheOneBot.exe")
+        File.Move(TheOneBotLocation, installLocation)
         bottomText = "Installation complete, cleaning up"
         Sleep(1000)
         Done()
@@ -168,7 +168,7 @@ Public Class update
 
     Private Sub BtnLaunch_Click(sender As Object, e As EventArgs) Handles btnLaunch.Click
         Try
-            Process.Start(installLocation & "TheOneBot.exe")
+            Process.Start(installLocation)
             Close()
         Catch ex As Exception
             bottomText = "Launch failed, " & vbNewLine & "click OK to close"
