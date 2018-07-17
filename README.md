@@ -15,13 +15,14 @@ This bot is not at a state where it should be relied on, however you can use thi
 - Independent stats info
 - Moderation/ administration tools
 ## Overview
-![loader form](https://theonetruecode.github.io/TheOneBot/images/login.png "Automatic updates")
+- Here's the basics
+![loader form](https://theonetruecode.github.io/TheOneBot/images/splash.png "Automatic updates")
 - It takes just a few seconds to check for updates and load the app
 ![login form](https://theonetruecode.github.io/TheOneBot/images/login.png "Login")
 - Pop in the credentials from discord
-![main form](https://theonetruecode.github.io/TheOneBot/images/commands.png "General setup")
+![main form](https://theonetruecode.github.io/TheOneBot/images/general.png "General setup")
 - Configue important data with the utmost of ease
 ![main form](https://theonetruecode.github.io/TheOneBot/images/commands.png "Command Toggles")
 - Any command, on or of with the flick of your finger
-![main form](https://theonetruecode.github.io/TheOneBot/images/commands.png "Help list customizations on the fly")
+![main form](https://theonetruecode.github.io/TheOneBot/images/help.png "Help list customizations on the fly")
 - Change your help list at any time easier than getting out of your chair
