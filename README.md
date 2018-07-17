@@ -14,3 +14,14 @@ This bot is not at a state where it should be relied on, however you can use thi
 - Music
 - Independent stats info
 - Moderation/ administration tools
+## Overview
+!(https://theonetruecode.github.io/TheOneBot/images/login.png "Automatic updates")
+- It takes just a few seconds to check for updates and load the app
+![Just drop em' in to the login form](https://theonetruecode.github.io/TheOneBot/images/login.png "Login")
+- Pop in the credentials from discord
+!(https://theonetruecode.github.io/TheOneBot/images/commands.png "General setup")
+- Configue important data with the utmost of ease
+!(https://theonetruecode.github.io/TheOneBot/images/commands.png "Command Toggles")
+- Any command, on or of with the flick of your finger
+![A super easy way to update your servers configuration](https://theonetruecode.github.io/TheOneBot/images/commands.png "Help list customizations on the fly")
+- Change your help list at any time easier than getting out of your chair
