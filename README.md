@@ -1,6 +1,17 @@
+## Deprecated
 # TheOneBot
 
-> A functional discord bot system written in Visual Basic .net and discord .net for windows with ease of access and customization in mind.
+> Was a functional discord bot system "proof of concept" if you will written in Visual Basic using discord .net libraries for windows with ease of access and customization in mind.
+
+> This should only realy be used as a time capsule of what I was up to in the summer of 2018, while being quite ill. The lack of cleanliness as well as comments are no longer representative of my current habbits as a programmer.
+
+## Please do not expect this to be updated ever
+
+---
+
+# Here's what this page used to say
+
+---
 
 This bot is not at a state where it should be relied on, however you can use this as a base or entirety at your own risk.
 ## Features
